@@ -1,6 +1,8 @@
-/* @import '~node_modules/modern-normalize/modern-normalize.css'; */
-@import-normalize; /*bring in normalize.css styles*/
-/* @import './sass/index.scss'; */
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+
+@import '~node_modules/modern-normalize/modern-normalize.css';
 
 body {
   font-family: 'Manrope', sans-serif;
@@ -39,3 +41,6 @@ button {
   padding: 0;
   cursor: pointer;
 }
+`;
+
+export default GlobalStyle;
