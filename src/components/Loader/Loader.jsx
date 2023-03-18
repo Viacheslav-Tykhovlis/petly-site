@@ -1,15 +1,23 @@
-import { TailSpin } from 'react-loader-spinner';
+import styled from 'styled-components';
+import { RotatingLines } from 'react-loader-spinner';
 
-const Loader = () => {
+const StyledLoader = styled.section`
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Loader = () => {
   return (
-    <div>
-      <TailSpin
-        height="150"
-        width="150"
-        color="#ff751d"
-        ariaLabel="loading-indicator"
+    <StyledLoader>
+      <RotatingLines
+        strokeColor="grey"
+        strokeWidth="4"
+        animationDuration="0.75"
+        width="96"
+        visible={true}
       />
-    </div>
+    </StyledLoader>
   );
 };
-export default Loader;

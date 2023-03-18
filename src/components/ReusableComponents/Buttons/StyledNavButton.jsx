@@ -1,0 +1,41 @@
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+
+export const StyledNavLink = styled(NavLink)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 31px;
+  padding: 0 28px;
+
+  text-decoration: none;
+  border: 2px solid #f59256;
+  border-radius: 40px;
+
+  color: #111111;
+  font-family: 'Manrope';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  outline: transparent;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:active {
+    color: #fff;
+    background-color: #f59256;
+  }
+
+  &:focus,
+  &:hover {
+    color: #fff;
+    background-color: #f59256;
+  }
+`;
+
+export const StyledNavButton = ({ route, buttonName }) => {
+  return <StyledNavLink to={route}>{buttonName}</StyledNavLink>;
+};
