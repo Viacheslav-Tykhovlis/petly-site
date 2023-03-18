@@ -14,7 +14,7 @@ export const App = () => {
       <Container>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
-            <Route index path="/" element={<Home />} />
+            <Route index element={<Home />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/notices" element={<NoticesPage />}>
               <Route
@@ -22,9 +22,9 @@ export const App = () => {
                 element={<NoticesPetsList />}
               />
             </Route>
-            <Route path="/friends " element={<OurFriendsPage />} />
+            <Route path="/friends" element={<OurFriendsPage />} />
           </Route>
-          <Route path="*" element={<div>Error 404</div>} />
+          <Route path="*" element={<h1>Error 404</h1>} />
         </Routes>
       </Container>
     </>
