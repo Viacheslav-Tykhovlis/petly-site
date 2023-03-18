@@ -4,13 +4,13 @@ import { StyledLikeButton } from 'components/ReusableComponents/Buttons/StyledLi
 import { StyledNavButton } from 'components/ReusableComponents/Buttons/StyledNavButton';
 import { StyledNextButton } from 'components/ReusableComponents/Buttons/StyledNextButton';
 
+import NoticesPetsList from 'components/NoticesPetsList/NoticesPetsList';
+
 const NoticesCategoriesNav = () => {
   // const [userIsLogedIn] = useState(false);
 
   return (
     <>
-      <h1>NoticesCategoriesNav</h1>
-
       <div
         style={{
           display: 'flex',
@@ -22,15 +22,19 @@ const NoticesCategoriesNav = () => {
           boxSizing: 'border-box',
         }}
       >
-        <StyledNavButton route="/sell" buttonName="sell" />
+        <StyledNavButton
+          route="/sell"
+          buttonName="sell"
+          element={NoticesPetsList}
+        />
         <StyledNavButton route="/lost-found" buttonName="lost/found" />
         <StyledNavButton route="/for-free" buttonName="in good hands" />
 
         <StyledNavButton route="/favorite" buttonName="favorite ads" />
         <StyledNavButton route="/own" buttonName="my ads" />
 
-        <StyledNextButton route="/next" buttonName="Next" />
-        <StyledNextButton route="/prev" buttonName="Cancel" />
+        <StyledNextButton buttonName="Next" />
+        <StyledNextButton buttonName="Cancel" />
       </div>
 
       <div
@@ -42,7 +46,7 @@ const NoticesCategoriesNav = () => {
           boxSizing: 'border-box',
         }}
       >
-        <StyledLearnMoreButton route="/learnmore" buttonName="Learn more" />
+        <StyledLearnMoreButton buttonName="Learn more" />
       </div>
 
       <div
