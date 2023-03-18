@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://Viacheslav-Tykhovlis.github.io/petly-site/",
   "dependencies": {
+    "@emotion/react": "^11.10.6",
     "@react-hook/media-query": "^1.1.1",
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.3",
