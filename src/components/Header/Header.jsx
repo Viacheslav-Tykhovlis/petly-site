@@ -1,8 +1,9 @@
 import Container from '../Container/Container';
-import Logo from '../Logo/Logo';
-import Nav from 'components/Nav/Nav';
-import AuthNav from 'components/AuthNav/AuthNav';
-import UserNav from 'components/UserNav/UserNav';
+import Logo from './Logo/Logo';
+import Nav from 'components/Header/Nav/Nav';
+import AuthNav from 'components/Header/AuthNav/AuthNav';
+import UserNav from 'components/Header/UserNav/UserNav';
+import { MobileMenuButton } from './MobileMenuButton/MobileMenuButton';
 
 const Header = () => {
   return (
@@ -19,6 +20,7 @@ const Header = () => {
           <AuthNav />
         </li>
       </ul>
+      <MobileMenuButton />
     </Container>
   );
 };
