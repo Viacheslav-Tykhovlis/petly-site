@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { lazy } from 'react';
 
 import Container from './Container/Container';
 import SharedLayout from './SharedLayout/SharedLayout';
@@ -9,6 +10,8 @@ import NoticesPetsList from './NoticesCategoriesList/NoticesCategoriesList';
 import OurFriendsPage from 'pages/OurFriendsPage/OurFriendsPage';
 import NoticesPetsListOwn from './NoticesCategoriesList/NoticesPetsListOwn';
 import NoticesPetsListSell from './NoticesCategoriesList/NoticesPetsListSell';
+
+const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 
 export const App = () => {
   return (
@@ -29,6 +32,8 @@ export const App = () => {
             </Route>
 
             <Route path="/friends" element={<OurFriendsPage />} />
+
+            <Route path="/register" element={<RegisterPage/>} />
           </Route>
           <Route path="*" element={<h1>Error 404</h1>} />
         </Routes>
