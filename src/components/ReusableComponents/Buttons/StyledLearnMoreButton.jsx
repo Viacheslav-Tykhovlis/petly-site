@@ -12,6 +12,14 @@ const StyledNavModalLink = styled(StyledNavLink)`
 
   transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
+  @media screen and (min-width: 768px) {
+    min-width: 248px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 100%;
+  }
+
   &:active {
     color: #ff6101;
     background-color: #fff;

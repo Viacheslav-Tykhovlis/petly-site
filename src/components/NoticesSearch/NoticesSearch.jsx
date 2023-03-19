@@ -1,11 +1,7 @@
+import SearchBar from 'components/ReusableComponents/SearchBar/SearchBar';
+
 const NoticesSearch = () => {
-  return (
-    <form>
-      <label htmlFor="search"></label>
-      <input id="search" name="search" placeholder="Search" />
-      <button type="submit">Search</button>
-    </form>
-  );
+  return <SearchBar />;
 };
 
 export default NoticesSearch;

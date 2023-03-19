@@ -18,7 +18,6 @@ export const StyledSvgButton = styled.button`
   border-radius: 50%;
   border: transparent;
 
-  cursor: pointer;
   fill: #fff;
   stroke: #f59256;
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
