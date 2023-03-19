@@ -1,10 +1,12 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 export const Tit = styled.h1`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 48px;
-  line-height: 1, 38;
-  color: #000;
+  font-weight: ${props => props.theme.fontWeight.bold};
+  color: ${props => props.theme.colors.black};
+  font-size: 24px;
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    font-size: 48px;
+  }
 `;
