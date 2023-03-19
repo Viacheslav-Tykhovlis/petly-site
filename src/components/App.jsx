@@ -5,10 +5,10 @@ import SharedLayout from './SharedLayout/SharedLayout';
 import Home from 'pages/Home/Home';
 import NewsPage from 'pages/NewsPage/NewsPage';
 import NoticesPage from 'pages/NoticesPage/NoticesPage';
-import NoticesPetsList from './NoticesCategoriesList/NoticesCategoriesList';
+import NoticesPetsList from './Notices/NoticesCategoriesList/NoticesCategoriesList';
 import OurFriendsPage from 'pages/OurFriendsPage/OurFriendsPage';
-import NoticesPetsListOwn from './NoticesCategoriesList/NoticesPetsListOwn';
-import NoticesPetsListSell from './NoticesCategoriesList/NoticesPetsListSell';
+import NoticesPetsListOwn from './Notices/NoticesCategoriesList/NoticesPetsListOwn';
+import NoticesPetsListSell from './Notices/NoticesCategoriesList/NoticesPetsListSell';
 
 export const App = () => {
   return (
