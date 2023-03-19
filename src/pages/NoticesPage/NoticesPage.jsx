@@ -12,6 +12,7 @@ const NoticesPage = () => {
         <NoticesSearch />
         <NoticesCategoriesNav />
         <Link style={{ display: 'block' }}>Add pet</Link>
+        {/* {modal window} */}
 
         <Outlet />
       </div>

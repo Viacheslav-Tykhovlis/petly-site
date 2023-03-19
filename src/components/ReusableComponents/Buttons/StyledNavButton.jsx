@@ -6,7 +6,7 @@ export const StyledNavLink = styled(NavLink)`
   align-items: center;
   justify-content: center;
 
-  height: 31px;
+  height: 35px;
   padding: 0 28px;
 
   text-decoration: none;
@@ -23,6 +23,15 @@ export const StyledNavLink = styled(NavLink)`
 
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (min-width: 768px) {
+    height: 38px;
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    height: 47px;
+  }
 
   &:active {
     color: #fff;
