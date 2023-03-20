@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   display: none;
 
   @media screen and (min-width: 768px) {
@@ -11,7 +11,7 @@ const StyledButton = styled.button`
     width: 44px;
     height: 44px;
 
-    background: #f59256;
+    background-color: #f59256;
     color: #111111;
     font-size: 20px;
     line-height: 1.35;
@@ -19,21 +19,19 @@ const StyledButton = styled.button`
     border: 2px solid #f59256;
 
     stroke: #fff;
-    transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    /* transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1); */
-    /* transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &:focus,
   &:hover {
     outline: transparent;
-    background: #fff;
+    background-color: #fff;
     stroke: #111111;
-    /* color: #fff; */
   }
 `;
 
-const StyledSpan = styled.span`
+export const StyledSpan = styled.span`
   position: absolute;
   top: 50%;
   left: -4px;
@@ -44,7 +42,7 @@ const StyledSpan = styled.span`
   display: flex;
   align-items: center;
 
-  background: #fff;
+  background-color: transparent;
   border: none;
 `;
 

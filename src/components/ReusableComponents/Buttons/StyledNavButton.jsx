@@ -14,15 +14,13 @@ export const StyledNavLink = styled(NavLink)`
   border-radius: 40px;
 
   color: #111111;
-  font-family: 'Manrope';
-  font-weight: 500;
   font-size: 14px;
   line-height: 1.35;
   letter-spacing: 0.04em;
   outline: transparent;
 
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
     height: 38px;
@@ -33,7 +31,7 @@ export const StyledNavLink = styled(NavLink)`
     height: 47px;
   }
 
-  &:active {
+  &.active {
     color: #fff;
     background-color: #f59256;
   }

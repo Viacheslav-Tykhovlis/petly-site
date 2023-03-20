@@ -12,7 +12,7 @@ export const StyledButton = styled.button`
   width: 80px;
   height: 80px;
 
-  background: #f59256;
+  background-color: #f59256;
   color: #fff;
   font-size: 12px;
   line-height: 1.33;
@@ -20,9 +20,9 @@ export const StyledButton = styled.button`
   border: 2px solid #f59256;
 
   stroke: #fff;
-  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  /* transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1); */
-  /* transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
     display: none;
@@ -31,7 +31,7 @@ export const StyledButton = styled.button`
   &:focus,
   &:hover {
     outline: transparent;
-    background: #fff;
+    background-color: #fff;
     stroke: #111111;
     color: #111111;
   }
