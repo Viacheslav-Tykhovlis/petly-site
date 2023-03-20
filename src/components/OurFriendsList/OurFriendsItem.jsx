@@ -1,21 +1,18 @@
 import PropTypes from 'prop-types';
 import {
   Friend,
-  NameFriend,
+  Name,
+  NameLink,
   Box,
   ImgFriend,
   DataList,
   DataItem,
   Subtitle,
-  TimeWork,
-  TimeWorkItem,
-  TimeWorkText,
-  Adress,
-  TimeLink,
-  AdressLink,
-  ImageLink,
-  EmailLink,
-  PhoneLink,
+  // TimeWorkItem,
+  // TimeWorkText,
+  // TimeLink,
+  // ImageLink,
+  DataLink,
 } from './OurFriendsItem.styled';
 
 export const OurFriendsItem = ({
@@ -30,16 +27,17 @@ export const OurFriendsItem = ({
 }) => {
   return (
     <Friend>
-      <NameFriend>{title}</NameFriend>
+      <NameLink href={url}>
+        <Name> {title}</Name>
+      </NameLink>
+
       <Box>
-        <ImageLink src={url}>
-          <ImgFriend src={imageUrl} alt="FotoSponsor" />
-        </ImageLink>
+        <ImgFriend src={imageUrl} alt="FotoSponsor" />
+
         <DataList>
           <DataItem>
             <Subtitle>Time:</Subtitle>
             {/* <TimeLink>
-              <TimeWork>
                 {workDays
                   ? workDays.map(({ to, from, isOpen, index }) => (
                       <TimeWorkItem key={index}>
@@ -49,33 +47,28 @@ export const OurFriendsItem = ({
                       </TimeWorkItem>
                     ))
                   : '-----------------------------------'}
-              </TimeWork>
             </TimeLink> */}
           </DataItem>
 
           <DataItem>
             <Subtitle>Adress:</Subtitle>
-            <AdressLink src={addressUrl}>
-              <Adress>
-                {address ? address : '-----------------------------------'}
-              </Adress>
-            </AdressLink>
+            <DataLink href={addressUrl}>
+              {address ? address : '-----------------------------------'}
+            </DataLink>
           </DataItem>
 
           <DataItem>
             <Subtitle>Email:</Subtitle>
-            <EmailLink>
-              <TimeWork>
-                {email ? email : '-----------------------------------'}
-              </TimeWork>
-            </EmailLink>
+            <DataLink href={email}>
+              {email ? email : '-----------------------------------'}
+            </DataLink>
           </DataItem>
 
           <DataItem>
             <Subtitle>Phone:</Subtitle>
-            <PhoneLink>
-              <TimeWork>{phone}</TimeWork>
-            </PhoneLink>
+            <DataLink href={phone}>
+              {phone ? phone : '-----------------------------------'}
+            </DataLink>
           </DataItem>
         </DataList>
       </Box>
@@ -83,19 +76,19 @@ export const OurFriendsItem = ({
   );
 };
 
-// OurFriendsItem.propTypes = {
-//   title: PropTypes.string.isRequired,
-//   url: PropTypes.string.isRequired,
-//   addressUrl: PropTypes.string.isRequired,
-//   imageUrl: PropTypes.string.isRequired,
-//   address: PropTypes.string.isRequired,
-//   phone: PropTypes.string.isRequired,
-//   email: PropTypes.string.isRequired,
-//   workDays: PropTypes.arrayOf(
-//     PropTypes.exact({
-//       isOpen: PropTypes.boolean.isRequired,
-//       from: PropTypes.string.isRequired,
-//       to: PropTypes.string.isRequired,
-//     }),
-//   ),
-// };
+OurFriendsItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  addressUrl: PropTypes.string,
+  imageUrl: PropTypes.string,
+  address: PropTypes.string,
+  phone: PropTypes.string,
+  email: PropTypes.string,
+  workDays: PropTypes.arrayOf(
+    PropTypes.exact({
+      isOpen: PropTypes.bool,
+      from: PropTypes.string,
+      to: PropTypes.string,
+    }),
+  ),
+};

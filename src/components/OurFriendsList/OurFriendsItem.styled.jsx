@@ -1,22 +1,55 @@
 import styled from '@emotion/styled';
 
 export const Friend = styled.li`
+  :not(last-child) {
+    @media screen and (max-width: 767px) {
+      margin-bottom: 12px;
+    }
+  }
+
+  flex-basis: 100%;
   text-align: flex-start;
-  padding: 14px 4px 12px 4px;
+  padding: 12px 4px;
   font-size: 12px;
   line-height: 1, 33;
   color: ${props => props.theme.colors.black};
   background-color: ${props => props.theme.colors.white};
   border-radius: 20px;
   filter: drop-shadow(7px 4px 14px rgba(49, 21, 4, 0.07));
+
+  @media screen and (min-width: 768px) {
+    flex-basis: calc((100% - 30px) / 2);
+    border-radius: 40px;
+    padding: 16px 4px;
+    font-size: 14px;
+    line-height: 1, 36;
+  }
+
+  @media screen and (min-width: 1200px) {
+    flex-basis: calc((100% - 60px) / 3);
+    font-size: 16px;
+    line-height: 1, 375;
+  }
 `;
 
-export const NameFriend = styled.h2`
-  text-decoration: underline;
+export const NameLink = styled.a`
+  color: ${props => props.theme.colors.accent};
+  text-decoration-color: ${props => props.theme.colors.accent};
+  cursor: pointer;
+`;
+
+export const Name = styled.h2`
   color: ${props => props.theme.colors.accent};
   font-weight: ${props => props.theme.fontWeight.bold};
-  margin-bottom: 12px;
   text-align: center;
+  margin-bottom: 12px;
+  font-size: 12px;
+  line-height: 1, 33;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1, 375;
+  }
 `;
 
 export const Box = styled.div`
@@ -34,6 +67,15 @@ export const DataList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 4px;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 14px;
+    gap: 8px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    margin-left: 14px;
+  }
 `;
 
 export const DataItem = styled.li``;
@@ -43,11 +85,9 @@ export const Subtitle = styled.p``;
 export const TimeWork = styled.ul``;
 export const TimeWorkItem = styled.li``;
 export const TimeWorkText = styled.p``;
-export const Adress = styled.p``;
-export const TimeLink = styled.a``;
-export const AdressLink = styled.a``;
+
 export const ImageLink = styled.a``;
 
-export const EmailLink = styled.a``;
-
-export const PhoneLink = styled.a``;
+export const DataLink = styled.a`
+  color: ${props => props.theme.colors.black};
+`;
