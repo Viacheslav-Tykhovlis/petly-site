@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { OurFriendsItem } from './OurFriendsItem';
 import { OurFriendsUl } from './OurFriendsList.styled';
 

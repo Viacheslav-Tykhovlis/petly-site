@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {
   Friend,
   NameFriend,
@@ -8,10 +8,10 @@ import {
   DataItem,
   Subtitle,
   TimeWork,
-  TimeWorkItem,
-  TimeWorkText,
+  // TimeWorkItem,
+  // TimeWorkText,
   Adress,
-  TimeLink,
+  // TimeLink,
   AdressLink,
   ImageLink,
   EmailLink,
