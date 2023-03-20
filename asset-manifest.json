@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/petly-site/static/css/main.c3d5249d.css",
-    "main.js": "/petly-site/static/js/main.fc6c0412.js",
+    "main.js": "/petly-site/static/js/main.9e119c32.js",
     "index.html": "/petly-site/index.html",
     "main.c3d5249d.css.map": "/petly-site/static/css/main.c3d5249d.css.map",
-    "main.fc6c0412.js.map": "/petly-site/static/js/main.fc6c0412.js.map"
+    "main.9e119c32.js.map": "/petly-site/static/js/main.9e119c32.js.map"
   },
   "entrypoints": [
     "static/css/main.c3d5249d.css",
-    "static/js/main.fc6c0412.js"
+    "static/js/main.9e119c32.js"
   ]
 }
