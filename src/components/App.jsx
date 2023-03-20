@@ -8,6 +8,8 @@ import NoticesPage from 'pages/NoticesPage/NoticesPage';
 import OurFriendsPage from 'pages/OurFriendsPage/OurFriendsPage';
 import NoticesCategoriesList from './Notices/NoticesCategoriesList/NoticesCategoriesList';
 import NotFound from 'pages/NotFoundPage/NotFound';
+import UserPage from 'pages/UserPage/UserPage';
+
 
 export const App = () => {
   return (
@@ -27,6 +29,7 @@ export const App = () => {
             </Route>
 
             <Route path="/friends" element={<OurFriendsPage />} />
+            <Route path="/user" element={<UserPage />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
