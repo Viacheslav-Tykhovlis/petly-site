@@ -1,15 +1,15 @@
 import styled from '@emotion/styled';
 
 export const OurFriendsUl = styled.ul`
-  display: flex;
-  gap: 12px;
-  flex-direction: column;
   margin-top: 28px;
+  margin-bottom: 100px;
 
   @media screen and (min-width: 768px) {
-    margin-top: 40px;
-    gap: 32px;
+    display: flex;
     flex-wrap: wrap;
+    column-gap: 32px;
+    row-gap: 30px;
+    margin-top: 40px;
   }
 
   @media screen and (min-width: 1280px) {
