@@ -7,6 +7,7 @@ import NewsPage from 'pages/NewsPage/NewsPage';
 import NoticesPage from 'pages/NoticesPage/NoticesPage';
 import NoticesPetsList from './NoticesPetsList/NoticesPetsList';
 import OurFriendsPage from 'pages/OurFriendsPage/OurFriendsPage';
+import UserPage from 'pages/UserPage/UserPage';
 
 export const App = () => {
   return (
@@ -23,6 +24,7 @@ export const App = () => {
               />
             </Route>
             <Route path="/friends" element={<OurFriendsPage />} />
+            <Route path="/user" element={<UserPage />} />
           </Route>
           <Route path="*" element={<h1>Error 404</h1>} />
         </Routes>
