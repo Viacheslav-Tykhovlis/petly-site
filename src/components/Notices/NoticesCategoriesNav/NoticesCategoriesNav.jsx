@@ -8,24 +8,31 @@ import {
 import { StyledNavButton } from 'components/ReusableComponents/Buttons/StyledNavButton';
 
 const NoticesCategoriesNav = () => {
-  // const [userIsLogedIn] = useState(false);
+  // const userIsLogedIn  - from redux auth slice;
+  // add notifications on unauthorized routes
 
   return (
     <NavBox>
       <NavBox1>
         <NavBox2>
           <NavBox3>
-            <StyledNavButton route="lost-found" buttonName="lost/found" />
-            <StyledNavButton route="for-free" buttonName="in good hands" />
+            <StyledNavButton
+              route="/notices/lost-found"
+              buttonName="lost/found"
+            />
+            <StyledNavButton
+              route="/notices/for-free"
+              buttonName="in good hands"
+            />
           </NavBox3>
-          <StyledNavButton route="sell" buttonName="sell" />
+          <StyledNavButton route="/notices/sell" buttonName="sell" />
         </NavBox2>
       </NavBox1>
 
       {/* {userIsLogedIn condition render, notification if false} */}
       <NavUsersBox>
-        <StyledNavButton route="favorite" buttonName="favorite ads" />
-        <StyledNavButton route="own" buttonName="my ads" />
+        <StyledNavButton route="/notices/favorite" buttonName="favorite ads" />
+        <StyledNavButton route="/notices/own" buttonName="my ads" />
       </NavUsersBox>
     </NavBox>
   );
