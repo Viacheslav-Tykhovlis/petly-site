@@ -12,7 +12,7 @@ import { Modal } from 'components/Modal/Modal';
 import ModalAddNotice from 'components/Notices/NoticeModal/ModalAddNotice';
 
 const NoticesPage = () => {
-  // const [pets, setPets] = useState([]);
+  //  const [pets, setPets] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
 
   const onAddButtonClick = () => {

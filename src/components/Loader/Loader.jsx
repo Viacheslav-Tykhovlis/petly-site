@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import { RotatingLines } from 'react-loader-spinner';
 
 const StyledLoader = styled.section`
-  height: 75vh;
+  height: 15vh;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const Loader = () => {
+const Loader = () => {
   return (
     <StyledLoader>
       <RotatingLines
@@ -21,3 +21,5 @@ export const Loader = () => {
     </StyledLoader>
   );
 };
+
+export default Loader;
