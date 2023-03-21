@@ -9,7 +9,6 @@ import OurFriendsPage from 'pages/OurFriendsPage/OurFriendsPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import NotFound from 'pages/NotFoundPage/NotFound';
 import UserPage from 'pages/UserPage/UserPage';
-import NotFound from 'pages/NotFoundPage/NotFound';
 
 export const App = () => {
   return (
