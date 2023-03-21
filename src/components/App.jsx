@@ -6,6 +6,11 @@ import Home from 'pages/Home/Home';
 import NewsPage from 'pages/NewsPage/NewsPage';
 import NoticesPage from 'pages/NoticesPage/NoticesPage';
 import OurFriendsPage from 'pages/OurFriendsPage/OurFriendsPage';
+
+import NoticesPetsListOwn from './Notices/NoticesCategoriesList/NoticesPetsListOwn';
+import NoticesPetsListSell from './Notices/NoticesCategoriesList/NoticesPetsListSell';
+import LoginPage from 'pages/LoginPage/LoginPage';
+
 import NoticesCategoriesList from './Notices/NoticesCategoriesList/NoticesCategoriesList';
 import NotFound from 'pages/NotFoundPage/NotFound';
 import UserPage from 'pages/UserPage/UserPage';
@@ -29,7 +34,11 @@ export const App = () => {
             </Route>
 
             <Route path="/friends" element={<OurFriendsPage />} />
+
+            <Route path="/login" element={<LoginPage />} />
+
             <Route path="/user" element={<UserPage />} />
+
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
