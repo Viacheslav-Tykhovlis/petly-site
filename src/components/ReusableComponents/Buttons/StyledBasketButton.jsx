@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { StyledSvgButton } from './StyledLikeButton';
 
 const StyledSvgBasketButton = styled(StyledSvgButton)`
+  background-color: #fdf7f2;
   fill: rgba(17, 17, 17, 0.6);
   stroke: none;
 `;
