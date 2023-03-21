@@ -1,6 +1,3 @@
-import { useSearchParams } from 'react-router-dom';
-import { useState } from 'react';
-
 import { List } from './NewsList.styled';
 
 import NewsItem from './NewsItem';
