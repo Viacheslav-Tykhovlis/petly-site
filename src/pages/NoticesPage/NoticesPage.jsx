@@ -1,5 +1,5 @@
-import { Outlet } from 'react-router-dom';
-import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 import Title from 'components/Title/Title';
 import NoticesSearch from 'components/Notices/NoticesSearch/NoticesSearch';
@@ -10,10 +10,28 @@ import { StyledAddPetMobileButton } from 'components/ReusableComponents/Buttons/
 import { StyledAddPetDesktopButton } from 'components/ReusableComponents/Buttons/StyledAddPetDesktopButton';
 import { Modal } from 'components/Modal/Modal';
 import ModalAddNotice from 'components/Notices/NoticeModal/ModalAddNotice';
+import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
 
 const NoticesPage = () => {
-  //  const [pets, setPets] = useState([]);
+  const { category } = useParams();
   const [showAddModal, setShowAddModal] = useState(false);
+  //  const [noticesList, setNoticesList] = useState([]);
+  // const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function searchNoticeByCategory() {
+      try {
+        // setLoading(true);
+        // const data = await fetchNoticeByCategory(category);
+        // setNoticesList(data);
+      } catch (error) {
+        console.log(error);
+      }
+      // setLoading(false);
+    }
+
+    searchNoticeByCategory();
+  }, [category]);
 
   const onAddButtonClick = () => {
     setShowAddModal(!showAddModal);
@@ -25,7 +43,7 @@ const NoticesPage = () => {
       <NoticesSearch />
 
       <ButtonBox>
-        <NoticesCategoriesNav />
+        <NoticesCategoriesNav category={category} />
         <StyledAddPetDesktopButton onAddButtonClick={onAddButtonClick} />
       </ButtonBox>
 
@@ -37,7 +55,7 @@ const NoticesPage = () => {
         </Modal>
       )}
 
-      <Outlet />
+      <NoticesCategoriesList />
     </StyledSection>
   );
 };
