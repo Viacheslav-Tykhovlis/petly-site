@@ -9,11 +9,10 @@ import {
   DataList,
   DataItem,
   Subtitle,
-  // TimeWorkItem,
-  // TimeWorkText,
-  TimeButton,
+  TextBox,
   DataLink,
 } from './OurFriendsItem.styled';
+import SheduleTable from './SheduleTable';
 
 export const OurFriendsItem = ({
   title,
@@ -24,17 +23,19 @@ export const OurFriendsItem = ({
   workDays,
   phone,
   email,
+  id,
 }) => {
   const [isVisibleWorkDays, setisVisibleWorkDays] = useState(false);
+  const weekDays = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
   const openDay = workDays?.find(day => day.isOpen);
-
-  // const handleClicktoWorkdays = () => {
-  //   setisVisibleWorkDays(true);
-  // };
-  console.log(isVisibleWorkDays);
+  const newWorkDays =
+    workDays &&
+    workDays.map((day, index) => {
+      return { day: weekDays[index], ...day };
+    });
 
   return (
-    <Friend>
+    <Friend key={id}>
       <NameLink href={url} target="_blank" rel="noopener noreferrer">
         <Name> {title}</Name>
       </NameLink>
@@ -44,27 +45,26 @@ export const OurFriendsItem = ({
 
         <DataList>
           <DataItem>
-            <Subtitle>Time:</Subtitle>
             {workDays ? (
-              <TimeButton
+              <TextBox
                 onClick={() => setisVisibleWorkDays(!isVisibleWorkDays)}
+                onMouseLeave={() => {
+                  setTimeout(() => {
+                    setisVisibleWorkDays(false);
+                  }, 2500);
+                }}
               >
-                {openDay.from} - {openDay.to}
-              </TimeButton>
+                <Subtitle>Time:</Subtitle>
+                <Subtitle>
+                  {openDay.from} - {openDay.to}
+                </Subtitle>
+              </TextBox>
             ) : (
-              <p>-----------------------------------</p>
+              <Subtitle>-----------------------------------</Subtitle>
             )}
           </DataItem>
-          {isVisibleWorkDays &&
-            workDays.map(({ to, from, isOpen, index }) => (
-              <ul>
-                <li key={index}>
-                  <p>
-                    {from}- {to}
-                  </p>
-                </li>
-              </ul>
-            ))}
+
+          {isVisibleWorkDays && <SheduleTable shedule={newWorkDays} />}
 
           <DataItem>
             <Subtitle>Adress:</Subtitle>
@@ -118,6 +118,7 @@ export const OurFriendsItem = ({
 };
 
 OurFriendsItem.propTypes = {
+  id: PropTypes.string,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   addressUrl: PropTypes.string,
@@ -130,22 +131,7 @@ OurFriendsItem.propTypes = {
       isOpen: PropTypes.bool,
       from: PropTypes.string,
       to: PropTypes.string,
+      id: PropTypes.string,
     }),
   ),
 };
-
-//  {
-//    workDays ? (
-//      workDays.map(({ to, from, isOpen, index }) => (
-//        <TimeLink>
-//          <TimeWorkItem key={index}>
-//            <TimeWorkText>
-//              {to} - {from}
-//            </TimeWorkText>
-//          </TimeWorkItem>
-//        </TimeLink>
-//      ))
-//    ) : (
-//      <p>-----------------------------------</p>
-//    );
-//  }

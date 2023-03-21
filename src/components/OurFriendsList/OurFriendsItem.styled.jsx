@@ -6,7 +6,7 @@ export const Friend = styled.li`
       margin-bottom: 12px;
     }
   }
-
+  z-index: 0;
   flex-basis: 100%;
   text-align: flex-start;
   padding: 12px 4px;
@@ -75,6 +75,7 @@ export const ImgFriend = styled.img`
 `;
 
 export const DataList = styled.ul`
+  position: relative;
   display: flex;
   flex-direction: column;
   margin-left: 12px;
@@ -94,27 +95,10 @@ export const DataList = styled.ul`
 export const DataItem = styled.li``;
 export const Subtitle = styled.p``;
 
-export const DataLink = styled.a`
-  text-decoration: none;
-  color: ${props => props.theme.colors.black};
-  :hover,
-  :focus {
-    color: ${props => props.theme.colors.accent};
-    transition: ${props => props.theme.animation.cubicBezier};
-  }
-`;
-
-export const TimeWork = styled.ul``;
-export const TimeWorkItem = styled.li``;
-export const TimeWorkText = styled.p``;
-
-export const TimeButton = styled.button`
-  border: none;
+export const TextBox = styled.div`
+  cursor: pointer;
   background-color: ${props => props.theme.colors.white};
   color: ${props => props.theme.colors.black};
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
   font-size: 12px;
   line-height: 1, 33;
 
@@ -132,5 +116,15 @@ export const TimeButton = styled.button`
   @media screen and (min-width: 1280px) {
     font-size: 16px;
     line-height: 1, 375;
+  }
+`;
+
+export const DataLink = styled.a`
+  text-decoration: none;
+  color: ${props => props.theme.colors.black};
+  :hover,
+  :focus {
+    color: ${props => props.theme.colors.accent};
+    transition: ${props => props.theme.animation.cubicBezier};
   }
 `;
