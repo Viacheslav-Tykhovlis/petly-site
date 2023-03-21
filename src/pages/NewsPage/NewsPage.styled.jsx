@@ -1,4 +1,3 @@
-// import styled from 'styled-components';
 import styled from '@emotion/styled';
 
 export const NewsSection = styled.div`
@@ -91,81 +90,4 @@ export const DeleteBtn = styled.button`
     height: 24px;
     top: 10px;
   }
-`;
-
-export const List = styled.ul`
-  display: flex;
-  list-style: none;
-  gap: 40px;
-  @media screen and (max-width: 767.9px) {
-    flex-direction: column;
-  }
-  @media screen and (min-width: 768px) {
-    flex-wrap: wrap;
-    gap: 40px;
-  }
-  @media screen and (min-width: 1280px) {
-  }
-`;
-
-export const OneNews = styled.li`
-  @media screen and (min-width: 768px) {
-    width: calc(50% - 30px);
-  }
-  @media screen and (min-width: 1280px) {
-    width: calc(33.3333% - 30px);
-  }
-`;
-export const NewsLine = styled.div`
-  width: 200px;
-  height: 4px;
-  background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
-  border-radius: 40px;
-  margin-bottom: 4px;
-  @media screen and (min-width: 768px) {
-    width: 280px;
-    height: 8px;
-  }
-  @media screen and (min-width: 1280px) {
-    width: 340px;
-  }
-`;
-export const NewsTitle = styled.h2`
-  margin-bottom: 16px;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
-  letter-spacing: -0.01em;
-`;
-export const NewsDescr = styled.p`
-  color: #111321;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  margin-bottom: 20px;
-
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 7;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
-  @media screen and (min-width: 768px) {
-    -webkit-line-clamp: 6;
-  }
-  @media screen and (min-width: 1280px) {
-    -webkit-line-clamp: 5;
-  }
-`;
-export const NewsContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-export const NewsDate = styled.p`
-  color: rgba(17, 17, 17, 0.6);
-  font-weight: 400;
-`;
-export const NewsLink = styled.a`
-  color: #f59256;
 `;
