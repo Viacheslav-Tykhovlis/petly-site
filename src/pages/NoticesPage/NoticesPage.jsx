@@ -11,23 +11,28 @@ import { StyledAddPetDesktopButton } from 'components/ReusableComponents/Buttons
 import { Modal } from 'components/Modal/Modal';
 import ModalAddNotice from 'components/Notices/NoticeModal/ModalAddNotice';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
+import { fetchNoticesByCategory } from 'services/getNoticeByCategory';
+import Loader from 'components/Loader/Loader';
 
 const NoticesPage = () => {
   const { category } = useParams();
   const [showAddModal, setShowAddModal] = useState(false);
-  //  const [noticesList, setNoticesList] = useState([]);
-  // const [loading, setLoading] = useState(false);
+  const [notices, setNotices] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if (category === 'favorite' || category === 'own') {
+      return;
+    }
     async function searchNoticeByCategory() {
       try {
-        // setLoading(true);
-        // const data = await fetchNoticeByCategory(category);
-        // setNoticesList(data);
+        setLoading(true);
+        const { data } = await fetchNoticesByCategory(category);
+        setNotices(data);
       } catch (error) {
         console.log(error);
       }
-      // setLoading(false);
+      setLoading(false);
     }
 
     searchNoticeByCategory();
@@ -55,7 +60,7 @@ const NoticesPage = () => {
         </Modal>
       )}
 
-      <NoticesCategoriesList />
+      {loading ? <Loader /> : <NoticesCategoriesList notices={notices} />}
     </StyledSection>
   );
 };
