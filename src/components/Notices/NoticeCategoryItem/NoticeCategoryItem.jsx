@@ -5,7 +5,9 @@ import { StyledLikeButton } from 'components/ReusableComponents/Buttons/StyledLi
 import { Modal } from 'components/Modal/Modal';
 import ModalNotice from '../NoticeModal/ModalNotice';
 
-const NoticeCategoryItem = () => {
+import defaultImg from '../../../images/defaultImg.jpg';
+
+const NoticeCategoryItem = ({ notice }) => {
   const [showDetailsModal, setSDetailsModal] = useState(false);
 
   const onLearMoreButtonClick = () => {
@@ -20,15 +22,55 @@ const NoticeCategoryItem = () => {
     console.log('delete from faforite');
   };
 
+  const {
+    category,
+    title,
+    // name,
+    birthdate,
+    breed,
+    // sex,
+    location,
+    // comments,
+    price,
+    // image,
+    // favorite,
+    // owner,
+  } = notice;
+
+  const noticeLabelTranfornm = category => {
+    let categoryToDisplay = '';
+    switch (category) {
+      case 'sell':
+        categoryToDisplay = 'Sell';
+        break;
+      case 'lost-found':
+        categoryToDisplay = 'Lost/found';
+        break;
+      case 'for-free':
+        categoryToDisplay = 'In good hands';
+        break;
+      default:
+        categoryToDisplay = 'asdsSell';
+    }
+    return categoryToDisplay;
+  };
+
   return (
     <>
       <div style={{ width: '300px', backgroundColor: 'antiquewhite' }}>
-        <p>Cute dog looking for a home</p>
-        <p>Breed:</p>
-        <p>Place</p>
-        <p>Age:</p>
-        <p>Price:</p>
+        <p>{noticeLabelTranfornm(category)}</p>
         <StyledLikeButton onButtonClick={onAddToFavorite} />
+        <img src={defaultImg} alt="title" width="300px" />
+        <h2>{title}</h2>
+        <p>Breed:</p>
+        <p>{breed}</p>
+        <p>Place</p>
+        <p>{location}</p>
+        <p>Age:</p>
+        <p>{birthdate}</p>
+        <p>Price:</p>
+        <p>{price}</p>
+
         <StyledLearnMoreButton
           onButtonClick={onLearMoreButtonClick}
           buttonName="Learn more"
