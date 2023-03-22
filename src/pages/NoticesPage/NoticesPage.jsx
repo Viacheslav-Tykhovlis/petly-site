@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+import { useState } from 'react';
 
 import Title from 'components/Title/Title';
 import NoticesSearch from 'components/Notices/NoticesSearch/NoticesSearch';
@@ -10,33 +10,10 @@ import { StyledAddPetMobileButton } from 'components/ReusableComponents/Buttons/
 import { StyledAddPetDesktopButton } from 'components/ReusableComponents/Buttons/StyledAddPetDesktopButton';
 import { Modal } from 'components/Modal/Modal';
 import ModalAddNotice from 'components/Notices/NoticeModal/ModalAddNotice';
-import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
-import { fetchNoticesByCategory } from 'services/getNoticeByCategory';
-import Loader from 'components/Loader/Loader';
 
 const NoticesPage = () => {
-  const { category } = useParams();
+  // const [pets, setPets] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
-  const [notices, setNotices] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (category === 'favorite' || category === 'own') {
-      return;
-    }
-    async function searchNoticeByCategory() {
-      try {
-        setLoading(true);
-        const { data } = await fetchNoticesByCategory(category);
-        setNotices(data);
-      } catch (error) {
-        console.log(error);
-      }
-      setLoading(false);
-    }
-
-    searchNoticeByCategory();
-  }, [category]);
 
   const onAddButtonClick = () => {
     setShowAddModal(!showAddModal);
@@ -48,7 +25,7 @@ const NoticesPage = () => {
       <NoticesSearch />
 
       <ButtonBox>
-        <NoticesCategoriesNav category={category} />
+        <NoticesCategoriesNav />
         <StyledAddPetDesktopButton onAddButtonClick={onAddButtonClick} />
       </ButtonBox>
 
@@ -56,11 +33,11 @@ const NoticesPage = () => {
 
       {showAddModal && (
         <Modal onClose={onAddButtonClick}>
-          <ModalAddNotice />
+          <ModalAddNotice onClose={onAddButtonClick} />
         </Modal>
       )}
 
-      {loading ? <Loader /> : <NoticesCategoriesList notices={notices} />}
+      <Outlet />
     </StyledSection>
   );
 };
