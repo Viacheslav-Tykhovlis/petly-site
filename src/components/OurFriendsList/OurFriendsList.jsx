@@ -15,9 +15,10 @@ const OurFriendsList = ({ friends }) => {
           workDays,
           phone,
           email,
+          id,
         }) => (
           <OurFriendsItem
-            key={phone}
+            key={id}
             title={title}
             url={url}
             addressUrl={addressUrl}
@@ -33,18 +34,20 @@ const OurFriendsList = ({ friends }) => {
   );
 };
 
-// OurFriendsList.propTypes = {
-//   friends: PropTypes.arrayOf(
-//     PropTypes.exact({
-//       title: PropTypes.string.isRequired,
-//       url: PropTypes.string.isRequired,
-//       addressUrl: PropTypes.string.isRequired,
-//       imageUrl: PropTypes.string.isRequired,
-//       address: PropTypes.string.isRequired,
-//       phone: PropTypes.string.isRequired,
-//       email: PropTypes.string.isRequired,
-//       workDays: PropTypes.array.isRequired,
-//     }),
-//   ),
-// };
+OurFriendsList.propTypes = {
+  friends: PropTypes.arrayOf(
+    PropTypes.exact({
+      id: PropTypes.string,
+      title: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+      addressUrl: PropTypes.string,
+      imageUrl: PropTypes.string,
+      address: PropTypes.string,
+      phone: PropTypes.string,
+      email: PropTypes.string,
+      workDays: PropTypes.array,
+    }),
+  ),
+};
+
 export default OurFriendsList;

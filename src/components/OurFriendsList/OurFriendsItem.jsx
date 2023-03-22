@@ -1,22 +1,18 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import {
   Friend,
-  NameFriend,
+  Name,
+  NameLink,
   Box,
   ImgFriend,
   DataList,
   DataItem,
   Subtitle,
-  TimeWork,
-  TimeWorkItem,
-  TimeWorkText,
-  Adress,
-  TimeLink,
-  AdressLink,
-  ImageLink,
-  EmailLink,
-  PhoneLink,
+  TextBox,
+  DataLink,
 } from './OurFriendsItem.styled';
+import SheduleTable from './SheduleTable';
 
 export const OurFriendsItem = ({
   title,
@@ -27,55 +23,93 @@ export const OurFriendsItem = ({
   workDays,
   phone,
   email,
+  id,
 }) => {
+  const [isVisibleWorkDays, setisVisibleWorkDays] = useState(false);
+  const weekDays = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+  const openDay = workDays?.find(day => day.isOpen);
+  const newWorkDays =
+    workDays &&
+    workDays.map((day, index) => {
+      return { day: weekDays[index], ...day };
+    });
+
   return (
-    <Friend>
-      <NameFriend>{title}</NameFriend>
+    <Friend key={id}>
+      <NameLink href={url} target="_blank" rel="noopener noreferrer">
+        <Name> {title}</Name>
+      </NameLink>
+
       <Box>
-        <ImageLink src={url}>
-          <ImgFriend src={imageUrl} alt="FotoSponsor" />
-        </ImageLink>
+        <ImgFriend src={imageUrl} alt="logo friends" />
+
         <DataList>
           <DataItem>
-            <Subtitle>Time:</Subtitle>
-            {/* <TimeLink>
-              <TimeWork>
-                {workDays
-                  ? workDays.map(({ to, from, isOpen, index }) => (
-                      <TimeWorkItem key={index}>
-                        <TimeWorkText>
-                          {to} - {from}
-                        </TimeWorkText>
-                      </TimeWorkItem>
-                    ))
-                  : '-----------------------------------'}
-              </TimeWork>
-            </TimeLink> */}
+            {workDays ? (
+              <TextBox
+                onClick={() => setisVisibleWorkDays(!isVisibleWorkDays)}
+                onMouseLeave={() => {
+                  setTimeout(() => {
+                    setisVisibleWorkDays(false);
+                  }, 2500);
+                }}
+              >
+                <Subtitle>Time:</Subtitle>
+                <Subtitle>
+                  {openDay.from} - {openDay.to}
+                </Subtitle>
+              </TextBox>
+            ) : (
+              <Subtitle>-----------------------------------</Subtitle>
+            )}
           </DataItem>
+
+          {isVisibleWorkDays && <SheduleTable shedule={newWorkDays} />}
 
           <DataItem>
             <Subtitle>Adress:</Subtitle>
-            <AdressLink src={addressUrl}>
-              <Adress>
-                {address ? address : '-----------------------------------'}
-              </Adress>
-            </AdressLink>
+            {address ? (
+              <DataLink
+                style={{ textDecoration: 'underline' }}
+                href={addressUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {address}
+              </DataLink>
+            ) : (
+              <p>----------------------------------</p>
+            )}
           </DataItem>
 
           <DataItem>
             <Subtitle>Email:</Subtitle>
-            <EmailLink>
-              <TimeWork>
-                {email ? email : '-----------------------------------'}
-              </TimeWork>
-            </EmailLink>
+            {email ? (
+              <DataLink
+                href={`mailto:${email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {email}
+              </DataLink>
+            ) : (
+              <p>----------------------------------</p>
+            )}
           </DataItem>
 
           <DataItem>
             <Subtitle>Phone:</Subtitle>
-            <PhoneLink>
-              <TimeWork>{phone}</TimeWork>
-            </PhoneLink>
+            {phone ? (
+              <DataLink
+                href={`tel:${phone}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {phone}
+              </DataLink>
+            ) : (
+              <p>----------------------------------</p>
+            )}
           </DataItem>
         </DataList>
       </Box>
@@ -83,19 +117,21 @@ export const OurFriendsItem = ({
   );
 };
 
-// OurFriendsItem.propTypes = {
-//   title: PropTypes.string.isRequired,
-//   url: PropTypes.string.isRequired,
-//   addressUrl: PropTypes.string.isRequired,
-//   imageUrl: PropTypes.string.isRequired,
-//   address: PropTypes.string.isRequired,
-//   phone: PropTypes.string.isRequired,
-//   email: PropTypes.string.isRequired,
-//   workDays: PropTypes.arrayOf(
-//     PropTypes.exact({
-//       isOpen: PropTypes.boolean.isRequired,
-//       from: PropTypes.string.isRequired,
-//       to: PropTypes.string.isRequired,
-//     }),
-//   ),
-// };
+OurFriendsItem.propTypes = {
+  id: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  addressUrl: PropTypes.string,
+  imageUrl: PropTypes.string,
+  address: PropTypes.string,
+  phone: PropTypes.string,
+  email: PropTypes.string,
+  workDays: PropTypes.arrayOf(
+    PropTypes.exact({
+      isOpen: PropTypes.bool,
+      from: PropTypes.string,
+      to: PropTypes.string,
+      id: PropTypes.string,
+    }),
+  ),
+};
