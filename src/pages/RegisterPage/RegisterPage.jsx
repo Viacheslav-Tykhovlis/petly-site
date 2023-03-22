@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SectionRegisterPage } from './RegisterPage.styled';
-import {RegisterFormFirst} from './RegisterForm/RegisterForm';
+import {RegisterFormFirst, RegisterFormSecond} from './RegisterForm/RegisterForm';
 
 const styles = {
   input: {
@@ -15,7 +15,8 @@ const RegisterPage = () => {
   return (
     <>
       <SectionRegisterPage >
-        <RegisterFormFirst />
+        {/* <RegisterFormFirst /> */}
+        <RegisterFormSecond />
       </SectionRegisterPage>
     </>
   );

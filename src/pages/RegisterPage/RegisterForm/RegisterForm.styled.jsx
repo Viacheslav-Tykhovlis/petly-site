@@ -7,12 +7,10 @@ const Form = styled.form`
   flex-direction: column;
   text-align: center;
   padding-top: 40px;
-  padding-bottom: 40px;
   background-color: transparent;
 
   @media screen and (min-width: 728px) {
     width: 608px;
-    height: 583px;
     padding: 60px 80px;
     background: #ffffff;
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
@@ -21,7 +19,10 @@ const Form = styled.form`
 
   @media screen and (min-width: 1280px) {
     width: 618px;
-    height: 587px;
+
+    &.formsecond {
+    padding-bottom: 16px;
+  }
   }
 `;
 
@@ -68,7 +69,6 @@ const Button = styled.button`
   width: 100%;
   height: 44px;
   margin-top: 40px;
-  margin-bottom: 40px;
   padding-left: 28px;
   padding-right: 28px;
   color: #ffffff;
@@ -84,12 +84,20 @@ const Button = styled.button`
   line-height: 27px;
   letter-spacing: 0.04em;
 
+    &.buttonback {
+    margin-top: 12px;
+    color: #000000;
+    background-color: #FFFFFF;
+    border: 2px solid #F59256;
+  }
+
   @media screen and (min-width: 1280px) {
     height: 48px;
   }
 `;
 
 const Paragraph = styled.p`
+  margin-top: 40px;
   font-size: 12px;
   font-weight: 400;
   line-height: 1.33;
