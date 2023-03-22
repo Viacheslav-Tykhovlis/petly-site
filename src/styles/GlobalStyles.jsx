@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 
 export const GlobalStyles = css`
   body {
+    
     font-family: 'Manrope', sans-serif;
     font-weight: 500;
     font-size: 16px;

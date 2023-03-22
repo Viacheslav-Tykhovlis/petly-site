@@ -1,7 +1,23 @@
+import React, { useState, useEffect } from "react";
+import { SectionRegisterPage } from './RegisterPage.styled';
+import {RegisterFormFirst, RegisterFormSecond} from './RegisterForm/RegisterForm';
+
+const styles = {
+  input: {
+    marginBottom: 24,
+  }
+};
+
 const RegisterPage = () => {
+
+  const [value, setValue] = useState(0);
+
   return (
     <>
-      <h1>RegisterPage</h1>
+      <SectionRegisterPage >
+        {/* <RegisterFormFirst /> */}
+        <RegisterFormSecond />
+      </SectionRegisterPage>
     </>
   );
 };
