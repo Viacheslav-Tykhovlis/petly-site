@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Field, Form, Formik } from 'formik';
+import { useState } from 'react';
 import {
+  BtnsModalWrapper,
+  CloseModalButton,
   InputGroupWrapper,
   InputWrapper,
+  ModalBtnBack,
+  ModalBtnNext,
   RadioWrapper,
+  StyledField,
   StyledInput,
+  StyledLabel,
   StyledModal,
+  StyledSubtitle,
+  StyledTextInputLabel,
+  StyledTitle,
 } from './ModalAddNotice.styled';
 
 const initialValues = {
@@ -24,75 +33,90 @@ const FormStep1 = ({ onNext, values, handleChange, onClose }) => {
   return (
     <Form>
       <StyledModal>
-        <button type="button" onClick={onClose}>
-          X
-        </button>
-        <h1>Add pet</h1>
-        <h3>
+        <CloseModalButton onClick={onClose} />
+        <StyledTitle>Add pet</StyledTitle>
+        <StyledSubtitle>
           Lorem ipsum dolor, sit amet consectetur Lorem ipsum dolor, sit amet
           consectetur
-        </h3>
+        </StyledSubtitle>
         <RadioWrapper>
-          <label htmlFor="lost">lost/found</label>
-          <Field
-            type="radio"
-            name="category"
-            value="lost"
-            id="lost"
-            checked={values.category === 'lost'}
-            onChange={handleChange}
-          />
+          <StyledLabel htmlFor="lost" selected={values.category === 'lost'}>
+            <StyledField
+              type="radio"
+              name="category"
+              value="lost"
+              id="lost"
+              checked={values.category === 'lost'}
+              onChange={handleChange}
+            />
+            lost/found
+          </StyledLabel>
 
-          <label htmlFor="goodHands"> in good hands</label>
-          <Field
-            type="radio"
-            name="category"
-            value="goodHands"
-            id="goodHands"
-            checked={values.category === 'goodHands'}
-            onChange={handleChange}
-          />
+          <StyledLabel
+            htmlFor="goodHands"
+            selected={values.category === 'goodHands'}
+          >
+            <StyledField
+              type="radio"
+              name="category"
+              value="goodHands"
+              id="goodHands"
+              checked={values.category === 'goodHands'}
+              onChange={handleChange}
+            />
+            in good hands
+          </StyledLabel>
 
-          <label htmlFor="sell">sell</label>
-          <Field
-            type="radio"
-            name="category"
-            value="sell"
-            id="sell"
-            checked={values.category === 'sell'}
-            onChange={handleChange}
-          />
+          <StyledLabel htmlFor="sell" selected={values.category === 'sell'}>
+            <StyledField
+              type="radio"
+              name="category"
+              value="sell"
+              id="sell"
+              checked={values.category === 'sell'}
+              onChange={handleChange}
+            />
+            sell
+          </StyledLabel>
         </RadioWrapper>
 
         <InputGroupWrapper>
           <InputWrapper>
-            <label htmlFor="title">Title of ad</label>
-            <StyledInput type="text" name="title" />
+            <StyledTextInputLabel htmlFor="title">
+              Title of ad
+            </StyledTextInputLabel>
+            <StyledInput type="text" name="title" placeholder="Type name pet" />
           </InputWrapper>
           <InputWrapper>
-            <label htmlFor="name">Name pet</label>
-            <StyledInput type="text" name="name" />
+            <StyledTextInputLabel htmlFor="name">Name pet</StyledTextInputLabel>
+            <StyledInput type="text" name="name" placeholder="Type name pet" />
           </InputWrapper>
           {values.category !== 'lost' && (
             <InputWrapper>
-              <label htmlFor="birthdate">Date of birth</label>
-              <StyledInput type="text" name="birthdate" />
+              <StyledTextInputLabel htmlFor="birthdate">
+                Date of birth
+              </StyledTextInputLabel>
+              <StyledInput
+                type="text"
+                name="birthdate"
+                placeholder="Type date of birth"
+              />
             </InputWrapper>
           )}
           <InputWrapper>
-            <label htmlFor="breed">Breed</label>
-            <StyledInput type="text" name="breed" />
+            <StyledTextInputLabel htmlFor="breed">Breed</StyledTextInputLabel>
+            <StyledInput type="text" name="breed" placeholder="Type breed" />
           </InputWrapper>
         </InputGroupWrapper>
 
-        <>
-          <button type="submit" onClick={onNext}>
+        <BtnsModalWrapper>
+          <ModalBtnNext type="submit" onClick={onNext}>
             Next
-          </button>
-          <button type="button" onClick={onClose}>
+          </ModalBtnNext>
+          <ModalBtnBack type="button" onClick={onClose}>
             Cancel
-          </button>
-        </>
+          </ModalBtnBack>
+        </BtnsModalWrapper>
       </StyledModal>
     </Form>
   );
@@ -102,9 +126,7 @@ const FormStep2 = ({ onBack, values, handleChange, onClose }) => {
   return (
     <Form>
       <StyledModal>
-        <button type="button" onClick={onClose}>
-          X
-        </button>
+        <CloseModalButton onClick={onClose} />
         <h1>Add pet</h1>
         <RadioWrapper>
           <h3>The sex:</h3>
@@ -145,10 +167,12 @@ const FormStep2 = ({ onBack, values, handleChange, onClose }) => {
           value={values.comments}
         />
 
-        <button type="submit">Done</button>
-        <button type="button" onClick={onBack}>
-          Back
-        </button>
+        <BtnsModalWrapper>
+          <ModalBtnNext type="submit">Done</ModalBtnNext>
+          <ModalBtnBack type="button" onClick={onBack}>
+            Back
+          </ModalBtnBack>
+        </BtnsModalWrapper>
       </StyledModal>
     </Form>
   );
