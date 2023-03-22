@@ -101,7 +101,7 @@ const NoticesPage = () => {
 
       {showAddModal && (
         <Modal onClose={onAddButtonClick}>
-          <ModalAddNotice />
+          <ModalAddNotice onClose={onAddButtonClick} />
         </Modal>
       )}
 
