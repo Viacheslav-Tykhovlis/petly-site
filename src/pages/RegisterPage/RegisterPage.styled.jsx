@@ -16,19 +16,17 @@ const SectionRegisterPage = styled.section`
     background-position: left -88px bottom -15%;
 
     position: fixed;
-
     
     @media screen and (min-width: 728px) {
     background-image: url(${background728});
     background-size: 1409px;
     background-position: left -363px bottom 136px;
-
     }
 
     @media screen and (min-width: 1280px) {
     background-image: url(${background1280});
-    background-size: 1280px;
-    background-position: left bottom;
+    background-size: 1396px;
+    background-position: left -116px bottom 110px;
   }
 `;
 

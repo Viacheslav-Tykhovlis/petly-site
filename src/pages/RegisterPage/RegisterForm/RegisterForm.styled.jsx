@@ -18,6 +18,11 @@ const Form = styled.form`
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
   }
+
+  @media screen and (min-width: 1280px) {
+    width: 618px;
+    height: 587px;
+  }
 `;
 
 const TitleForm = styled.h2`
@@ -78,6 +83,10 @@ const Button = styled.button`
   font-size: 20px;
   line-height: 27px;
   letter-spacing: 0.04em;
+
+  @media screen and (min-width: 1280px) {
+    height: 48px;
+  }
 `;
 
 const Paragraph = styled.p`
@@ -86,8 +95,6 @@ const Paragraph = styled.p`
   line-height: 1.33;
   letter-spacing: 0.04em;
 
-  @media screen and (min-width: 728px) {
-  }
 `;
 
 const Link = styled(NavLink)`
