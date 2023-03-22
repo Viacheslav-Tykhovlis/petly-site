@@ -1,12 +1,15 @@
-import { Outlet } from 'react-router-dom';
-import { HomeTitle } from '../../components/MainTitle/MainTitle';
-import { Container } from '../../components/Container/Container';
+import Container from '../../components/Container/Container';
+import UserData from 'components/User/UserData/UserData';
+import PetsData from 'components/User/PetsData/PetsData';
+import { UserWrapper } from './UserPage.styled';
 
 const UserPage = () => {
   return (
     <Container>
-      <HomeTitle />
-      <Outlet />
+      <UserWrapper>
+        <UserData />
+        <PetsData />
+      </UserWrapper>
     </Container>
   );
 };
