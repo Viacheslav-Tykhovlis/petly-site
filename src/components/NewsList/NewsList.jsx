@@ -7,9 +7,9 @@ const NewsList = ({ news }) => {
     <List>
       {news
         .sort((a, b) => (a.date > b.date ? -1 : 1))
-        .map(({ title, url, description, date }) => (
+        .map(({ title, url, description, date, _id }) => (
           <NewsItem
-            key={title}
+            key={_id}
             title={title}
             url={url}
             description={description}
