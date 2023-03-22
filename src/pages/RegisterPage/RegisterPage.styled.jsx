@@ -21,8 +21,9 @@ const SectionRegisterPage = styled.section`
     @media screen and (min-width: 728px) {
     background-image: url(${background728});
     background-size: 1409px;
-    background-position: left -363px bottom -16px;
-  }
+    background-position: left -363px bottom 136px;
+
+    }
 
     @media screen and (min-width: 1280px) {
     background-image: url(${background1280});

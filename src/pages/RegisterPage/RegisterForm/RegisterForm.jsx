@@ -10,6 +10,7 @@ import {
 const RegisterFormFirst = () => {
   return (
     <>
+      {/* <div style={{ width: "100%", height: "100%", position: "relative", display: "flex", alignItems: "center"}}> */}
       <Form action="">
         <TitleForm>Registration</TitleForm>
         <InputForm name="email" type="email" placeholder="Email" />
@@ -24,7 +25,9 @@ const RegisterFormFirst = () => {
         <Paragraph>
           Already have an account?&nbsp;<Link to="/login">Login</Link>
         </Paragraph>
-      </Form>
+        </Form>
+        
+        {/* </div> */}
     </>
   );
 };

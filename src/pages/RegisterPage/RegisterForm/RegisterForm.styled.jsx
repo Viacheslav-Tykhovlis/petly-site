@@ -2,30 +2,35 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 const Form = styled.form`
-    width: 280px;
-   display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    background-color: transparent;
-    
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: transparent;
+
   @media screen and (min-width: 728px) {
-   width: 608px;
-   height: 583px;
-   padding: 60px 80px 40px 80px;
-   background: #FFFFFF;
-   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-   border-radius: 40px;
-     }
+    width: 608px;
+    height: 583px;
+    padding: 60px 80px;
+    background: #ffffff;
+    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+    border-radius: 40px;
+  }
 `;
 
 const TitleForm = styled.h2`
-  weight: 700;
+  color: #111111;
   font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   margin-bottom: 40px;
 
   @media screen and (min-width: 728px) {
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.36;
   }
 `;
 
@@ -37,10 +42,17 @@ const InputForm = styled.input`
   font-size: 18px;
   line-height: 24px;
   font-weight: 400;
+  letter-spacing: 0.04em;
   background-color: rgb(253, 247, 242);
   border: 1px solid rgb(245, 146, 86);
   border-radius: 40px;
   padding-left: 16px;
+
+  @media screen and (min-width: 728px) {
+   height: 52px;
+   margin-bottom: 39px;
+   padding-left: 32px;
+  }
 
   &.lastinput {
     margin-bottom: 0;
@@ -65,20 +77,21 @@ const Button = styled.button`
 
   font-size: 20px;
   line-height: 27px;
+  letter-spacing: 0.04em;
 `;
 
 const Paragraph = styled.p`
-font-size: 12px;
-font-weight: 400;
-line-height: 1.33;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
 
-@media screen and (min-width: 728px) {
-
-}
+  @media screen and (min-width: 728px) {
+  }
 `;
 
 const Link = styled(NavLink)`
-   color: #3091EB;
+  color: #3091eb;
 `;
 
 export { Form, TitleForm, InputForm, Button, Paragraph, Link };
