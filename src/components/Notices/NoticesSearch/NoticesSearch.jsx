@@ -13,10 +13,17 @@ const StyledSearchBox = styled.div`
   }
 `;
 
-const NoticesSearch = () => {
+const NoticesSearch = ({
+  onFormSubmit,
+  onInputChange,
+  isButtonClicked = true,
+}) => {
   return (
     <StyledSearchBox>
-      <SearchBar />
+      <SearchBar
+        onFormSubmit={onFormSubmit}
+        isButtonClicked={isButtonClicked}
+      />
     </StyledSearchBox>
   );
 };
