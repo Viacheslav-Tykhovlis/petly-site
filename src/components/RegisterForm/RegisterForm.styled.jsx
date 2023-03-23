@@ -9,7 +9,7 @@ const Form = styled.form`
   padding-top: 40px;
   background-color: transparent;
 
-  @media screen and (min-width: 728px) {
+  @media screen and (min-width: 768px) {
     width: 608px;
     padding: 60px 80px;
     background: #ffffff;
@@ -33,7 +33,7 @@ const TitleForm = styled.h2`
   letter-spacing: 0.04em;
   margin-bottom: 40px;
 
-  @media screen and (min-width: 728px) {
+  @media screen and (min-width: 768px) {
     font-size: 36px;
     font-weight: 500;
     line-height: 1.36;
@@ -54,7 +54,7 @@ const InputForm = styled.input`
   border-radius: 40px;
   padding-left: 16px;
 
-  @media screen and (min-width: 728px) {
+  @media screen and (min-width: 768px) {
    height: 52px;
    margin-bottom: 39px;
    padding-left: 32px;
@@ -81,6 +81,7 @@ const Button = styled.button`
   justify-content: center;
 
   font-size: 20px;
+  font-weight: 500;
   line-height: 27px;
   letter-spacing: 0.04em;
 
