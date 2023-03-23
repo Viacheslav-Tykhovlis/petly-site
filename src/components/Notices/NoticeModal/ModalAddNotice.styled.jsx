@@ -39,6 +39,7 @@ export const CloseModalButton = ({ onClick }) => {
 
 export const StyledTextInputLabel = styled.label`
   font-size: 18px;
+  line-height: 1.47;
 `;
 
 export const StyledTitle = styled.p`
@@ -170,4 +171,40 @@ export const StyledField = styled(Field)`
   opacity: 0;
   width: 0;
   height: 0;
+`;
+
+export const RadioSexBtnWrapper = styled.div`
+  margin-top: 16px;
+  margin-bottom: 32px;
+  display: flex;
+  /* align-items: center; */
+  column-gap: 40px;
+`;
+
+export const StyledSexInputLabel = styled.label`
+  margin-right: 12px;
+`;
+export const RadioSexButton = styled(Field)`
+  display: none;
+`;
+export const RadioSexLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 8px;
+  cursor: pointer;
+  transition: color ${p => p.theme.animation.cubicBezier};
+
+  &:hover {
+    color: ${({ selected }) => (selected ? '#f59256' : '#ff7d5d')};
+  }
+`;
+export const RadioIcon = styled.svg`
+  width: 40px;
+  height: 40px;
+`;
+
+export const RadioSexTitle = styled.span`
+  margin-top: 12px;
+  color: ${({ active }) => active && '#f59256'};
 `;

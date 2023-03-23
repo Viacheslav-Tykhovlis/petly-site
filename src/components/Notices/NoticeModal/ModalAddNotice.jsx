@@ -7,6 +7,11 @@ import {
   InputWrapper,
   ModalBtnBack,
   ModalBtnNext,
+  RadioIcon,
+  RadioSexBtnWrapper,
+  RadioSexButton,
+  RadioSexLabel,
+  RadioSexTitle,
   RadioWrapper,
   StyledField,
   StyledInput,
@@ -16,6 +21,7 @@ import {
   StyledTextInputLabel,
   StyledTitle,
 } from './ModalAddNotice.styled';
+import { FemaleIcon, MaleIcon } from 'img/icons/icons';
 
 const initialValues = {
   category: 'sell',
@@ -127,34 +133,60 @@ const FormStep2 = ({ onBack, values, handleChange, onClose }) => {
     <Form>
       <StyledModal>
         <CloseModalButton onClick={onClose} />
-        <h1>Add pet</h1>
-        <RadioWrapper>
-          <h3>The sex:</h3>
-          <label htmlFor="male">Male</label>
-          <Field
-            type="radio"
-            name="sex"
-            value="male"
-            id="male"
-            checked={values.sex === 'male'}
-            onChange={handleChange}
-          />
+        <StyledTitle>Add pet</StyledTitle>
+        <StyledTextInputLabel>The sex:</StyledTextInputLabel>
 
-          <label htmlFor="female">Female</label>
-          <Field
-            type="radio"
-            name="sex"
-            value="female"
-            id="female"
-            checked={values.sex === 'female'}
-            onChange={handleChange}
-          />
-        </RadioWrapper>
+        <RadioSexBtnWrapper>
+          <RadioSexLabel htmlFor="male">
+            <RadioSexButton
+              type="radio"
+              name="sex"
+              value="male"
+              id="male"
+              checked={values.sex === 'male'}
+              onChange={handleChange}
+            />
+            <RadioIcon active={values.sex === 'male'}>
+              <MaleIcon />
+            </RadioIcon>
+            <RadioSexTitle active={values.sex === 'male'}>Male</RadioSexTitle>
+          </RadioSexLabel>
 
-        <InputWrapper>
-          <label htmlFor="location">Location</label>
-          <StyledInput type="text" name="location" />
-        </InputWrapper>
+          <RadioSexLabel htmlFor="female">
+            <RadioSexButton
+              type="radio"
+              name="sex"
+              value="female"
+              id="female"
+              checked={values.sex === 'female'}
+              onChange={handleChange}
+            />
+            <RadioIcon active={values.sex === 'female'}>
+              <FemaleIcon />
+            </RadioIcon>
+            <RadioSexTitle active={values.sex === 'female'}>
+              Female
+            </RadioSexTitle>
+          </RadioSexLabel>
+        </RadioSexBtnWrapper>
+
+        <InputGroupWrapper>
+          <InputWrapper>
+            <StyledTextInputLabel htmlFor="location">
+              Location:
+            </StyledTextInputLabel>
+            <StyledInput
+              type="text"
+              name="location"
+              placeholder="Type location"
+            />
+          </InputWrapper>
+
+          <InputWrapper>
+            <StyledTextInputLabel htmlFor="Price">Price:</StyledTextInputLabel>
+            <StyledInput type="text" name="Price" placeholder="Type price" />
+          </InputWrapper>
+        </InputGroupWrapper>
 
         <label htmlFor="file">Load the pet’s image</label>
         <Field type="file" name="file" />
