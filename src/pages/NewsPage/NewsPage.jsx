@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
-import newsItem from '../../data/news.json';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import NewsList from 'components/NewsList/NewsList';
 
-// import { useDispatch } from 'react-redux';
+import { fetchNews } from 'redux/news/newsOperations';
 
 import {
   NewsSection,
@@ -11,29 +12,30 @@ import {
   FilterInput,
   SearchBtn,
   DeleteBtn,
+  ErrorText,
 } from './NewsPage.styled';
 import Title from '../../components/Title/Title';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { TiDeleteOutline } from 'react-icons/ti';
 import { useSearchParams } from 'react-router-dom';
 
+import { selectNews, selectIsLoading } from 'redux/news/newsSelectors';
+
 const NewsPage = () => {
-  const [news, setNews] = useState([]);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const newsTitle = searchParams.get('query') || '';
+  const isLoading = useSelector(selectIsLoading);
+  const news = useSelector(selectNews);
 
-  useEffect(() => {
-    setNews(newsItem);
-  }, [news]);
+  const newsTitle = searchParams.get('query') || '';
 
   const onClearField = e => {
     e.preventDefault();
     setSearchParams({ query: '' });
   };
   const updateQueryString = e => {
-    console.log('update', e.target.value);
+    // console.log('update', e.target.value);
     setSearchParams({ query: e.target.value });
   };
   const visibleNews =
@@ -42,7 +44,11 @@ const NewsPage = () => {
       item.title.toLowerCase().includes(newsTitle.toLowerCase()),
     );
 
-  console.log(visibleNews);
+  useEffect(() => {
+    dispatch(fetchNews());
+  }, [dispatch]);
+
+  // console.log(visibleNews);
 
   return (
     <NewsSection>
@@ -77,11 +83,14 @@ const NewsPage = () => {
         </FilterLabel>
       </StyledForm>
 
-      {visibleNews && <NewsList news={visibleNews} />}
+      {visibleNews && !isLoading && <NewsList news={visibleNews} />}
 
-      {/* {!visibleNews && (
-        <h3>Sorry, there is no news at this moment. Try again later.</h3>
-      )} */}
+      {!visibleNews && !isLoading && (
+        <ErrorText>
+          Sorry, there is no news at this moment.
+          <br /> Try again later.
+        </ErrorText>
+      )}
     </NewsSection>
   );
 };

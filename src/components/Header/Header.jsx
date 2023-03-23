@@ -1,27 +1,16 @@
-import Container from '../Container/Container';
-import Logo from './Logo/Logo';
-import Nav from 'components/Header/Nav/Nav';
-import AuthNav from 'components/Header/AuthNav/AuthNav';
-import UserNav from 'components/Header/UserNav/UserNav';
-import { MobileMenuButton } from './MobileMenuButton/MobileMenuButton';
+import { Logo, Navigation } from './components';
+import { HeaderContainer } from './Header.styled';
+// import { MobileMenu } from './components/MobileMenu/MobileMenu';
 
 const Header = () => {
   return (
-    <Container>
-      <Logo />
-      <ul>
-        <li>
-          <Nav />
-        </li>
-        <li>
-          <UserNav />
-        </li>
-        <li>
-          <AuthNav />
-        </li>
-      </ul>
-      <MobileMenuButton />
-    </Container>
+    <header>
+      <HeaderContainer>
+        <Logo />
+        <Navigation />
+      </HeaderContainer>
+      {/* <MobileMenu /> */}
+    </header>
   );
 };
 

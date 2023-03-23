@@ -91,3 +91,11 @@ export const DeleteBtn = styled.button`
     top: 10px;
   }
 `;
+
+export const ErrorText = styled.p`
+  text-align: center;
+  font-size: 20px;
+  @media screen and (min-width: 768px) {
+    font-size: 30px;
+  }
+`;

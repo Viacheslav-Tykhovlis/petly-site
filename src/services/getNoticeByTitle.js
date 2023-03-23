@@ -6,6 +6,5 @@ export async function fetchNoticeByTitle(title) {
   const url = `${BASE_URL}/notices/title/${title}`;
 
   const { data } = await axios.get(url);
-  console.log(data);
   return data;
 }

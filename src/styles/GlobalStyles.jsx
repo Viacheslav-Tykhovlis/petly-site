@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 
 export const GlobalStyles = css`
   body {
+    
     font-family: 'Manrope', sans-serif;
     font-weight: 500;
     font-size: 16px;
@@ -27,6 +28,10 @@ export const GlobalStyles = css`
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   img {

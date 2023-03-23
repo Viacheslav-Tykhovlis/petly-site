@@ -4,14 +4,67 @@ import { StyledLearnMoreButton } from 'components/ReusableComponents/Buttons/Sty
 import { StyledLikeButton } from 'components/ReusableComponents/Buttons/StyledLikeButton';
 import { Modal } from 'components/Modal/Modal';
 import ModalNotice from '../NoticeModal/ModalNotice';
+import Loader from 'components/Loader/Loader';
 
+import { fetchNoticeById } from 'services/getNoticesById';
+import { noticeLabelTranform } from 'utils/noticeLabelTranform';
 import defaultImg from '../../../images/defaultImg.jpg';
+
+import styled from '@emotion/styled';
+
+const StyledItem = styled.li`
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px; */
+
+  background: #ffffff;
+
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  border-radius: 0px 0px 20px 20px;
+
+  @media screen and (min-width: 320px) {
+    width: 280px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 288px;
+  }
+`;
 
 const NoticeCategoryItem = ({ notice }) => {
   const [showDetailsModal, setSDetailsModal] = useState(false);
+  const [noticeDetails, setNoticeDetails] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const {
+    _id,
+    category,
+    title,
+    birthdate,
+    breed,
+    location,
+    price,
+    // image,
+  } = notice;
 
   const onLearMoreButtonClick = () => {
     setSDetailsModal(!showDetailsModal);
+    searchNoticeById(_id);
+  };
+
+  const searchNoticeById = async () => {
+    try {
+      setLoading(true);
+      const { data } = await fetchNoticeById(_id);
+      setNoticeDetails(data);
+    } catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
   };
 
   const onAddToFavorite = () => {
@@ -22,54 +75,33 @@ const NoticeCategoryItem = ({ notice }) => {
     console.log('delete from faforite');
   };
 
-  const {
-    category,
-    title,
-    // name,
-    birthdate,
-    breed,
-    // sex,
-    location,
-    // comments,
-    price,
-    // image,
-    // favorite,
-    // owner,
-  } = notice;
-
-  const noticeLabelTranfornm = category => {
-    let categoryToDisplay = '';
-    switch (category) {
-      case 'sell':
-        categoryToDisplay = 'Sell';
-        break;
-      case 'lost-found':
-        categoryToDisplay = 'Lost/found';
-        break;
-      case 'for-free':
-        categoryToDisplay = 'In good hands';
-        break;
-      default:
-        categoryToDisplay = 'asdsSell';
-    }
-    return categoryToDisplay;
-  };
-
   return (
     <>
-      <div style={{ width: '300px', backgroundColor: 'antiquewhite' }}>
-        <p>{noticeLabelTranfornm(category)}</p>
+      <StyledItem>
+        <p>{noticeLabelTranform(category)}</p>
         <StyledLikeButton onButtonClick={onAddToFavorite} />
-        <img src={defaultImg} alt="title" width="300px" />
+        <img src={defaultImg} alt="title" />
         <h2>{title}</h2>
-        <p>Breed:</p>
-        <p>{breed}</p>
-        <p>Place</p>
-        <p>{location}</p>
-        <p>Age:</p>
-        <p>{birthdate}</p>
-        <p>Price:</p>
-        <p>{price}</p>
+        <ul>
+          <li>
+            <p>Breed:</p>
+            <p>{breed}</p>
+          </li>
+          <li>
+            <p>Place</p>
+            <p>{location}</p>
+          </li>
+          <li>
+            <p>Age:</p>
+            <p>{birthdate}</p>
+          </li>
+          {category === 'Sell' && (
+            <li>
+              <p>Price:</p>
+              <p>{price || ''}</p>
+            </li>
+          )}
+        </ul>
 
         <StyledLearnMoreButton
           onButtonClick={onLearMoreButtonClick}
@@ -79,11 +111,13 @@ const NoticeCategoryItem = ({ notice }) => {
           onButtonClick={onDeleteFromFavorite}
           buttonName="Delete"
         />
-      </div>
+      </StyledItem>
 
-      {showDetailsModal && (
+      {loading && <Loader />}
+
+      {!loading && noticeDetails && showDetailsModal && (
         <Modal onClose={onLearMoreButtonClick}>
-          <ModalNotice />
+          <ModalNotice noticeDetails={noticeDetails} />
         </Modal>
       )}
     </>
