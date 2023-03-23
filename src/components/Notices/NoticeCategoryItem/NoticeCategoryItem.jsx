@@ -10,6 +10,32 @@ import { fetchNoticeById } from 'services/getNoticesById';
 import { noticeLabelTranform } from 'utils/noticeLabelTranform';
 import defaultImg from '../../../images/defaultImg.jpg';
 
+import styled from '@emotion/styled';
+
+const StyledItem = styled.li`
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px; */
+
+  background: #ffffff;
+
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  border-radius: 0px 0px 20px 20px;
+
+  @media screen and (min-width: 320px) {
+    width: 280px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 288px;
+  }
+`;
+
 const NoticeCategoryItem = ({ notice }) => {
   const [showDetailsModal, setSDetailsModal] = useState(false);
   const [noticeDetails, setNoticeDetails] = useState(null);
@@ -51,10 +77,10 @@ const NoticeCategoryItem = ({ notice }) => {
 
   return (
     <>
-      <div style={{ width: '300px', backgroundColor: 'antiquewhite' }}>
+      <StyledItem>
         <p>{noticeLabelTranform(category)}</p>
         <StyledLikeButton onButtonClick={onAddToFavorite} />
-        <img src={defaultImg} alt="title" width="300px" />
+        <img src={defaultImg} alt="title" />
         <h2>{title}</h2>
         <ul>
           <li>
@@ -85,7 +111,7 @@ const NoticeCategoryItem = ({ notice }) => {
           onButtonClick={onDeleteFromFavorite}
           buttonName="Delete"
         />
-      </div>
+      </StyledItem>
 
       {loading && <Loader />}
 

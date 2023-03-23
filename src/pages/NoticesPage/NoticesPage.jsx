@@ -31,6 +31,7 @@ const NoticesPage = () => {
         setLoading(true);
         const { data } = await fetchNoticesByCategory(category);
         setNotices(data);
+        setIsButtonClicked(true);
       } catch (error) {
         console.log(error);
       }
@@ -45,8 +46,8 @@ const NoticesPage = () => {
     if (!isButtonClicked) {
       try {
         const { data } = await fetchNoticesByCategory(category);
-        setNotices(data);
         setIsButtonClicked(true);
+        setNotices(data);
       } catch (error) {
         console.log(error);
       }
