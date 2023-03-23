@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { RotatingLines } from 'react-loader-spinner';
 
-const StyledLoader = styled.section`
-  height: 15vh;
+export const StyledLoader = styled.section`
+  position: absolute;
+  top: 15vh;
+  left: 50%;
   display: flex;
   justify-content: center;
   align-items: center;

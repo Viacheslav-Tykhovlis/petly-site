@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const StyledSvgButton = styled.button`
+  position: absolute;
+  right: 12px;
+  top: 12px;
+
   display: flex;
   align-items: center;
   justify-content: center;

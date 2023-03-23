@@ -106,7 +106,13 @@ const NoticesPage = () => {
         </Modal>
       )}
 
-      {loading ? <Loader /> : <NoticesCategoriesList notices={notices} />}
+      <div style={{ position: 'relative' }}>
+        {loading ? (
+          <Loader />
+        ) : (
+          <NoticesCategoriesList notices={notices} onClose={onAddButtonClick} />
+        )}
+      </div>
     </StyledSection>
   );
 };
