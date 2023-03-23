@@ -1,23 +1,23 @@
-// import React, { useState, useEffect } from "react";
+import React from 'react';
 import { SectionRegisterPage } from './RegisterPage.styled';
-// import {RegisterFormFirst, RegisterFormSecond} from './RegisterForm/RegisterForm';
-import {RegisterFormSecond} from './RegisterForm/RegisterForm';
+import {
+  RegisterFormFirst,
+  RegisterFormSecond,
+} from 'components/RegisterForm/RegisterForm';
+import { useToggleForm } from '../../hooks/useToggleForm';
 
-// const styles = {
-//   input: {
-//     marginBottom: 24,
-//   }
-// };
 
 const RegisterPage = () => {
-
-  // const [value, setValue] = useState(0);
+  const { isFormOpen, toggle } = useToggleForm();
 
   return (
     <>
-      <SectionRegisterPage >
-        {/* <RegisterFormFirst /> */}
-        <RegisterFormSecond />
+      <SectionRegisterPage>
+        {isFormOpen ? (
+          <RegisterFormFirst toggleForm={toggle} />
+        ) : (
+          <RegisterFormSecond toggleForm={toggle} />
+        )}
       </SectionRegisterPage>
     </>
   );
