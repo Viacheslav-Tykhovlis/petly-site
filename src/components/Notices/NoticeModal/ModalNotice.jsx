@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 import { StyledNavButton } from 'components/ReusableComponents/Buttons/StyledNavButton';
 import { noticeLabelTranform } from 'utils/noticeLabelTranform';
-import { CloseButton, CloseModalButton } from './ModalAddNotice.styled';
-import { RxCross1 } from 'react-icons/rx';
+import { CloseModalButton } from './ModalAddNotice.styled';
+
 import defaultImg from '../../../images/defaultImg.jpg';
 
-export const ButtonClose = styled(CloseButton);
+// export const ButtonClose = styled(CloseButton);
 
 export const StyledModal = styled.div`
   position: relative;
@@ -138,9 +138,7 @@ const ModalNotice = ({ noticeDetails, onClose }) => {
 
   return (
     <StyledModal>
-      <CloseModalButton onClick={onClose}>
-        <RxCross1 />
-      </CloseModalButton>
+      <CloseModalButton onClick={onClose} />
 
       <ModalLabel>
         <p>{noticeLabelTranform(category)}</p>
