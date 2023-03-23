@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Field } from 'formik';
 import { RxCross1 } from 'react-icons/rx';
+import { TfiPlus } from 'react-icons/tfi';
 
 const CloseButton = styled.button`
   position: absolute;
@@ -67,6 +68,7 @@ export const BtnsModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
+  margin-top: 40px;
 `;
 
 export const RadioWrapper = styled.div`
@@ -81,7 +83,7 @@ export const InputGroupWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
-  margin-bottom: 40px;
+  margin-bottom: 16px;
 `;
 
 export const InputWrapper = styled.div`
@@ -199,12 +201,38 @@ export const RadioSexLabel = styled.label`
     color: ${({ selected }) => (selected ? '#f59256' : '#ff7d5d')};
   }
 `;
-export const RadioIcon = styled.svg`
-  width: 40px;
-  height: 40px;
-`;
 
 export const RadioSexTitle = styled.span`
   margin-top: 12px;
   color: ${({ active }) => active && '#f59256'};
+`;
+
+export const UploadButton = styled.label`
+  display: inline-block;
+  background-color: #fdf7f2;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+  width: 116px;
+  height: 116px;
+
+  @media screen and (min-width: 768px) {
+    min-width: 140px;
+    min-height: 140px;
+  }
+`;
+
+export const PlusIcon = styled(TfiPlus)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 47px;
+  height: 47px;
+  fill: #11111199;
+`;
+
+export const StyledFileInput = styled.div`
+  margin-top: 8px;
+  margin-bottom: 28px;
 `;

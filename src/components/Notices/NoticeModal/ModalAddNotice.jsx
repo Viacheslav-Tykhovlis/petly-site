@@ -7,19 +7,21 @@ import {
   InputWrapper,
   ModalBtnBack,
   ModalBtnNext,
-  RadioIcon,
+  PlusIcon,
   RadioSexBtnWrapper,
   RadioSexButton,
   RadioSexLabel,
   RadioSexTitle,
   RadioWrapper,
   StyledField,
+  StyledFileInput,
   StyledInput,
   StyledLabel,
   StyledModal,
   StyledSubtitle,
   StyledTextInputLabel,
   StyledTitle,
+  UploadButton,
 } from './ModalAddNotice.styled';
 import { FemaleIcon, MaleIcon } from 'img/icons/icons';
 
@@ -33,6 +35,7 @@ const initialValues = {
   location: '',
   imageUrl: '',
   comments: '',
+  price: '',
 };
 
 const FormStep1 = ({ onNext, values, handleChange, onClose }) => {
@@ -91,11 +94,23 @@ const FormStep1 = ({ onNext, values, handleChange, onClose }) => {
             <StyledTextInputLabel htmlFor="title">
               Title of ad
             </StyledTextInputLabel>
-            <StyledInput type="text" name="title" placeholder="Type name pet" />
+            <StyledInput
+              type="text"
+              name="title"
+              placeholder="Type name"
+              value={values.title}
+              onChange={handleChange}
+            />
           </InputWrapper>
           <InputWrapper>
             <StyledTextInputLabel htmlFor="name">Name pet</StyledTextInputLabel>
-            <StyledInput type="text" name="name" placeholder="Type name pet" />
+            <StyledInput
+              type="text"
+              name="name"
+              placeholder="Type name pet"
+              value={values.name}
+              onChange={handleChange}
+            />
           </InputWrapper>
           {values.category !== 'lost' && (
             <InputWrapper>
@@ -106,12 +121,20 @@ const FormStep1 = ({ onNext, values, handleChange, onClose }) => {
                 type="text"
                 name="birthdate"
                 placeholder="Type date of birth"
+                value={values.birthdate}
+                onChange={handleChange}
               />
             </InputWrapper>
           )}
           <InputWrapper>
             <StyledTextInputLabel htmlFor="breed">Breed</StyledTextInputLabel>
-            <StyledInput type="text" name="breed" placeholder="Type breed" />
+            <StyledInput
+              type="text"
+              name="breed"
+              placeholder="Type breed"
+              value={values.breed}
+              onChange={handleChange}
+            />
           </InputWrapper>
         </InputGroupWrapper>
 
@@ -146,9 +169,9 @@ const FormStep2 = ({ onBack, values, handleChange, onClose }) => {
               checked={values.sex === 'male'}
               onChange={handleChange}
             />
-            <RadioIcon active={values.sex === 'male'}>
-              <MaleIcon />
-            </RadioIcon>
+
+            <MaleIcon active={values.sex === 'male'} />
+
             <RadioSexTitle active={values.sex === 'male'}>Male</RadioSexTitle>
           </RadioSexLabel>
 
@@ -161,9 +184,9 @@ const FormStep2 = ({ onBack, values, handleChange, onClose }) => {
               checked={values.sex === 'female'}
               onChange={handleChange}
             />
-            <RadioIcon active={values.sex === 'female'}>
-              <FemaleIcon />
-            </RadioIcon>
+
+            <FemaleIcon active={values.sex === 'female'} />
+
             <RadioSexTitle active={values.sex === 'female'}>
               Female
             </RadioSexTitle>
@@ -179,25 +202,53 @@ const FormStep2 = ({ onBack, values, handleChange, onClose }) => {
               type="text"
               name="location"
               placeholder="Type location"
+              value={values.location}
+              onChange={handleChange}
             />
           </InputWrapper>
 
           <InputWrapper>
             <StyledTextInputLabel htmlFor="Price">Price:</StyledTextInputLabel>
-            <StyledInput type="text" name="Price" placeholder="Type price" />
+            <StyledInput
+              type="text"
+              name="price"
+              placeholder="Type price"
+              value={values.price}
+              onChange={handleChange}
+            />
           </InputWrapper>
         </InputGroupWrapper>
 
-        <label htmlFor="file">Load the pet’s image</label>
-        <Field type="file" name="file" />
+        <StyledTextInputLabel htmlFor="file">
+          Load the pet’s image
+        </StyledTextInputLabel>
 
-        <label htmlFor="textarea">Comments</label>
-        <Field
-          as="textarea"
-          name="comments"
-          onChange={handleChange}
-          value={values.comments}
-        />
+        <StyledFileInput>
+          <Field
+            as="input"
+            type="file"
+            name="file"
+            id="file"
+            style={{ display: 'none' }}
+            onChange={handleChange}
+          />
+          <UploadButton htmlFor="file">
+            <PlusIcon />
+          </UploadButton>
+        </StyledFileInput>
+
+        <InputWrapper>
+          <StyledTextInputLabel htmlFor="textarea">
+            Comments
+          </StyledTextInputLabel>
+          <StyledInput
+            as="textarea"
+            name="comments"
+            onChange={handleChange}
+            value={values.comments}
+            placeholder="Type comment"
+          />
+        </InputWrapper>
 
         <BtnsModalWrapper>
           <ModalBtnNext type="submit">Done</ModalBtnNext>
