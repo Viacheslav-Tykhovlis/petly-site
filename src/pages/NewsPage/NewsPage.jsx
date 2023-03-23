@@ -50,6 +50,19 @@ const NewsPage = () => {
 
   // console.log(visibleNews);
 
+  // const onFormSubmit = event => {
+  //   event.preventDefault();
+
+  //   // setSearchParams({ query: event.currentTarget.value });
+  //   const form = event.currentTarget;
+  //   const normilizedValue = form.elements.search.value;
+  //   console.log(normilizedValue);
+  //   if (normilizedValue.trim() === '') {
+  //     return alert('Please, enter title name.');
+  //   }
+  //   setSearchParams({ normilizedValue });
+  // };
+
   return (
     <NewsSection>
       <Title>News</Title>
@@ -65,18 +78,11 @@ const NewsPage = () => {
           />
 
           {!newsTitle ? (
-            <SearchBtn
-              type="button"
-              onClick={() => {
-                if (!newsTitle) {
-                  alert('Search field cannot be empty');
-                }
-              }}
-            >
+            <SearchBtn type="submit">
               <AiOutlineSearch size={23} />
             </SearchBtn>
           ) : (
-            <DeleteBtn type="submit" onClick={onClearField}>
+            <DeleteBtn type="button" onClick={onClearField}>
               <TiDeleteOutline size={23} />
             </DeleteBtn>
           )}
@@ -85,7 +91,7 @@ const NewsPage = () => {
 
       {visibleNews && !isLoading && <NewsList news={visibleNews} />}
 
-      {!visibleNews && !isLoading && (
+      {!visibleNews && (
         <ErrorText>
           Sorry, there is no news at this moment.
           <br /> Try again later.
