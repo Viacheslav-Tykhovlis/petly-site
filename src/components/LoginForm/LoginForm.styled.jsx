@@ -39,7 +39,17 @@ export const LogInInput = styled(Field)`
   background-color: #fdf7f2;
   border: ${props => props.border || `1px solid rgba(245, 146, 86, 0.5)`};
   border-radius: 40px;
-  margin-bottom: 24px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgba(17, 17, 17, 0.6);
+  @media screen and (min-width: 768px) {
+    padding: 14px 32px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding: 14px 32px;
+  }
+  /* margin-bottom: 24px; */
 `;
 
 export const LogInButton = styled.button`
@@ -53,7 +63,8 @@ export const LogInButton = styled.button`
   padding: 8px 0;
   margin-top: 16px;
   margin-bottom: 40px;
-  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
     background-color: rgba(255, 255, 255, 1);
@@ -84,6 +95,13 @@ export const ErrorMessage = styled.div`
   font-size: 14px;
   line-height: 1.35;
   margin-bottom: 24px;
+  margin-left: 15px;
+  @media screen and (min-width: 768px) {
+    margin-left: 33px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-left: 33px;
+  }
 `;
 
 export const ApproveMessage = styled.div`
@@ -92,6 +110,13 @@ export const ApproveMessage = styled.div`
   font-size: 14px;
   line-height: 1.35;
   margin-bottom: 24px;
+  margin-left: 15px;
+  @media screen and (min-width: 768px) {
+    margin-left: 33px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-left: 33px;
+  }
 `;
 
 export const InputWrapper = styled.div`
@@ -101,6 +126,14 @@ export const InputWrapper = styled.div`
 export const Icon = styled.svg`
   position: absolute;
   content: '';
-  top: 14px;
-  right: 20px;
+  top: 15px;
+  right: 18px;
+  @media screen and (min-width: 768px) {
+    top: 19px;
+    right: 20px;
+  }
+  @media screen and (min-width: 1280px) {
+    top: 19px;
+    right: 20px;
+  }
 `;
