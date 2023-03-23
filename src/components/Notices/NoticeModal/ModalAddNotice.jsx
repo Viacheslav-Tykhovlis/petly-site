@@ -20,6 +20,7 @@ import {
   StyledModal,
   StyledSubtitle,
   StyledTextInputLabel,
+  StyledTextareaAutosize,
   StyledTitle,
   UploadButton,
 } from './ModalAddNotice.styled';
@@ -241,12 +242,14 @@ const FormStep2 = ({ onBack, values, handleChange, onClose }) => {
           <StyledTextInputLabel htmlFor="textarea">
             Comments
           </StyledTextInputLabel>
-          <StyledInput
-            as="textarea"
+
+          <StyledTextareaAutosize
             name="comments"
             onChange={handleChange}
             value={values.comments}
             placeholder="Type comment"
+            minRows={1}
+            maxRows={6}
           />
         </InputWrapper>
 

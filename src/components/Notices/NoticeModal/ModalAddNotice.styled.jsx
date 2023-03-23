@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Field } from 'formik';
 import { RxCross1 } from 'react-icons/rx';
 import { TfiPlus } from 'react-icons/tfi';
+import TextareaAutosize from 'react-textarea-autosize';
 
 const CloseButton = styled.button`
   position: absolute;
@@ -90,21 +91,6 @@ export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 0.5rem;
-`;
-
-export const StyledInput = styled(Field)`
-  width: 240px;
-  height: 40px;
-  border-radius: 40px;
-  font-size: 14px;
-  padding-left: 14px;
-  background-color: #fdf7f2;
-  border: 1px solid #f5925680;
-
-  &:focus {
-    outline: none;
-    border: 2px solid #f59256;
-  }
 `;
 
 const BaseButton = styled.button`
@@ -235,4 +221,37 @@ export const PlusIcon = styled(TfiPlus)`
 export const StyledFileInput = styled.div`
   margin-top: 8px;
   margin-bottom: 28px;
+`;
+
+export const StyledInput = styled(Field)`
+  width: 240px;
+  height: 40px;
+  border-radius: 40px;
+  font-size: 14px;
+  padding-left: 14px;
+  background-color: #fdf7f2;
+  border: 1px solid #f5925680;
+
+  &:focus {
+    outline: none;
+    border: 2px solid #f59256;
+  }
+`;
+
+export const StyledTextareaAutosize = styled(TextareaAutosize)`
+  width: 240px;
+  min-height: 40px;
+  max-height: 300px;
+  border-radius: 40px;
+  font-size: 14px;
+  padding: 12px 14px;
+
+  background-color: #fdf7f2;
+  border: 1px solid #f5925680;
+  resize: none;
+  overflow: hidden;
+  &:focus {
+    outline: none;
+    border: 2px solid #f59256;
+  }
 `;
