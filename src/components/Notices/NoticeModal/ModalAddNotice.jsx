@@ -3,8 +3,11 @@ import { useState } from 'react';
 import {
   BtnsModalWrapper,
   CloseModalButton,
+  FemaleIcon,
   InputGroupWrapper,
+  InputTextGroupWrapper,
   InputWrapper,
+  MaleIcon,
   ModalBtnBack,
   ModalBtnNext,
   PlusIcon,
@@ -20,10 +23,12 @@ import {
   StyledModal,
   StyledSubtitle,
   StyledTextInputLabel,
+  StyledTextareaAutosize,
   StyledTitle,
   UploadButton,
 } from './ModalAddNotice.styled';
-import { FemaleIcon, MaleIcon } from 'img/icons/icons';
+import femaleIcon from 'img/icons/female.png';
+import maleIcon from 'img/icons/male.png';
 
 const initialValues = {
   category: 'sell',
@@ -42,8 +47,8 @@ const FormStep1 = ({ onNext, values, handleChange, onClose }) => {
   return (
     <Form>
       <StyledModal>
-        <CloseModalButton onClick={onClose} />
-        <StyledTitle>Add pet</StyledTitle>
+        <CloseModalButton onClick={onClose} step={1} />
+        <StyledTitle step={1}>Add pet</StyledTitle>
         <StyledSubtitle>
           Lorem ipsum dolor, sit amet consectetur Lorem ipsum dolor, sit amet
           consectetur
@@ -155,8 +160,8 @@ const FormStep2 = ({ onBack, values, handleChange, onClose }) => {
   return (
     <Form>
       <StyledModal>
-        <CloseModalButton onClick={onClose} />
-        <StyledTitle>Add pet</StyledTitle>
+        <CloseModalButton onClick={onClose} step={2} />
+        <StyledTitle step={2}>Add pet</StyledTitle>
         <StyledTextInputLabel>The sex:</StyledTextInputLabel>
 
         <RadioSexBtnWrapper>
@@ -170,8 +175,7 @@ const FormStep2 = ({ onBack, values, handleChange, onClose }) => {
               onChange={handleChange}
             />
 
-            <MaleIcon active={values.sex === 'male'} />
-
+            <MaleIcon src={maleIcon} alt="Male Icon" />
             <RadioSexTitle active={values.sex === 'male'}>Male</RadioSexTitle>
           </RadioSexLabel>
 
@@ -185,15 +189,14 @@ const FormStep2 = ({ onBack, values, handleChange, onClose }) => {
               onChange={handleChange}
             />
 
-            <FemaleIcon active={values.sex === 'female'} />
-
+            <FemaleIcon src={femaleIcon} alt="Female Icon" />
             <RadioSexTitle active={values.sex === 'female'}>
               Female
             </RadioSexTitle>
           </RadioSexLabel>
         </RadioSexBtnWrapper>
 
-        <InputGroupWrapper>
+        <InputTextGroupWrapper>
           <InputWrapper>
             <StyledTextInputLabel htmlFor="location">
               Location:
@@ -217,7 +220,7 @@ const FormStep2 = ({ onBack, values, handleChange, onClose }) => {
               onChange={handleChange}
             />
           </InputWrapper>
-        </InputGroupWrapper>
+        </InputTextGroupWrapper>
 
         <StyledTextInputLabel htmlFor="file">
           Load the pet’s image
@@ -241,12 +244,14 @@ const FormStep2 = ({ onBack, values, handleChange, onClose }) => {
           <StyledTextInputLabel htmlFor="textarea">
             Comments
           </StyledTextInputLabel>
-          <StyledInput
-            as="textarea"
+
+          <StyledTextareaAutosize
             name="comments"
             onChange={handleChange}
             value={values.comments}
             placeholder="Type comment"
+            minRows={1}
+            maxRows={6}
           />
         </InputWrapper>
 

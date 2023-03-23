@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Field } from 'formik';
 import { RxCross1 } from 'react-icons/rx';
 import { TfiPlus } from 'react-icons/tfi';
+import TextareaAutosize from 'react-textarea-autosize';
 
 const CloseButton = styled.button`
   position: absolute;
@@ -28,11 +29,21 @@ const CloseButton = styled.button`
     color: black;
     font-size: 22px;
   }
+
+  @media screen and (min-width: 768px) {
+    width: 44px;
+    height: 44px;
+    top: ${p => (p.step === 1 ? '20px' : '24px')};
+    right: ${p => (p.step === 1 ? '20px' : '24px')};
+    svg {
+      font-size: 27px;
+    }
+  }
 `;
 
-export const CloseModalButton = ({ onClick }) => {
+export const CloseModalButton = ({ onClick, step }) => {
   return (
-    <CloseButton onClick={onClick}>
+    <CloseButton onClick={onClick} step={step}>
       <RxCross1 />
     </CloseButton>
   );
@@ -41,17 +52,34 @@ export const CloseModalButton = ({ onClick }) => {
 export const StyledTextInputLabel = styled.label`
   font-size: 18px;
   line-height: 1.47;
+
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+    line-height: 1.1;
+  }
 `;
 
 export const StyledTitle = styled.p`
-  font-size: 1.5rem;
+  font-size: 24px;
   text-align: center;
   margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: ${p => (p.step === 1 ? '20px' : '40px')};
+  }
 `;
+
 export const StyledSubtitle = styled.p`
-  font-size: 1rem;
+  font-size: 16px;
   text-align: center;
   margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 28px;
+  }
 `;
 
 export const StyledModal = styled.div`
@@ -62,13 +90,11 @@ export const StyledModal = styled.div`
   width: 280px;
   padding: 40px 20px;
   border-radius: 20px;
-`;
 
-export const BtnsModalWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 12px;
-  margin-top: 40px;
+  @media screen and (min-width: 768px) {
+    width: 608px;
+    padding: 40px 80px;
+  }
 `;
 
 export const RadioWrapper = styled.div`
@@ -76,34 +102,54 @@ export const RadioWrapper = styled.div`
   flex-wrap: wrap;
   column-gap: 8px;
   row-gap: 16px;
-  margin-bottom: 2rem;
+  margin-bottom: 32px;
+
+  @media screen and (min-width: 728px) {
+    column-gap: 12px;
+    margin-bottom: 28px;
+  }
 `;
 
 export const InputGroupWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 1rem;
-  margin-bottom: 16px;
+  row-gap: 16px;
+  /* margin-bottom: 20px; */
+  /* margin-bottom: 40px; */
+
+  @media screen and (min-width: 768px) {
+    row-gap: 28px;
+  }
+`;
+export const InputTextGroupWrapper = styled(InputGroupWrapper)`
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 28px;
+  }
 `;
 
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 0.5rem;
+  row-gap: 8px;
+
+  @media screen and (min-width: 768px) {
+    row-gap: 12px;
+  }
 `;
 
-export const StyledInput = styled(Field)`
-  width: 240px;
-  height: 40px;
-  border-radius: 40px;
-  font-size: 14px;
-  padding-left: 14px;
-  background-color: #fdf7f2;
-  border: 1px solid #f5925680;
-
-  &:focus {
-    outline: none;
-    border: 2px solid #f59256;
+export const BtnsModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  margin-top: 40px;
+  @media screen and (min-width: 728px) {
+    flex-direction: row-reverse;
+    row-gap: 0px;
+    column-gap: 20px;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -121,6 +167,12 @@ const BaseButton = styled.button`
 
   &:hover {
     color: ${({ hoverTextColor }) => hoverTextColor};
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 180px;
+    height: 44px;
+    font-size: 20px;
   }
 `;
 
@@ -158,13 +210,19 @@ export const StyledLabel = styled.label`
   border-radius: 40px;
   background-color: ${({ selected }) => (selected ? '#f59256' : 'white')};
   color: ${({ selected }) => (selected ? 'white' : 'black')};
-  border: ${({ selected }) => (selected ? 'none' : '2px solid #f59256')};
+  outline: ${({ selected }) => (selected ? 'none' : '2px solid #f59256')};
+  outline-offset: -2px;
   cursor: pointer;
   transition: all ${p => p.theme.animation.cubicBezier};
 
   &:hover {
-    background-color: ${({ selected }) => (selected ? '#ff7d5d' : '#f59256')};
+    background-color: ${({ selected }) => (selected ? '#f59256' : '#f59256')};
     color: ${({ selected }) => (selected ? 'black' : 'black')};
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+    padding: 10px 28px;
   }
 `;
 
@@ -179,8 +237,13 @@ export const RadioSexBtnWrapper = styled.div`
   margin-top: 16px;
   margin-bottom: 32px;
   display: flex;
-  /* align-items: center; */
+
   column-gap: 40px;
+
+  @media screen and (min-width: 728px) {
+    margin-top: 31px;
+    margin-bottom: 40px;
+  }
 `;
 
 export const StyledSexInputLabel = styled.label`
@@ -193,18 +256,23 @@ export const RadioSexLabel = styled.label`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   margin: 0 8px;
   cursor: pointer;
-  transition: color ${p => p.theme.animation.cubicBezier};
+  transition: all ${p => p.theme.animation.cubicBezier};
 
   &:hover {
     color: ${({ selected }) => (selected ? '#f59256' : '#ff7d5d')};
+    transform: scale(1.07);
   }
 `;
 
 export const RadioSexTitle = styled.span`
   margin-top: 12px;
   color: ${({ active }) => active && '#f59256'};
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 export const UploadButton = styled.label`
@@ -220,6 +288,11 @@ export const UploadButton = styled.label`
     min-width: 140px;
     min-height: 140px;
   }
+
+  transition: all ${p => p.theme.animation.cubicBezier};
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 export const PlusIcon = styled(TfiPlus)`
@@ -234,5 +307,75 @@ export const PlusIcon = styled(TfiPlus)`
 
 export const StyledFileInput = styled.div`
   margin-top: 8px;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 12px;
+    margin-bottom: 28px;
+  }
+`;
+
+export const StyledInput = styled(Field)`
+  width: 240px;
+  height: 40px;
+  border-radius: 40px;
+  font-size: 14px;
+  padding-left: 14px;
+  background-color: #fdf7f2;
+  border: 1px solid #f5925680;
+
+  &:focus {
+    outline: none;
+    border: 2px solid #f59256;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 448px;
+    height: 48px;
+    padding-left: 16px;
+    font-size: 16px;
+  }
+`;
+
+export const StyledTextareaAutosize = styled(TextareaAutosize)`
+  min-height: 40px;
+  max-height: 300px;
+  border-radius: 40px;
+  font-size: 14px;
+  padding: 12px 14px;
+
+  background-color: #fdf7f2;
+  border: 1px solid #f5925680;
+  resize: none;
+  overflow: hidden;
+  &:focus {
+    outline: none;
+    border: 2px solid #f59256;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 16px 18px;
+    min-height: 113px;
+    font-size: 16px;
+  }
+`;
+
+export const FemaleIcon = styled.img`
+  width: 26px;
+  height: 40px;
+
+  @media only screen and (min-width: 768px) {
+    width: 38px;
+    height: 60px;
+  }
+`;
+
+export const MaleIcon = styled.img`
+  width: 36px;
+  height: 36px;
+
+  @media only screen and (min-width: 768px) {
+    width: 54px;
+    height: 54px;
+  }
 `;
