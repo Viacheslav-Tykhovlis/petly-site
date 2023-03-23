@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Field } from 'formik';
 import { RxCross1 } from 'react-icons/rx';
+import { TfiPlus } from 'react-icons/tfi';
 
 const CloseButton = styled.button`
   position: absolute;
@@ -39,6 +40,7 @@ export const CloseModalButton = ({ onClick }) => {
 
 export const StyledTextInputLabel = styled.label`
   font-size: 18px;
+  line-height: 1.47;
 `;
 
 export const StyledTitle = styled.p`
@@ -66,6 +68,7 @@ export const BtnsModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
+  margin-top: 40px;
 `;
 
 export const RadioWrapper = styled.div`
@@ -80,7 +83,7 @@ export const InputGroupWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
-  margin-bottom: 40px;
+  margin-bottom: 16px;
 `;
 
 export const InputWrapper = styled.div`
@@ -170,4 +173,66 @@ export const StyledField = styled(Field)`
   opacity: 0;
   width: 0;
   height: 0;
+`;
+
+export const RadioSexBtnWrapper = styled.div`
+  margin-top: 16px;
+  margin-bottom: 32px;
+  display: flex;
+  /* align-items: center; */
+  column-gap: 40px;
+`;
+
+export const StyledSexInputLabel = styled.label`
+  margin-right: 12px;
+`;
+export const RadioSexButton = styled(Field)`
+  display: none;
+`;
+export const RadioSexLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 8px;
+  cursor: pointer;
+  transition: color ${p => p.theme.animation.cubicBezier};
+
+  &:hover {
+    color: ${({ selected }) => (selected ? '#f59256' : '#ff7d5d')};
+  }
+`;
+
+export const RadioSexTitle = styled.span`
+  margin-top: 12px;
+  color: ${({ active }) => active && '#f59256'};
+`;
+
+export const UploadButton = styled.label`
+  display: inline-block;
+  background-color: #fdf7f2;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+  width: 116px;
+  height: 116px;
+
+  @media screen and (min-width: 768px) {
+    min-width: 140px;
+    min-height: 140px;
+  }
+`;
+
+export const PlusIcon = styled(TfiPlus)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 47px;
+  height: 47px;
+  fill: #11111199;
+`;
+
+export const StyledFileInput = styled.div`
+  margin-top: 8px;
+  margin-bottom: 28px;
 `;
