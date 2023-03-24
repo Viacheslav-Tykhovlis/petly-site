@@ -374,7 +374,8 @@ const ModalAddNotice = ({ onClose }) => {
   const [step, setStep] = useState(1);
   const [formValues, setFormValues] = useState(initialValues);
 
-  const handleNext = async (values, validateForm) => {
+  const handleNext = async (e, values, validateForm) => {
+    e.preventDefault();
     try {
       const errors = await validateForm(values);
 
@@ -388,7 +389,8 @@ const ModalAddNotice = ({ onClose }) => {
     }
   };
 
-  const handleSubmit = async formik => {
+  const handleSubmit = async (e, formik) => {
+    e.preventDefault();
     const { values, validateForm, resetForm } = formik;
     try {
       const errors = await validateForm(values);
@@ -424,7 +426,7 @@ const ModalAddNotice = ({ onClose }) => {
         <>
           {step === 1 ? (
             <FormStep1
-              onNext={() => handleNext(formik.values, formik.validateForm)}
+              onNext={e => handleNext(e, formik.values, formik.validateForm)}
               values={formik.values}
               handleChange={formik.handleChange}
               handleBlur={formik.handleBlur}
@@ -439,7 +441,7 @@ const ModalAddNotice = ({ onClose }) => {
               handleChange={formik.handleChange}
               handleBlur={formik.handleBlur}
               onClose={onClose}
-              onDone={() => handleSubmit(formik)}
+              onDone={e => handleSubmit(e, formik)}
               touched={formik.touched}
               errors={formik.errors}
             />
