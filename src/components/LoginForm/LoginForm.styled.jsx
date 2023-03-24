@@ -4,6 +4,7 @@ import { Field } from 'formik';
 export const LogInWrapper = styled.div`
   display: block;
   max-width: 100%;
+
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 151px;
@@ -33,6 +34,11 @@ export const LogInTitle = styled.h1`
   letter-spacing: 0.04em;
   @media screen and (min-width: 768px) {
     margin-top: 0;
+    font-size: 36px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 36px;
   }
 `;
 
@@ -78,6 +84,12 @@ export const LogInButton = styled.button`
     color: rgba(0, 0, 0, 1);
     transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
       color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  @media screen and (min-width: 768px) {
+    width: 458px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 458px;
   }
 `;
 
