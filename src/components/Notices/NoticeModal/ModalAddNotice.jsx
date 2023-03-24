@@ -30,7 +30,6 @@ import {
   UploadButton,
 } from './ModalAddNotice.styled';
 
-import {} from 'formik';
 import * as Yup from 'yup';
 
 const validationSchemaStep1 = Yup.object().shape({
@@ -73,7 +72,8 @@ const validationSchemaStep2 = Yup.object().shape({
     .required('Required field'),
   comments: Yup.string()
     .min(8, 'Minimum 8 characters')
-    .max(120, 'Maximum 120 characters'),
+    .max(120, 'Maximum 120 characters')
+    .required('Required field'),
   price: Yup.number()
     .positive('Price must be a positive number')
     .required('Required field'),
@@ -92,7 +92,15 @@ const initialValues = {
   price: '',
 };
 
-const FormStep1 = ({ onNext, values, handleChange, onClose, handleBlur }) => {
+const FormStep1 = ({
+  onNext,
+  values,
+  handleChange,
+  onClose,
+  handleBlur,
+  touched,
+  errors,
+}) => {
   return (
     <Form>
       <StyledModal>
@@ -155,6 +163,7 @@ const FormStep1 = ({ onNext, values, handleChange, onClose, handleBlur }) => {
               value={values.title}
               onChange={handleChange}
               onBlur={handleBlur}
+              isvalidfield={touched.title && !errors.title}
             />
             <ErrorMessage name="title">
               {msg => <div style={{ color: 'red' }}>{msg}</div>}
@@ -170,6 +179,7 @@ const FormStep1 = ({ onNext, values, handleChange, onClose, handleBlur }) => {
               value={values.name}
               onChange={handleChange}
               onBlur={handleBlur}
+              isvalidfield={touched.name && !errors.name}
             />
             <ErrorMessage name="name">
               {msg => <div style={{ color: 'red' }}>{msg}</div>}
@@ -187,6 +197,7 @@ const FormStep1 = ({ onNext, values, handleChange, onClose, handleBlur }) => {
                 value={values.birthdate}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                isvalidfield={touched.birthdate && !errors.birthdate}
               />
               <ErrorMessage name="birthdate">
                 {msg => <div style={{ color: 'red' }}>{msg}</div>}
@@ -202,6 +213,7 @@ const FormStep1 = ({ onNext, values, handleChange, onClose, handleBlur }) => {
               value={values.breed}
               onChange={handleChange}
               onBlur={handleBlur}
+              isvalidfield={touched.breed && !errors.breed}
             />
             <ErrorMessage name="breed">
               {msg => <div style={{ color: 'red' }}>{msg}</div>}
@@ -229,6 +241,8 @@ const FormStep2 = ({
   onClose,
   handleBlur,
   onDone,
+  touched,
+  errors,
 }) => {
   return (
     <Form>
@@ -281,6 +295,7 @@ const FormStep2 = ({
               value={values.location}
               onChange={handleChange}
               onBlur={handleBlur}
+              isvalidfield={touched.location && !errors.location}
             />
             <ErrorMessage name="location">
               {msg => <div style={{ color: 'red' }}>{msg}</div>}
@@ -296,6 +311,7 @@ const FormStep2 = ({
               value={values.price}
               onChange={handleChange}
               onBlur={handleBlur}
+              isvalidfield={touched.price && !errors.price}
             />
             <ErrorMessage name="price">
               {msg => <div style={{ color: 'red' }}>{msg}</div>}
@@ -334,6 +350,7 @@ const FormStep2 = ({
             placeholder="Type comment"
             minRows={1}
             maxRows={6}
+            isvalidfield={touched.comments && !errors.comments}
           />
           <ErrorMessage name="comments">
             {msg => <div style={{ color: 'red' }}>{msg}</div>}
@@ -358,26 +375,36 @@ const ModalAddNotice = ({ onClose }) => {
   const [formValues, setFormValues] = useState(initialValues);
 
   const handleNext = async (values, validateForm) => {
-    const errors = await validateForm(values);
+    try {
+      const errors = await validateForm(values);
 
-    if (Object.keys(errors).length === 0) {
-      console.log('step one:\n ', values);
-      setFormValues(values);
-      setStep(2);
+      if (Object.keys(errors).length === 0) {
+        console.log('step one:\n ', values);
+        setFormValues(values);
+        setStep(2);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
-  const handleSubmit = async (values, validateForm) => {
-    const errors = await validateForm(values);
+  const handleSubmit = async formik => {
+    const { values, validateForm, resetForm } = formik;
+    try {
+      const errors = await validateForm(values);
 
-    if (Object.keys(errors).length === 0) {
-      setFormValues({
-        ...formValues,
-        sex: values.sex,
-        location: values.location,
-        comments: values.comments,
-      });
-      console.log('handleSubmit:\n', { ...formValues, ...values });
+      if (Object.keys(errors).length === 0) {
+        setFormValues({
+          ...formValues,
+          sex: values.sex,
+          location: values.location,
+          comments: values.comments,
+        });
+        console.log('handleSubmit:\n', { ...formValues, ...values });
+        resetForm();
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -393,24 +420,28 @@ const ModalAddNotice = ({ onClose }) => {
         step === 1 ? validationSchemaStep1 : validationSchemaStep2
       }
     >
-      {({ values, handleChange, handleBlur, validateForm }) => (
+      {formik => (
         <>
           {step === 1 ? (
             <FormStep1
-              onNext={() => handleNext(values, validateForm)}
-              values={values}
-              handleChange={handleChange}
-              handleBlur={handleBlur}
+              onNext={() => handleNext(formik.values, formik.validateForm)}
+              values={formik.values}
+              handleChange={formik.handleChange}
+              handleBlur={formik.handleBlur}
               onClose={onClose}
+              touched={formik.touched}
+              errors={formik.errors}
             />
           ) : (
             <FormStep2
               onBack={handleBack}
-              values={values}
-              handleChange={handleChange}
-              handleBlur={handleBlur}
+              values={formik.values}
+              handleChange={formik.handleChange}
+              handleBlur={formik.handleBlur}
               onClose={onClose}
-              onDone={() => handleSubmit(values, validateForm)}
+              onDone={() => handleSubmit(formik)}
+              touched={formik.touched}
+              errors={formik.errors}
             />
           )}
         </>
