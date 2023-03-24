@@ -1,8 +1,8 @@
 import React from 'react';
 // import { useDispatch } from 'react-redux';
 // import { logout } from 'redux/user/userSlice';
-import { HiOutlineLogout } from 'react-icons/hi';
-import { IconStyle, Button, LogoutBtnText } from './Logout.styled';
+import { BoxLogOut, LogoutSpan } from './Logout.styled';
+import { ButtonLogout } from '../ButtonUser/ButtonUser';
 
 const Logout = () => {
   // const dispatch = useDispatch();
@@ -10,14 +10,14 @@ const Logout = () => {
   //   dispatch(logout());
   // };
   return (
-    <Button
-      type="button"
-      // onClick={handleLogout}
-      style={LogoutBtnText}
-    >
-      <HiOutlineLogout style={IconStyle} />
-      Log Out
-    </Button>
+    <BoxLogOut>
+      <ButtonLogout
+        type="button"
+        ariaLabel="logout button"
+        //   onClick={handleLogout}
+      />
+      <LogoutSpan>Log Out</LogoutSpan>
+    </BoxLogOut>
   );
 };
 

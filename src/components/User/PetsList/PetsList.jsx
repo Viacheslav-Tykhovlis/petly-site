@@ -1,19 +1,18 @@
-import { Image, Flex } from './PetsList.styled';
-import { StyledBasketButton } from '../../ReusableComponents/Buttons/StyledBasketButton';
-import { PetName, PetBirth, PetBreed, PetComments } from './index';
+import PetListItem from './PetListItem/PetListItem';
 
-const PetsList = () => {
+const PetsList = ({ pets }) => {
   return (
-    <Flex>
-      <Image crs="" alt="card pet"></Image>
-      <div>
-        <PetName />
-        <PetBirth />
-        <PetBreed />
-        <PetComments />
-      </div>
-      <StyledBasketButton />
-    </Flex>
+    <>
+      {pets.map(({ photo, name, birthday, breed, comments }) => (
+        <PetListItem
+          photo={photo}
+          name={name}
+          birthday={birthday}
+          breed={breed}
+          comments={comments}
+        />
+      ))}
+    </>
   );
 };
 

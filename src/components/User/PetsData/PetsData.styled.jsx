@@ -1,59 +1,82 @@
 import styled from 'styled-components';
-import { StyledSvgButton } from '../../ReusableComponents/Buttons/StyledLikeButton';
-import React from 'react';
 
-export const Title = styled.h2`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 1.357;
-
-  color: $black-color;
-`;
 export const Flex = styled.div`
   display: flex;
   justify-content: space-between;
+  padding-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 26px;
+
+  @media screen and (min-width: 1280px) {
+    padding-right: 16px;
+    margin-bottom: 24px;
+  }
+`;
+
+export const BoxPetsData = styled.div`
+  /* display: flex;
+  justify-content: space-between;
   padding-right: 16px;
   margin-top: 0px;
-  margin-bottom: 24px;
+  margin-bottom: 24px; */
 `;
 
 export const ContainerPets = styled.div`
+  width: 280px;
+  /* height: 541px; */
+
+  background: #ffffff;
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  border-radius: 20px;
+
   position: relative;
   padding-top: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
   padding-left: 20px;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    width: 704px;
+    /* height: 230px; */
+    border-radius: 40px;
+    display: flex;
+    margin-bottom: 22px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 821px;
+  }
+`;
+
+export const FlexSvg = styled.button`
+  /* position: absolute; */
   display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fdf7f2;
+  border: 0px;
+  /* right: 0px; */
+  /* bottom: -32px; */
 
-  width: 821px;
-
-  background: #ffffff;
-  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  border-radius: 40px;
+  @media screen and (min-width: 1280px) {
+    right: 0px;
+    bottom: 0px;
+  }
 `;
 
-const StyledSvgPlusButton = styled(StyledSvgButton)`
-  width: 40px;
-  height: 40px;
+export const Span = styled.span`
+  display: flex;
+  align-items: center;
+  color: #111111;
+  margin-right: 12px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.35;
+  letter-spacing: '0.04em';
 
-  background: #f59256;
-  fill: #ffffff;
-  stroke: none;
+  &:focus,
+  &:hover {
+    color: #f59256;
+  }
 `;
-
-export const StyledPlusButton = ({ children }) => {
-  return (
-    <StyledSvgPlusButton type="button">
-      <svg width="24" height="24" viewBox="0 0 24 24">
-        <path
-          d="M12 20V12M12 12V4M12 12H20M12 12H4"
-          stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
-        />
-      </svg>
-      {children}
-    </StyledSvgPlusButton>
-  );
-};

@@ -1,36 +1,38 @@
 import styled from 'styled-components';
 
-export const Button = styled.button`
+export const BoxLogOut = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 24px;
+  margin-left: auto;
   background: #ffffff;
-  padding: 0px;
   border: 0px;
   align-sels: flex-end;
-  svg {
-    color: #f59256;
-  }
 
-  &:focus,
-  &:hover {
-    svg {
-      color: rgba(17, 17, 17, 0.6);
-    }
+  @media screen and (min-width: 768px) {
+    margin-top: 8px;
+    margin-left: 0;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-top: 24px;
+    margin-left: 0;
   }
 `;
 
-export const LogoutBtnText = {
-  fontStyle: 'normal',
+export const LogoutSpan = styled.span`
+  margin-left: 8px;
 
-  display: 'flex',
-  alignItems: 'center',
-  letterSpacing: '0.04em',
+  font-style: normal;
 
-  color: 'rgba(17, 17, 17, 0.6)',
-};
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
 
-export const IconStyle = {
-  height: '24px',
-  width: '24px',
-  opacity: 0.6,
-  marginRight: '8px',
-};
+  color: rgba(17, 17, 17, 0.6);
+
+  &:focus,
+  &:hover {
+    color: #f59256;
+  }
+`;

@@ -1,18 +1,27 @@
 import styled from 'styled-components';
 
 export const Image = styled.img`
-  width: 161px;
-  height: 161px;
-  margin-right: 32px;
+  width: 240px;
+  height: 240px;
+  margin-bottom: 20px;
+  border-radius: 20px;
 
   background: url();
-  border-radius: 40px;
   background: #ffffff;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+
+  @media screen and (min-width: 768px) {
+    width: 161px;
+    height: 161px;
+    border-radius: 40px;
+    margin-right: 32px;
+  }
 `;
+
 export const Flex = styled.div`
   display: flex;
 `;
+
 export const StyledTextPet = styled.h3`
   font-family: 'Manrope';
   font-style: normal;
@@ -26,4 +35,20 @@ export const StyledTextPet = styled.h3`
   letter-spacing: 0.04em;
 
   color: #111111;
+
+  @media screen and (min-width: 768px) {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.357;
+  }
+`;
+
+export const FlexBasket = styled.div`
+  position: absolute;
+  top: 272px;
+  right: 20px;
+
+  @media screen and (min-width: 768px) {
+    top: 20px;
+  }
 `;
