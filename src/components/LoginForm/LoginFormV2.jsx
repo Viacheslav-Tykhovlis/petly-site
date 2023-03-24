@@ -58,12 +58,12 @@ const LogInForm = () => {
           <Form>
             <InputWrapper>
               <LogInInput
-                marginbottom={
-                  touched.email && '24' && (errors.email ? '0' : '0')
-                }
                 name="email"
                 type="email"
                 placeholder="Email"
+                marginbottom={
+                  touched.email && '24' && (errors.email ? '0' : '0')
+                }
                 border={
                   touched.email &&
                   'rgba(245, 146, 86, 0.5)' &&
@@ -85,12 +85,12 @@ const LogInForm = () => {
             </InputWrapper>
             <InputWrapper>
               <LogInInput
-                marginbottom={
-                  touched.email && '24' && (errors.email ? '0' : '0')
-                }
                 name="password"
                 type="password"
                 placeholder="Password"
+                marginbottom={
+                  touched.email && '24' && (errors.email ? '0' : '0')
+                }
                 border={
                   touched.email &&
                   'rgba(245, 146, 86, 0.5)' &&
