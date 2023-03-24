@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
+import { useToggleForm } from '../../hooks/useToggleForm';
 import { SectionRegisterPage } from './RegisterPage.styled';
 import {
   RegisterFormFirst,
   RegisterFormSecond,
 } from 'components/RegisterForm/RegisterForm';
-import { useToggleForm } from '../../hooks/useToggleForm';
+
 
 const RegisterPage = () => {
+
+  const { isFormOpen, toggle, setIsFormOpen } = useToggleForm();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -52,13 +56,14 @@ const RegisterPage = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    const user = { email, password, confirmPassword, name, region, tel };
+    console.log(user);
     reset();
+    setIsFormOpen(true);
   }
 
   
-  const { isFormOpen, toggle } = useToggleForm();
-
-  return (
+    return (
     <>
       <SectionRegisterPage>
         {isFormOpen ? (
