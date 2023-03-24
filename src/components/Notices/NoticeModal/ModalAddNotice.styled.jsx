@@ -176,9 +176,10 @@ const BaseButton = styled.button`
   }
 `;
 
-export const ModalBtnNext = ({ onClick, children }) => {
+export const ModalBtnNext = ({ onClick, children, type }) => {
   return (
     <BaseButton
+      type={type}
       textColor="white"
       bgColor={p => p.theme.colors.accent}
       border="none"
@@ -190,9 +191,10 @@ export const ModalBtnNext = ({ onClick, children }) => {
   );
 };
 
-export const ModalBtnBack = ({ onClick, children }) => {
+export const ModalBtnBack = ({ onClick, children, type }) => {
   return (
     <BaseButton
+      type={type}
       textColor="black"
       bgColor={p => p.theme.colors.white}
       border={`2px solid #f59256`}
@@ -314,7 +316,6 @@ export const StyledFileInput = styled.div`
     margin-bottom: 28px;
   }
 `;
-
 export const StyledInput = styled(Field)`
   width: 240px;
   height: 40px;
@@ -322,7 +323,8 @@ export const StyledInput = styled(Field)`
   font-size: 14px;
   padding-left: 14px;
   background-color: #fdf7f2;
-  border: 1px solid #f5925680;
+  border: 1px solid
+    ${({ isvalidfield }) => (isvalidfield ? 'green' : '#f5925680')};
 
   &:focus {
     outline: none;
@@ -345,7 +347,9 @@ export const StyledTextareaAutosize = styled(TextareaAutosize)`
   padding: 12px 14px;
 
   background-color: #fdf7f2;
-  border: 1px solid #f5925680;
+  border: 1px solid
+    ${({ isvalidfield }) => (isvalidfield ? 'green' : '#f5925680')};
+
   resize: none;
   overflow: hidden;
   &:focus {
