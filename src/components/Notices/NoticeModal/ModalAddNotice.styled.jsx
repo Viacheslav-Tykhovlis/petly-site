@@ -176,9 +176,10 @@ const BaseButton = styled.button`
   }
 `;
 
-export const ModalBtnNext = ({ onClick, children }) => {
+export const ModalBtnNext = ({ onClick, children, type }) => {
   return (
     <BaseButton
+      type={type}
       textColor="white"
       bgColor={p => p.theme.colors.accent}
       border="none"
@@ -190,9 +191,10 @@ export const ModalBtnNext = ({ onClick, children }) => {
   );
 };
 
-export const ModalBtnBack = ({ onClick, children }) => {
+export const ModalBtnBack = ({ onClick, children, type }) => {
   return (
     <BaseButton
+      type={type}
       textColor="black"
       bgColor={p => p.theme.colors.white}
       border={`2px solid #f59256`}
@@ -203,6 +205,33 @@ export const ModalBtnBack = ({ onClick, children }) => {
     </BaseButton>
   );
 };
+
+// export const ModalBtnNext = ({ onClick, children }) => {
+//   return (
+//     <BaseButton
+//       textColor="white"
+//       bgColor={p => p.theme.colors.accent}
+//       border="none"
+//       hoverTextColor="black"
+//       onClick={onClick}
+//     >
+//       {children}
+//     </BaseButton>
+//   );
+// };
+// export const ModalBtnBack = ({ onClick, children }) => {
+//   return (
+//     <BaseButton
+//       textColor="black"
+//       bgColor={p => p.theme.colors.white}
+//       border={`2px solid #f59256`}
+//       hoverTextColor="#f59256"
+//       onClick={onClick}
+//     >
+//       {children}
+//     </BaseButton>
+//   );
+// };
 
 export const StyledLabel = styled.label`
   display: inline-block;

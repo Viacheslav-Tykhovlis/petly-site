@@ -1,4 +1,6 @@
-import { Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import femaleIcon from 'img/icons/female.png';
+import maleIcon from 'img/icons/male.png';
 import { useState } from 'react';
 import {
   BtnsModalWrapper,
@@ -27,8 +29,55 @@ import {
   StyledTitle,
   UploadButton,
 } from './ModalAddNotice.styled';
-import femaleIcon from 'img/icons/female.png';
-import maleIcon from 'img/icons/male.png';
+
+import {} from 'formik';
+import * as Yup from 'yup';
+
+const validationSchemaStep1 = Yup.object().shape({
+  title: Yup.string()
+    .min(2, 'Minimum 2 characters')
+    .max(48, 'Maximum 48 characters')
+    .required('Required field'),
+  name: Yup.string()
+    .min(2, 'Minimum 2 characters')
+    .max(16, 'Maximum 16 characters')
+    .required('Required field, enter 2 to 16 characters'),
+  birthdate: Yup.lazy((value, schema) => {
+    const category = schema.parent.category;
+    if (category !== 'lost') {
+      return Yup.string()
+        .matches(
+          /^(0[1-9]|[12][0-9]|3[01])\.([01][0-9]|2[0-4])\.\d{4}$/,
+          'Enter the birthdate in the format DD.MM.YYYY',
+        )
+        .required('Required field');
+    } else {
+      return Yup.string().matches(
+        /^(0[1-9]|[12][0-9]|3[01])\.([01][0-9]|2[0-4])\.\d{4}$/,
+        'Enter the birthdate in the format DD.MM.YYYY',
+      );
+    }
+  }),
+  breed: Yup.string()
+    .min(2, 'Minimum 2 characters')
+    .max(24, 'Maximum 24 characters')
+    .required('Required field'),
+});
+
+const validationSchemaStep2 = Yup.object().shape({
+  location: Yup.string()
+    .matches(
+      /^([a-zA-Zа-яА-ЯёЁ\s]+),\s*([a-zA-Zа-яА-ЯёЁ\s]+)$/,
+      'Enter the city and region in the format "City, Region"',
+    )
+    .required('Required field'),
+  comments: Yup.string()
+    .min(8, 'Minimum 8 characters')
+    .max(120, 'Maximum 120 characters'),
+  price: Yup.number()
+    .positive('Price must be a positive number')
+    .required('Required field'),
+});
 
 const initialValues = {
   category: 'sell',
@@ -43,7 +92,7 @@ const initialValues = {
   price: '',
 };
 
-const FormStep1 = ({ onNext, values, handleChange, onClose }) => {
+const FormStep1 = ({ onNext, values, handleChange, onClose, handleBlur }) => {
   return (
     <Form>
       <StyledModal>
@@ -105,8 +154,13 @@ const FormStep1 = ({ onNext, values, handleChange, onClose }) => {
               placeholder="Type name"
               value={values.title}
               onChange={handleChange}
+              onBlur={handleBlur}
             />
+            <ErrorMessage name="title">
+              {msg => <div style={{ color: 'red' }}>{msg}</div>}
+            </ErrorMessage>
           </InputWrapper>
+
           <InputWrapper>
             <StyledTextInputLabel htmlFor="name">Name pet</StyledTextInputLabel>
             <StyledInput
@@ -115,7 +169,11 @@ const FormStep1 = ({ onNext, values, handleChange, onClose }) => {
               placeholder="Type name pet"
               value={values.name}
               onChange={handleChange}
+              onBlur={handleBlur}
             />
+            <ErrorMessage name="name">
+              {msg => <div style={{ color: 'red' }}>{msg}</div>}
+            </ErrorMessage>
           </InputWrapper>
           {values.category !== 'lost' && (
             <InputWrapper>
@@ -128,7 +186,11 @@ const FormStep1 = ({ onNext, values, handleChange, onClose }) => {
                 placeholder="Type date of birth"
                 value={values.birthdate}
                 onChange={handleChange}
+                onBlur={handleBlur}
               />
+              <ErrorMessage name="birthdate">
+                {msg => <div style={{ color: 'red' }}>{msg}</div>}
+              </ErrorMessage>
             </InputWrapper>
           )}
           <InputWrapper>
@@ -139,7 +201,11 @@ const FormStep1 = ({ onNext, values, handleChange, onClose }) => {
               placeholder="Type breed"
               value={values.breed}
               onChange={handleChange}
+              onBlur={handleBlur}
             />
+            <ErrorMessage name="breed">
+              {msg => <div style={{ color: 'red' }}>{msg}</div>}
+            </ErrorMessage>
           </InputWrapper>
         </InputGroupWrapper>
 
@@ -156,7 +222,14 @@ const FormStep1 = ({ onNext, values, handleChange, onClose }) => {
   );
 };
 
-const FormStep2 = ({ onBack, values, handleChange, onClose }) => {
+const FormStep2 = ({
+  onBack,
+  values,
+  handleChange,
+  onClose,
+  handleBlur,
+  onDone,
+}) => {
   return (
     <Form>
       <StyledModal>
@@ -207,7 +280,11 @@ const FormStep2 = ({ onBack, values, handleChange, onClose }) => {
               placeholder="Type location"
               value={values.location}
               onChange={handleChange}
+              onBlur={handleBlur}
             />
+            <ErrorMessage name="location">
+              {msg => <div style={{ color: 'red' }}>{msg}</div>}
+            </ErrorMessage>
           </InputWrapper>
 
           <InputWrapper>
@@ -218,7 +295,11 @@ const FormStep2 = ({ onBack, values, handleChange, onClose }) => {
               placeholder="Type price"
               value={values.price}
               onChange={handleChange}
+              onBlur={handleBlur}
             />
+            <ErrorMessage name="price">
+              {msg => <div style={{ color: 'red' }}>{msg}</div>}
+            </ErrorMessage>
           </InputWrapper>
         </InputTextGroupWrapper>
 
@@ -248,15 +329,21 @@ const FormStep2 = ({ onBack, values, handleChange, onClose }) => {
           <StyledTextareaAutosize
             name="comments"
             onChange={handleChange}
+            onBlur={handleBlur}
             value={values.comments}
             placeholder="Type comment"
             minRows={1}
             maxRows={6}
           />
+          <ErrorMessage name="comments">
+            {msg => <div style={{ color: 'red' }}>{msg}</div>}
+          </ErrorMessage>
         </InputWrapper>
 
         <BtnsModalWrapper>
-          <ModalBtnNext type="submit">Done</ModalBtnNext>
+          <ModalBtnNext type="submit" onClick={onDone}>
+            Done
+          </ModalBtnNext>
           <ModalBtnBack type="button" onClick={onBack}>
             Back
           </ModalBtnBack>
@@ -270,20 +357,28 @@ const ModalAddNotice = ({ onClose }) => {
   const [step, setStep] = useState(1);
   const [formValues, setFormValues] = useState(initialValues);
 
-  const handleSubmitStep1 = values => {
-    console.log('step one:\n ', values);
-    setFormValues(values);
-    setStep(2);
+  const handleNext = async (values, validateForm) => {
+    const errors = await validateForm(values);
+
+    if (Object.keys(errors).length === 0) {
+      console.log('step one:\n ', values);
+      setFormValues(values);
+      setStep(2);
+    }
   };
 
-  const handleSubmitStep2 = values => {
-    setFormValues({
-      ...formValues,
-      sex: values.sex,
-      location: values.location,
-      comments: values.comments,
-    });
-    console.log('handleSubmitStep2:\n', { ...formValues, ...values });
+  const handleSubmit = async (values, validateForm) => {
+    const errors = await validateForm(values);
+
+    if (Object.keys(errors).length === 0) {
+      setFormValues({
+        ...formValues,
+        sex: values.sex,
+        location: values.location,
+        comments: values.comments,
+      });
+      console.log('handleSubmit:\n', { ...formValues, ...values });
+    }
   };
 
   const handleBack = () => {
@@ -291,14 +386,21 @@ const ModalAddNotice = ({ onClose }) => {
   };
 
   return (
-    <Formik initialValues={formValues} onSubmit={handleSubmitStep2}>
-      {({ values, handleChange }) => (
+    <Formik
+      initialValues={formValues}
+      onSubmit={handleSubmit}
+      validationSchema={
+        step === 1 ? validationSchemaStep1 : validationSchemaStep2
+      }
+    >
+      {({ values, handleChange, handleBlur, validateForm }) => (
         <>
           {step === 1 ? (
             <FormStep1
-              onNext={() => handleSubmitStep1(values)}
+              onNext={() => handleNext(values, validateForm)}
               values={values}
               handleChange={handleChange}
+              handleBlur={handleBlur}
               onClose={onClose}
             />
           ) : (
@@ -306,7 +408,9 @@ const ModalAddNotice = ({ onClose }) => {
               onBack={handleBack}
               values={values}
               handleChange={handleChange}
+              handleBlur={handleBlur}
               onClose={onClose}
+              onDone={() => handleSubmit(values, validateForm)}
             />
           )}
         </>
