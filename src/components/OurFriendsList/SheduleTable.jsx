@@ -14,8 +14,8 @@ import {
 const SheduleTable = ({ shedule }) => {
   return (
     <WorkDaysList>
-      {shedule.map(({ isOpen, id, day, from, to }) => (
-        <WorkDaysItem key={id}>
+      {shedule.map(({ isOpen, _id, day, from, to }) => (
+        <WorkDaysItem key={_id}>
           {isOpen ? (
             <WorkDaysText>
               {day} {from}-{to}
@@ -35,7 +35,7 @@ SheduleTable.propTypes = {
       isOpen: PropTypes.bool,
       from: PropTypes.string,
       to: PropTypes.string,
-      id: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
       day: PropTypes.string.isRequired,
     }),
   ),
