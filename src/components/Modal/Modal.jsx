@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Overlay, DivModal } from './Modal.styled';
+import { Overlay } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -25,13 +25,12 @@ export const Modal = ({ onClose, children }) => {
   };
 
   return createPortal(
-    <Overlay onClick={onBackdropClick}>
-      <DivModal>{children}</DivModal>
-    </Overlay>,
+    <Overlay onClick={onBackdropClick}>{children}</Overlay>,
     modalRoot,
   );
 };
 
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
+  children: PropTypes.node,
 };

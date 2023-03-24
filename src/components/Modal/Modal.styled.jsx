@@ -9,12 +9,8 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: scroll;
   background-color: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
   z-index: 1200;
-`;
-
-export const DivModal = styled.div`
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
 `;
