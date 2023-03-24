@@ -20,12 +20,15 @@ import {
   ButtonBox,
 } from './NoticeCategoryItem.styled';
 
-import defaultImg from '../../../images/defaultImg.jpg';
+import { StyledDeleteButton } from 'components/ReusableComponents/Buttons/StyledDeleteButton';
+
+import defaultImg from '../../../img/defaultImg.jpg';
 
 const NoticeCategoryItem = ({ notice, onClose }) => {
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [noticeDetails, setNoticeDetails] = useState(null);
   const [loading, setLoading] = useState(false);
+
   const {
     _id,
     category,
@@ -80,10 +83,10 @@ const NoticeCategoryItem = ({ notice, onClose }) => {
               {category === 'sell' && <Text>Price:</Text>}
             </Features>
             <Features>
-              <Text>{breed}</Text>
-              <Text>{location}</Text>
-              <Text>{birthdate}</Text>
-              {category === 'sell' && <Text>{`${price}$`}</Text>}
+              <Text>{breed || '-'}</Text>
+              <Text>{location || '-'}</Text>
+              <Text>{birthdate || '-'}</Text>
+              {category === 'sell' && <Text>{`${price || '-'}$`}</Text>}
             </Features>
           </FeaturesBox>
         </StyledList>
@@ -94,7 +97,7 @@ const NoticeCategoryItem = ({ notice, onClose }) => {
             buttonName="Learn more"
           />
           {true && (
-            <StyledLearnMoreButton
+            <StyledDeleteButton
               onButtonClick={onDeleteFromFavorite}
               buttonName="Delete"
             />
@@ -102,13 +105,13 @@ const NoticeCategoryItem = ({ notice, onClose }) => {
         </ButtonBox>
       </StyledItem>
 
-      {/* {loading && <Loader />} */}
-
       {!loading && noticeDetails && showDetailsModal && (
         <Modal onClose={onLearMoreButtonClick}>
           <ModalNotice
             noticeDetails={noticeDetails}
             onClose={onLearMoreButtonClick}
+            onAddToFavorite={onAddToFavorite}
+            loading={loading}
           />
         </Modal>
       )}
