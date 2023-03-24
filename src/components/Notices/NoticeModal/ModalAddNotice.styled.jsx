@@ -43,7 +43,7 @@ const CloseButton = styled.button`
 
 export const CloseModalButton = ({ onClick, step }) => {
   return (
-    <CloseButton onClick={onClick} step={step}>
+    <CloseButton type="button" onClick={onClick} step={step}>
       <RxCross1 />
     </CloseButton>
   );
