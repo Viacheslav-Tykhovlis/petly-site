@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledNavModalLink = styled.button`
+export const LearnMore = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -38,10 +38,6 @@ const StyledNavModalLink = styled.button`
   }
 `;
 
-export const StyledLearnMoreButton = ({ route, buttonName, onButtonClick }) => {
-  return (
-    <StyledNavModalLink onClick={onButtonClick} to={route}>
-      {buttonName}
-    </StyledNavModalLink>
-  );
+export const StyledLearnMoreButton = ({ buttonName, onButtonClick }) => {
+  return <LearnMore onClick={onButtonClick}>{buttonName}</LearnMore>;
 };

@@ -15,7 +15,13 @@ import { fetchNoticesByCategory } from 'services/getNoticeByCategory';
 import Loader from 'components/Loader/Loader';
 import { fetchNoticeByTitle } from 'services/getNoticeByTitle';
 
+// import { selectIsLoggedIn } from 'redux/login/logIn-selectors';
+// import { useSelector } from 'react-redux';
+
 const NoticesPage = () => {
+  // const isLoggedIn = useSelector(selectIsLoggedIn);
+  // console.log(isLoggedIn);
+
   const { category } = useParams();
   const [showAddModal, setShowAddModal] = useState(false);
   const [notices, setNotices] = useState([]);
