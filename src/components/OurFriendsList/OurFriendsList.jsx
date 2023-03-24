@@ -15,10 +15,10 @@ const OurFriendsList = ({ friends }) => {
           workDays,
           phone,
           email,
-          id,
+          _id,
         }) => (
           <OurFriendsItem
-            key={id}
+            key={_id}
             title={title}
             url={url}
             addressUrl={addressUrl}
@@ -37,8 +37,8 @@ const OurFriendsList = ({ friends }) => {
 OurFriendsList.propTypes = {
   friends: PropTypes.arrayOf(
     PropTypes.exact({
-      id: PropTypes.string,
-      title: PropTypes.string.isRequired,
+      _id: PropTypes.string,
+      title: PropTypes.string,
       url: PropTypes.string.isRequired,
       addressUrl: PropTypes.string,
       imageUrl: PropTypes.string,

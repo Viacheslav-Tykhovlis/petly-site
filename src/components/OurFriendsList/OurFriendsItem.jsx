@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import defaultImage from 'img/no-image.JPG';
 import {
   Friend,
   Name,
@@ -23,7 +24,7 @@ export const OurFriendsItem = ({
   workDays,
   phone,
   email,
-  id,
+  _id,
 }) => {
   const [isVisibleWorkDays, setisVisibleWorkDays] = useState(false);
   const weekDays = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
@@ -35,13 +36,13 @@ export const OurFriendsItem = ({
     });
 
   return (
-    <Friend key={id}>
+    <Friend key={_id}>
       <NameLink href={url} target="_blank" rel="noopener noreferrer">
         <Name> {title}</Name>
       </NameLink>
 
       <Box>
-        <ImgFriend src={imageUrl} alt="logo friends" />
+        <ImgFriend src={imageUrl ?? defaultImage} alt="logo friends" />
 
         <DataList>
           <DataItem>
@@ -56,7 +57,7 @@ export const OurFriendsItem = ({
               >
                 <Subtitle>Time:</Subtitle>
                 <Subtitle>
-                  {openDay.from} - {openDay.to}
+                  {openDay?.from} - {openDay?.to}
                 </Subtitle>
               </TextBox>
             ) : (
@@ -118,7 +119,7 @@ export const OurFriendsItem = ({
 };
 
 OurFriendsItem.propTypes = {
-  id: PropTypes.string,
+  _id: PropTypes.string,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   addressUrl: PropTypes.string,
@@ -131,7 +132,7 @@ OurFriendsItem.propTypes = {
       isOpen: PropTypes.bool,
       from: PropTypes.string,
       to: PropTypes.string,
-      id: PropTypes.string,
+      _id: PropTypes.string,
     }),
   ),
 };
