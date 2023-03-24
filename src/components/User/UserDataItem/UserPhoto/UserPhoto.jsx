@@ -1,26 +1,35 @@
 import {
   inputfile,
-  EditPhotoBtnText,
-  CameraStyle,
   PlusStyle,
   ImageStyled,
   Flex,
   FlexSvg,
   Span,
 } from './UserPhoto.styled.jsx';
-import { HiCamera } from 'react-icons/hi';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { ButtonEditPhoto } from '../../ButtonUser/ButtonUser.jsx';
 
 const UserPhoto = () => {
   return (
     <Flex>
       <input type="file" name="file" id="file" style={inputfile}></input>
-      <label for="file" style={EditPhotoBtnText}>
+      <label for="file">
         <ImageStyled>
           <AiOutlinePlus style={PlusStyle} />
         </ImageStyled>
+      </label>
+
+      <input type="file" name="file" id="foto" style={inputfile}></input>
+      <label for="file">
         <FlexSvg>
-          <HiCamera style={CameraStyle} />
+          <ButtonEditPhoto
+            type="button"
+            ariaLabel="edit photo button"
+            widthMsvg={'20px'}
+            heighthMsvg={'20px'}
+            widthTsvg={'20px'}
+            heighthTsvg={'20px'}
+          />
           <Span>Edit photo</Span>
         </FlexSvg>
       </label>
