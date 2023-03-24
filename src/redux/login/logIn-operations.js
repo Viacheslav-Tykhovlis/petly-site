@@ -12,10 +12,12 @@ const setAuthHeader = token => {
 // };
 
 export const logIn = createAsyncThunk(
-  '/logIn',
+  '/login',
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post('/logIn', credentials);
+      const response = await axios.post('/auth/login', credentials);
+      console.log(response.data);
+
       setAuthHeader(response.data.token);
       return response.data;
     } catch (e) {

@@ -27,8 +27,8 @@ const validateSchema = () =>
     password: yup
       .string()
       .required(`Required`)
-      .min(7, `Enter a valid Password`)
-      .max(32, `Enter a valid Password`)
+      .min(7, `Password should be from 7 to 32 characters`)
+      .max(32, `Password should be from 7 to 32 characters`)
       .trim(),
   });
 
@@ -45,9 +45,11 @@ const LogInForm = () => {
         password: '',
       }}
       onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
         formSubmit(values);
         setSubmitting(false);
+      }}
+      onChange={(values, { setSubmitting }) => {
+        console.log(values);
       }}
     >
       {({ errors, touched }) => (
@@ -59,35 +61,54 @@ const LogInForm = () => {
                 name="email"
                 type="email"
                 placeholder="Email"
+                marginbottom={
+                  touched.email && '24' && (errors.email ? '0' : '0')
+                }
                 border={
-                  errors.email
+                  touched.email &&
+                  'rgba(245, 146, 86, 0.5)' &&
+                  (errors.email
                     ? '1px solid rgba(226, 0, 26, 1)'
-                    : `1px solid rgba(60, 188, 129, 1)`
+                    : `1px solid rgba(60, 188, 129, 1)`)
                 }
               />
-              {errors.email ? (
-                <ErrorMessage>{errors.email}</ErrorMessage>
-              ) : (
-                <ApproveMessage>Email is correct</ApproveMessage>
-              )}
-              {!errors.email ? <GreenIcon /> : <RedIcon />}
+              {touched.email &&
+                'rgba(245, 146, 86, 0.5)' &&
+                (errors.email ? (
+                  <ErrorMessage>{errors.email}</ErrorMessage>
+                ) : (
+                  <ApproveMessage>Email is correct</ApproveMessage>
+                ))}
+              {touched.email &&
+                'rgba(245, 146, 86, 0.5)' &&
+                (!errors.email ? <GreenIcon /> : <RedIcon />)}
             </InputWrapper>
             <InputWrapper>
               <LogInInput
                 name="password"
                 type="password"
                 placeholder="Password"
+                marginbottom={
+                  touched.email && '24' && (errors.email ? '0' : '0')
+                }
                 border={
-                  (errors.password && '1px solid rgba(226, 0, 26, 1)') ||
-                  (!errors.password && `1px solid rgba(60, 188, 129, 1)`)
+                  touched.email &&
+                  'rgba(245, 146, 86, 0.5)' &&
+                  (errors.password
+                    ? '1px solid rgba(226, 0, 26, 1)'
+                    : `1px solid rgba(60, 188, 129, 1)`)
                 }
               />
-              {errors.password ? (
-                <ErrorMessage>{errors.password}</ErrorMessage>
-              ) : (
-                <ApproveMessage>Password is correct</ApproveMessage>
-              )}
-              {!errors.password ? <GreenIcon /> : <RedIcon />}
+              {touched.email &&
+                'rgba(245, 146, 86, 0.5)' &&
+                (errors.password ? (
+                  <ErrorMessage>{errors.password}</ErrorMessage>
+                ) : (
+                  <ApproveMessage>Password is secure</ApproveMessage>
+                ))}
+              {touched.email &&
+                'rgba(245, 146, 86, 0.5)' &&
+                (!errors.password ? <GreenIcon /> : <RedIcon />)}
             </InputWrapper>
             <LogInButton type="submit">Login</LogInButton>
             <LogInText>
