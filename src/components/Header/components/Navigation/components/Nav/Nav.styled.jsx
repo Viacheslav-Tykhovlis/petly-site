@@ -8,7 +8,7 @@ export const NavList = styled('ul')`
   line-height: 1.38;
   gap: 80px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1279px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,7 +32,6 @@ export const NavList = styled('ul')`
 
 export const NavGeneralLink = styled(NavLink)`
   line-height: 1.38;
-
   letter-spacing: 0.04em;
 
   color: #111111;
@@ -41,5 +40,19 @@ export const NavGeneralLink = styled(NavLink)`
   &:focus,
   &.active {
     color: #f59256;
+    &::after {
+      position: absolute;
+      bottom: 4px;
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: #f59256;
+    }
   }
+`;
+
+export const NavItem = styled.li`
+  position: relative;
+  display: block;
 `;

@@ -7,7 +7,7 @@ export const StyledAccountButton = styled(NavLink)`
   justify-content: center;
   gap: 15px;
 
-  height: 31px;
+  height: 47px;
   padding: 0 28px;
 
   text-decoration: none;
@@ -15,9 +15,7 @@ export const StyledAccountButton = styled(NavLink)`
   border-radius: 40px;
 
   color: #fff;
-  font-family: 'Manrope';
-  font-weight: 500;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 1.35;
   letter-spacing: 0.04em;
   outline: transparent;
@@ -36,8 +34,18 @@ export const StyledAccountButton = styled(NavLink)`
     background-color: #ff6200;
   }
 
+  @media screen and (min-width: 1280px) {
+    height: 47px;
+    font-size: 20px;
+  }
+
   @media screen and (max-width: 767px) {
     display: none;
+  }
+
+  @media screen and (max-width: 1279px) {
+    height: 38px;
+    font-size: 20px;
   }
 `;
 

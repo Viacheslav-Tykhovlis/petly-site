@@ -1,18 +1,22 @@
-import { useState } from 'react';
+import { MenuButtonOpen } from '../MenuButton/MenuButtonOpen.styled';
 import { Nav, AuthNav, UserNav } from './components';
-import { MenuButtonOpen } from '../MenuButton/MenuButtonOpen';
-import { MenuButtonClose } from '../MenuButton/MenuButtonClose';
+import { useState } from 'react';
+import { NavMobile } from '../MobileMenu/MobileMenu';
 
 export const Navigation = () => {
-  const [nav, setNav] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
+
+  const onAddButtonClick = () => {
+    setShowAddModal(!showAddModal);
+  };
+
   return (
     <>
       <Nav />
       <AuthNav />
       <UserNav />
-      <div onClick={() => setNav(!nav)}>
-        {nav ? <MenuButtonClose /> : <MenuButtonOpen />}
-      </div>
+      <MenuButtonOpen onAddButtonClick={onAddButtonClick} />
+      {showAddModal && <NavMobile onClose={onAddButtonClick} />}
     </>
   );
 };
