@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import NewsList from 'components/NewsList/NewsList';
 
 import { fetchNews } from 'redux/news/newsOperations';
+import LoaderNews from 'components/NewsList/LoaderNews';
 
 import {
   NewsSection,
@@ -90,7 +91,11 @@ const NewsPage = () => {
         </FilterLabel>
       </StyledForm>
 
-      {visibleNews && !isLoading && <NewsList news={visibleNews} />}
+      {visibleNews && !isLoading ? (
+        <NewsList news={visibleNews} />
+      ) : (
+        <LoaderNews />
+      )}
 
       {visibleNews.length === 0 && !isLoading && (
         <ErrorText>
