@@ -16,7 +16,6 @@ const OurFriendsList = ({ friends }) => {
           phone,
           email,
           _id,
-          __v,
         }) => (
           <OurFriendsItem
             key={_id}
@@ -47,7 +46,6 @@ OurFriendsList.propTypes = {
       phone: PropTypes.string,
       email: PropTypes.string,
       workDays: PropTypes.array,
-      __v: PropTypes.number,
     }),
   ),
 };

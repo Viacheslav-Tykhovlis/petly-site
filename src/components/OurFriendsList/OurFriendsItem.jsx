@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import defaultImage from 'img/no-image.JPG';
 import {
   Friend,
   Name,
@@ -41,7 +42,7 @@ export const OurFriendsItem = ({
       </NameLink>
 
       <Box>
-        <ImgFriend src={imageUrl} alt="logo friends" />
+        <ImgFriend src={imageUrl ?? defaultImage} alt="logo friends" />
 
         <DataList>
           <DataItem>
