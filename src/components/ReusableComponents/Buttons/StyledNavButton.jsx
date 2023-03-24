@@ -43,6 +43,10 @@ export const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export const StyledNavButton = ({ route, buttonName }) => {
-  return <StyledNavLink to={route}>{buttonName}</StyledNavLink>;
+export const StyledNavButton = ({ route, buttonName, onClick }) => {
+  return (
+    <StyledNavLink to={route} onClick={onClick}>
+      {buttonName}
+    </StyledNavLink>
+  );
 };

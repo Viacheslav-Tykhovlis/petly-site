@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { RxHamburgerMenu } from 'react-icons/rx';
+import { RxCross1 } from 'react-icons/rx';
 
 export const StyledMenuButton = styled.button`
   display: none;
@@ -21,10 +21,10 @@ export const StyledMenuButton = styled.button`
   }
 `;
 
-export const MenuButtonOpen = ({ onAddButtonClick }) => {
+export const CloseModalButton = ({ onClick }) => {
   return (
-    <StyledMenuButton onClick={onAddButtonClick} type="button">
-      <RxHamburgerMenu size={30} />
+    <StyledMenuButton onClick={onClick} type="button">
+      <RxCross1 size={30} />
     </StyledMenuButton>
   );
 };
