@@ -7,17 +7,19 @@ import {
   Link,
 } from './RegisterForm.styled';
 
-const RegisterFormFirst = ({toggleForm}) => {
+const RegisterFormFirst = ({toggleForm, email, password, confirmPassword, onChange}) => {
   return (
     <>
       <Form action="">
         <TitleForm>Registration</TitleForm>
-        <InputForm name="email" type="email" placeholder="Email" />
-        <InputForm name="password" type="password" placeholder="Password" />
+        <InputForm name="email" type="email" placeholder="Email" value={ email} onChange={onChange} />
+        <InputForm name="password" type="password" placeholder="Password" value={password} onChange={onChange} />
         <InputForm
-          name="comfirmPassword"
+          name="confirmPassword"
           type="password"
           placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={onChange}
           className="lastinput"
         />
         <Button type="button" onClick={toggleForm}>Next</Button>
@@ -29,17 +31,19 @@ const RegisterFormFirst = ({toggleForm}) => {
   );
 };
 
-const RegisterFormSecond = ({toggleForm}) => {
+const RegisterFormSecond = ({toggleForm, name, region, tel, onChange, onSubmit}) => {
   return (
     <>
-      <Form className="formsecond" action="">
+      <Form className="formsecond" action="" onSubmit={onSubmit} >
         <TitleForm>Registration</TitleForm>
-        <InputForm name="name" type="text" placeholder="Name" />
-        <InputForm name="region" type="text" placeholder="City, region" />
+        <InputForm name="name" type="text" placeholder="Name" value={name } onChange={onChange} />
+        <InputForm name="region" type="text" placeholder="City, region" value={region} onChange={onChange} />
         <InputForm
           name="tel"
           type="tel"
           placeholder="Mobile phone"
+          value={tel}
+          onChange={onChange}
           className="lastinput"
         />
         <Button type="submit">Register</Button>
