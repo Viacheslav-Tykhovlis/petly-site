@@ -52,11 +52,11 @@ export const OurFriendsItem = ({
             {workDays ? (
               <WorkDaysBtn
                 onClick={() => setisVisibleWorkDays(!isVisibleWorkDays)}
-                // onMouseLeave={() => {
-                //   setTimeout(() => {
-                //     setisVisibleWorkDays(false);
-                //   }, 2500);
-                // }}
+                onMouseLeave={() => {
+                  setTimeout(() => {
+                    setisVisibleWorkDays(false);
+                  }, 2500);
+                }}
               >
                 {openDay?.from} - {openDay?.to}
               </WorkDaysBtn>
