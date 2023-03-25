@@ -5,17 +5,13 @@ import {
   WorkDaysItem,
   WorkDaysText,
   WorkDaysClosed,
-  // DayList,
-  // DayItem,
-  // TimeList,
-  // TimeItem,
 } from './SheduleTable.styled';
 
 const SheduleTable = ({ shedule }) => {
   return (
     <WorkDaysList>
-      {shedule.map(({ isOpen, _id, day, from, to, index }) => (
-        <WorkDaysItem key={index}>
+      {shedule.map(({ isOpen, day, from, to, _id }) => (
+        <WorkDaysItem key={_id}>
           {isOpen ? (
             <WorkDaysText>
               {day} {from}-{to}
@@ -36,6 +32,7 @@ SheduleTable.propTypes = {
       from: PropTypes.string,
       to: PropTypes.string,
       day: PropTypes.string.isRequired,
+      _id: PropTypes.string,
     }),
   ),
 };
@@ -44,7 +41,7 @@ export default SheduleTable;
 
 /* <table>
   <tr>
-    <td>Ячейка 1-1</td>
-    <td>Ячейка 1-2</td>
+    <td></td>
+    <td></td>
   </tr>
 </table>; */
