@@ -1,103 +1,57 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Title from 'components/Title/Title';
 import NoticesSearch from 'components/Notices/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'components/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
+import Loader from 'components/Loader/Loader';
+import ModalAddNotice from 'components/Notices/NoticeModal/ModalAddNotice';
+import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
 
 import { StyledSection, ButtonBox } from './NoticesPage.styled';
 import { StyledAddPetMobileButton } from 'components/ReusableComponents/Buttons/StyledAddPetMobileButton';
 import { StyledAddPetDesktopButton } from 'components/ReusableComponents/Buttons/StyledAddPetDesktopButton';
 import { Modal } from 'components/Modal/Modal';
-import ModalAddNotice from 'components/Notices/NoticeModal/ModalAddNotice';
-import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
-import { fetchNoticesByCategory } from 'services/getNoticeByCategory';
-import Loader from 'components/Loader/Loader';
-import { fetchNoticeByTitle } from 'services/getNoticeByTitle';
 
-// import { selectIsLoggedIn } from 'redux/login/logIn-selectors';
-// import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/login/logIn-selectors';
+import { getIsLoading } from 'redux/notices/noticesSelectors';
+import { fetchNoticesByCategory } from 'redux/notices/noticesOperations';
 
 const NoticesPage = () => {
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
-  // console.log(isLoggedIn);
-
   const { category } = useParams();
+  const dispatch = useDispatch();
+  const isLoading = useSelector(getIsLoading);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const [showAddModal, setShowAddModal] = useState(false);
-  const [notices, setNotices] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [isButtonClicked, setIsButtonClicked] = useState(true);
 
   useEffect(() => {
     if (category === 'favorite' || category === 'own') {
       return;
     }
-    const searchNoticeByCategory = async () => {
+    const searchNoticeByCategory = () => {
       try {
-        setLoading(true);
-        const { data } = await fetchNoticesByCategory(category);
-        setNotices(data);
-        setIsButtonClicked(true);
+        dispatch(fetchNoticesByCategory(category));
       } catch (error) {
         console.log(error);
       }
-      setLoading(false);
     };
 
     searchNoticeByCategory();
-  }, [category]);
-
-  const searchNoticeByTitle = async title => {
-    setLoading(true);
-    if (!isButtonClicked) {
-      try {
-        const { data } = await fetchNoticesByCategory(category);
-        setIsButtonClicked(true);
-        setNotices(data);
-      } catch (error) {
-        console.log(error);
-      }
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const { data } = await fetchNoticeByTitle(title);
-      setNotices(data);
-      setIsButtonClicked(false);
-    } catch (error) {
-      console.log(error);
-      alert('Sorry, no pets by this title');
-    }
-    setLoading(false);
-  };
-
-  const onFormSubmit = event => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const normilizedValue = form.elements.search.value;
-
-    if (normilizedValue.trim() === '') {
-      return alert('Please, enter title name.');
-    }
-
-    searchNoticeByTitle(normilizedValue);
-    if (!isButtonClicked) {
-      form.reset();
-    }
-  };
+  }, [category, dispatch]);
 
   const onAddButtonClick = () => {
+    if (!isLoggedIn) {
+      return alert('Please, signup or login to add notice about your pet.');
+    }
     setShowAddModal(!showAddModal);
   };
 
   return (
     <StyledSection>
       <Title>Find your favorite pet</Title>
-      <NoticesSearch
-        onFormSubmit={onFormSubmit}
-        isButtonClicked={isButtonClicked}
-      />
+      <NoticesSearch category={category} />
 
       <ButtonBox>
         <NoticesCategoriesNav category={category} />
@@ -113,10 +67,10 @@ const NoticesPage = () => {
       )}
 
       <div style={{ position: 'relative' }}>
-        {loading ? (
+        {isLoading ? (
           <Loader />
         ) : (
-          <NoticesCategoriesList notices={notices} onClose={onAddButtonClick} />
+          <NoticesCategoriesList onClose={onAddButtonClick} />
         )}
       </div>
     </StyledSection>
