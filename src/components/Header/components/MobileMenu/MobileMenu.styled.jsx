@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const NavContainer = styled.div`
+export const NavMobileContainer = styled.div`
   display: flex;
   position: fixed;
   flex-direction: column;
@@ -20,7 +20,11 @@ export const NavHeader = styled.div`
   justify-content: space-between;
   margin-bottom: 46px;
   padding-top: 16px;
-  padding-bottom: 16px;
+
+  @media screen and (min-width: 767px) {
+    margin-bottom: 88px;
+    padding-top: 24px;
+  }
 `;
 
 export const NavList = styled.ul`
@@ -30,15 +34,20 @@ export const NavList = styled.ul`
 
   top: 0;
   left: 0;
-  gap: 60px;
+  gap: 40px;
 
-  font-size: 48px;
+  font-size: 32px;
+
+  @media screen and (min-width: 767px) {
+    font-size: 48px;
+    gap: 60px;
+  }
 `;
 
 export const AuthButton = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 68px;
+  margin-bottom: 60px;
   gap: 12px;
 
   @media screen and (min-width: 767px) {
@@ -58,12 +67,23 @@ export const NavGeneralLink = styled(NavLink)`
     color: #f59256;
     &::after {
       position: absolute;
-      bottom: 11px;
+      bottom: 7px;
       content: '';
       display: block;
       width: 100%;
       height: 1px;
       background-color: #f59256;
+    }
+  }
+
+  @media screen and (min-width: 767px) {
+    &:hover,
+    &:focus,
+    &.active {
+      color: #f59256;
+      &::after {
+        bottom: 11px;
+      }
     }
   }
 `;

@@ -2,22 +2,18 @@ import styled from 'styled-components';
 import { RxCross1 } from 'react-icons/rx';
 
 export const StyledMenuButton = styled.button`
-  display: none;
+  display: block;
+  background-color: transparent;
+  border: none;
+  top: 4px;
+  right: 37px;
+  cursor: pointer;
+  z-index: 100;
 
-  @media screen and (max-width: 1279px) {
-    display: block;
-    background-color: transparent;
-    border: none;
-    top: 4px;
-    right: 37px;
-    cursor: pointer;
-    z-index: 100;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: orange;
-    }
+  &:hover,
+  &:focus,
+  &:active {
+    color: orange;
   }
 `;
 
