@@ -58,11 +58,11 @@ const RegisterPage = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const user = { email, password, name, city, phone };
-    console.log(user);
     postRegisterUser(user);
     reset();
     setIsFormOpen(true);
-  }
+  };
+
 
   
     return (

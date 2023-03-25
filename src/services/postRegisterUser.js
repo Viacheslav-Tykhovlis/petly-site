@@ -1,21 +1,21 @@
 import axios from 'axios';
+import { postLoginUser } from './postLoginUser';
 
 const BASE_URL = `https://petly-site-back.up.railway.app`;
 
 export async function postRegisterUser(user) {
   const url = `${BASE_URL}/auth/signup`;
-  console.log(user);
-  // need authoraized user
 
-  const { email, password } = user;
-  const response = await axios
-    .post(url, { email, password })
+  const { data } = await axios
+    .post(url, user)
     .then(function (response) {
       console.log(response);
+      const { email, password } = response.data.user;
+      postLoginUser({ email, password });
     })
     .catch(function (error) {
-      console.log('Сработал cath');
       console.log(error);
     });
-  return response.data;
+  console.log(data);
+  return data;
 }
