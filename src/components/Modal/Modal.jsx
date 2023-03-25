@@ -5,6 +5,14 @@ import { Overlay } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
+function updateScrollLock() {
+  if (modalRoot.childElementCount > 0) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+}
+
 export const Modal = ({ onClose, children }) => {
   useEffect(() => {
     const handleKeyDown = e => {
@@ -13,8 +21,13 @@ export const Modal = ({ onClose, children }) => {
       }
     };
     window.addEventListener('keydown', handleKeyDown);
+
+    updateScrollLock();
+
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
+
+      updateScrollLock();
     };
   }, [onClose]);
 
