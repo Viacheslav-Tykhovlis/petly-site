@@ -438,6 +438,7 @@ const ModalAddNotice = ({ onClose }) => {
             <FormStep2
               onBack={handleBack}
               values={formik.values}
+              a
               handleChange={formik.handleChange}
               handleBlur={formik.handleBlur}
               onClose={onClose}
