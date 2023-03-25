@@ -74,9 +74,16 @@ const validationSchemaStep2 = Yup.object().shape({
     .min(8, 'Minimum 8 characters')
     .max(120, 'Maximum 120 characters')
     .required('Required field'),
-  price: Yup.number()
-    .positive('Price must be a positive number')
-    .required('Required field'),
+  price: Yup.lazy((value, schema) => {
+    const category = schema.parent.category;
+    if (category === 'sell') {
+      return Yup.number()
+        .positive('Price must be a positive number')
+        .required('Required field');
+    } else {
+      return Yup.number().positive('Price must be a positive number');
+    }
+  }),
 });
 
 const initialValues = {
@@ -302,21 +309,25 @@ const FormStep2 = ({
             </ErrorMessage>
           </InputWrapper>
 
-          <InputWrapper>
-            <StyledTextInputLabel htmlFor="Price">Price:</StyledTextInputLabel>
-            <StyledInput
-              type="text"
-              name="price"
-              placeholder="Type price"
-              value={values.price}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              isvalidfield={touched.price && !errors.price}
-            />
-            <ErrorMessage name="price">
-              {msg => <div style={{ color: 'red' }}>{msg}</div>}
-            </ErrorMessage>
-          </InputWrapper>
+          {values.category === 'sell' && (
+            <InputWrapper>
+              <StyledTextInputLabel htmlFor="Price">
+                Price:
+              </StyledTextInputLabel>
+              <StyledInput
+                type="text"
+                name="price"
+                placeholder="Type price"
+                value={values.price}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isvalidfield={touched.price && !errors.price}
+              />
+              <ErrorMessage name="price">
+                {msg => <div style={{ color: 'red' }}>{msg}</div>}
+              </ErrorMessage>
+            </InputWrapper>
+          )}
         </InputTextGroupWrapper>
 
         <StyledTextInputLabel htmlFor="file">
@@ -438,7 +449,6 @@ const ModalAddNotice = ({ onClose }) => {
             <FormStep2
               onBack={handleBack}
               values={formik.values}
-              a
               handleChange={formik.handleChange}
               handleBlur={formik.handleBlur}
               onClose={onClose}
