@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import defaultImage from 'img/no-image.JPG';
+import { NO_DATA } from 'utils/constans';
 import {
   Friend,
   Name,
@@ -10,12 +11,13 @@ import {
   DataList,
   DataItem,
   Subtitle,
-  TextBox,
+  WorkDaysBtn,
   DataLink,
 } from './OurFriendsItem.styled';
 import SheduleTable from './SheduleTable';
 
 export const OurFriendsItem = ({
+  _id,
   title,
   url,
   addressUrl,
@@ -24,9 +26,9 @@ export const OurFriendsItem = ({
   workDays,
   phone,
   email,
-  _id,
 }) => {
   const [isVisibleWorkDays, setisVisibleWorkDays] = useState(false);
+
   const weekDays = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
   const openDay = workDays?.find(day => day.isOpen);
   const newWorkDays =
@@ -46,22 +48,20 @@ export const OurFriendsItem = ({
 
         <DataList>
           <DataItem>
+            <Subtitle>Time:</Subtitle>
             {workDays ? (
-              <TextBox
+              <WorkDaysBtn
                 onClick={() => setisVisibleWorkDays(!isVisibleWorkDays)}
-                onMouseLeave={() => {
-                  setTimeout(() => {
-                    setisVisibleWorkDays(false);
-                  }, 2500);
-                }}
+                // onMouseLeave={() => {
+                //   setTimeout(() => {
+                //     setisVisibleWorkDays(false);
+                //   }, 2500);
+                // }}
               >
-                <Subtitle>Time:</Subtitle>
-                <Subtitle>
-                  {openDay?.from} - {openDay?.to}
-                </Subtitle>
-              </TextBox>
+                {openDay?.from} - {openDay?.to}
+              </WorkDaysBtn>
             ) : (
-              <Subtitle>-----------------------------------</Subtitle>
+              <Subtitle>{NO_DATA}</Subtitle>
             )}
           </DataItem>
 
@@ -79,7 +79,7 @@ export const OurFriendsItem = ({
                 {address}
               </DataLink>
             ) : (
-              <p>----------------------------------</p>
+              <p>{NO_DATA}</p>
             )}
           </DataItem>
 
@@ -94,7 +94,7 @@ export const OurFriendsItem = ({
                 {email}
               </DataLink>
             ) : (
-              <p>----------------------------------</p>
+              <p>{NO_DATA}</p>
             )}
           </DataItem>
 
@@ -109,7 +109,7 @@ export const OurFriendsItem = ({
                 {phone}
               </DataLink>
             ) : (
-              <p>----------------------------------</p>
+              <p>{NO_DATA}</p>
             )}
           </DataItem>
         </DataList>
