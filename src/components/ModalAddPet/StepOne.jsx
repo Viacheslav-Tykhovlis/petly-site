@@ -1,44 +1,37 @@
 import React from 'react';
+import InputField from 'components/ReusableComponents/InputField/InputField';
 
-function StepOne() {
-  return (<ImageWrap>
-          <img src={defaultImg} alt="title" />
-        </ImageWrap>
+const StepOne = () => {
+  return (
+    <>
+      <InputField
+        label="Name pet"
+        id="name"
+        type="text"
+        name="name"
+        placeholder="Type name pet"
+        span="*"
+      />
 
-        <StyledTitle>{title}</StyledTitle>
+      <InputField
+        label="Date of birth"
+        id="birthdate"
+        type="text"
+        name="birthdate"
+        placeholder="Type date of birth"
+        span="*"
+      />
 
-        <StyledList>
-          <Features>
-            <Text>Name:</Text>
-            <Text>Birthday:</Text>
-            <Text>Breed:</Text>
-            <Text>Place:</Text>
-            <Text>The sex:</Text>
-            {category === 'sell' && <Text>Price:</Text>}
-            <Text>Email:</Text>
-            <Text>Phone:</Text>
-          </Features>
-          <Features>
-            <Descr>{name} </Descr>
-            <Descr>{birthdate}</Descr>
-            <Descr>{breed}</Descr>
-            <Descr>{location}</Descr>
-            <Descr>{sex[0]}</Descr>
-            {category === 'sell' && <Descr>{price}</Descr>}
-            <Descr>{owner?.email}</Descr>
-            <Descr>{owner?.phone}</Descr>
-          </Features>
-        </StyledList>
-
-        <Text>
-          Comments: <DescrSpan>{comments}</DescrSpan>
-        </Text>
-
-        {/* кнопки возможно будут другие - type button, вместо навЛинк */}
-        <ButtonBox>
-          <StyledNavButton buttonName="Add to" />
-          <StyledNavButton buttonName="Contact" />
-        </ButtonBox>;)
-}
+      <InputField
+        label="Breed"
+        id="breed"
+        type="text"
+        name="breed"
+        placeholder="Type breed"
+        span="*"
+      />
+    </>
+  );
+};
 
 export default StepOne;
