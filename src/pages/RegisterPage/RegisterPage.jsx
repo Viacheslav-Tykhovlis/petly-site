@@ -5,6 +5,7 @@ import {
   RegisterFormFirst,
   RegisterFormSecond,
 } from 'components/RegisterForm/RegisterForm';
+import { postRegisterUser } from 'services/postRegisterUser';
 
 
 const RegisterPage = () => {
@@ -15,8 +16,8 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
-  const [region, setRegion] = useState('');
-  const [tel, setTel] = useState('');
+  const [city, setCity] = useState('');
+  const [phone, setPhone] = useState('');
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -34,11 +35,11 @@ const RegisterPage = () => {
       case 'name':
         setName(value);
         break;
-      case 'region':
-        setRegion(value);
+      case 'city':
+        setCity(value);
         break;
-      case 'tel':
-        setTel(value);
+      case 'phone':
+        setPhone(value);
         break;
       default:
         return;
@@ -50,14 +51,15 @@ const RegisterPage = () => {
     setPassword('');
     setConfirmPassword('');
     setName('');
-    setRegion('');
-    setTel('');
+    setCity('');
+    setPhone('');
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    const user = { email, password, confirmPassword, name, region, tel };
+    const user = { email, password, name, city, phone };
     console.log(user);
+    postRegisterUser(user);
     reset();
     setIsFormOpen(true);
   }
@@ -78,8 +80,8 @@ const RegisterPage = () => {
           <RegisterFormSecond
             toggleForm={toggle}
             name={name}
-            region={region}
-            tel={tel}
+            city={city}
+            phone={phone}
               onChange={handleChange}
               onSubmit={handleSubmit}
           />

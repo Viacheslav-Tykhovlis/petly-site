@@ -31,18 +31,18 @@ const RegisterFormFirst = ({toggleForm, email, password, confirmPassword, onChan
   );
 };
 
-const RegisterFormSecond = ({toggleForm, name, region, tel, onChange, onSubmit}) => {
+const RegisterFormSecond = ({toggleForm, name, city, phone, onChange, onSubmit}) => {
   return (
     <>
       <Form className="formsecond" action="" onSubmit={onSubmit} >
         <TitleForm>Registration</TitleForm>
         <InputForm name="name" type="text" placeholder="Name" value={name } onChange={onChange} />
-        <InputForm name="region" type="text" placeholder="City, region" value={region} onChange={onChange} />
+        <InputForm name="city" type="text" placeholder="City, region" value={city} onChange={onChange} />
         <InputForm
-          name="tel"
+          name="phone"
           type="tel"
           placeholder="Mobile phone"
-          value={tel}
+          value={phone}
           onChange={onChange}
           className="lastinput"
         />
