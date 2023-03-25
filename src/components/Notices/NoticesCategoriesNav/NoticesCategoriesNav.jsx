@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+
 import {
   NavBox,
   NavBox1,
@@ -7,9 +9,10 @@ import {
 } from './NoticesCategoriesNav.styled';
 import { StyledNavButton } from 'components/ReusableComponents/Buttons/StyledNavButton';
 
+import { selectIsLoggedIn } from 'redux/login/logIn-selectors';
+
 const NoticesCategoriesNav = () => {
-  // const userIsLogedIn  - from redux auth slice;
-  // add notifications on unauthorized routes
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
     <NavBox>
@@ -29,11 +32,15 @@ const NoticesCategoriesNav = () => {
         </NavBox2>
       </NavBox1>
 
-      {/* {userIsLogedIn condition render, notification if false} */}
-      <NavUsersBox>
-        <StyledNavButton route="/notices/favorite" buttonName="favorite ads" />
-        <StyledNavButton route="/notices/own" buttonName="my ads" />
-      </NavUsersBox>
+      {isLoggedIn && (
+        <NavUsersBox>
+          <StyledNavButton
+            route="/notices/favorite"
+            buttonName="favorite ads"
+          />
+          <StyledNavButton route="/notices/own" buttonName="my ads" />
+        </NavUsersBox>
+      )}
     </NavBox>
   );
 };

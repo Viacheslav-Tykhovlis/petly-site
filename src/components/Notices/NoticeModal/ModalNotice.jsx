@@ -20,7 +20,7 @@ import {
 
 import defaultImg from '../../../img/defaultImg.jpg';
 
-const ModalNotice = ({ noticeDetails, onClose, onAddToFavorite, loading }) => {
+const ModalNotice = ({ noticeDetails, onClose, onAddToFavorite }) => {
   const {
     // _id,
     category,

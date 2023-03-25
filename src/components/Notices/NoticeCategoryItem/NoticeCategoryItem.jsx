@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { StyledLearnMoreButton } from 'components/ReusableComponents/Buttons/StyledLearnMoreButton';
 import { StyledLikeButton } from 'components/ReusableComponents/Buttons/StyledLikeButton';
@@ -24,10 +25,16 @@ import { StyledDeleteButton } from 'components/ReusableComponents/Buttons/Styled
 
 import defaultImg from '../../../img/defaultImg.jpg';
 
-const NoticeCategoryItem = ({ notice, onClose }) => {
+import { selectIsLoggedIn } from 'redux/login/logIn-selectors';
+import { getIsLoading } from 'redux/notices/noticesSelectors';
+
+const NoticeCategoryItem = ({ notice }) => {
+  const isLoading = useSelector(getIsLoading);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [noticeDetails, setNoticeDetails] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const {
     _id,
@@ -47,16 +54,19 @@ const NoticeCategoryItem = ({ notice, onClose }) => {
 
   const searchNoticeById = async () => {
     try {
-      setLoading(true);
+      // setLoading(true);
       const { data } = await fetchNoticeById(_id);
       setNoticeDetails(data);
     } catch (error) {
       console.log(error);
     }
-    setLoading(false);
+    // setLoading(false);
   };
 
   const onAddToFavorite = () => {
+    if (!isLoggedIn) {
+      return alert('Please, signup or login to add notice to favorites');
+    }
     console.log('add to faforite');
   };
 
@@ -105,13 +115,12 @@ const NoticeCategoryItem = ({ notice, onClose }) => {
         </ButtonBox>
       </StyledItem>
 
-      {!loading && noticeDetails && showDetailsModal && (
+      {!isLoading && noticeDetails && showDetailsModal && (
         <Modal onClose={onLearMoreButtonClick}>
           <ModalNotice
             noticeDetails={noticeDetails}
             onClose={onLearMoreButtonClick}
             onAddToFavorite={onAddToFavorite}
-            loading={loading}
           />
         </Modal>
       )}
