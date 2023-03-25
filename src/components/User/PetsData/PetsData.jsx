@@ -4,8 +4,11 @@ import TitleUser from '../TitleUser/TitleUser';
 import { useEffect, useState } from 'react';
 import collection from '../../../data/pets.json';
 import { ButtonPlus } from '../ButtonUser/ButtonUser';
+import ModalAddPet from 'components/ModalAddPet/ModalAddPet';
+import { Modal } from 'components/Modal/Modal';
 
 const PetsData = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [pets, setPets] = useState([]);
 
   useEffect(() => {
@@ -16,7 +19,7 @@ const PetsData = () => {
     <BoxPetsData>
       <Flex>
         <TitleUser M={'0px'}>My pets:</TitleUser>
-        <FlexSvg>
+        <FlexSvg onClick={() => setIsOpen(true)}>
           <Span>Add pet</Span>
           <ButtonPlus
             type="button"
@@ -39,6 +42,11 @@ const PetsData = () => {
       </Flex>
 
       <PetsList pets={pets} />
+      {isOpen && (
+        <Modal closeModal={() => setIsOpen(false)}>
+          <ModalAddPet closeModal={() => setIsOpen(false)} />
+        </Modal>
+      )}
     </BoxPetsData>
   );
 };
