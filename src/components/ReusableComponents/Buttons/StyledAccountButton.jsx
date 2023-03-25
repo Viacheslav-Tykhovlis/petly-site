@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const StyledAccountButton = styled(NavLink)`
+export const StyledUserButton = styled(NavLink)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -39,23 +39,19 @@ export const StyledAccountButton = styled(NavLink)`
     font-size: 20px;
   }
 
-  @media screen and (max-width: 767px) {
-    display: none;
-  }
-
   @media screen and (max-width: 1279px) {
     height: 38px;
     font-size: 20px;
   }
 `;
 
-export const StyledNavButton = ({ route, buttonName }) => {
+export const StyledAccountButton = ({ route, buttonName }) => {
   return (
-    <StyledAccountButton type="button" to={route}>
+    <StyledUserButton type="button" to={route}>
       <svg fill="white" width="24" height="24">
         <path d="M12 19.219q1.594 0 3.352-0.938t2.648-2.297q-0.047-1.313-2.109-2.203t-3.891-0.891-3.891 0.867-2.109 2.227q0.891 1.359 2.648 2.297t3.352 0.938zM12 5.016q-1.219 0-2.109 0.891t-0.891 2.109 0.891 2.109 2.109 0.891 2.109-0.891 0.891-2.109-0.891-2.109-2.109-0.891zM12 2.016q4.125 0 7.055 2.93t2.93 7.055-2.93 7.055-7.055 2.93-7.055-2.93-2.93-7.055 2.93-7.055 7.055-2.93z"></path>
       </svg>
       {buttonName}
-    </StyledAccountButton>
+    </StyledUserButton>
   );
 };

@@ -1,5 +1,10 @@
-import { StyledNavButton } from '../../../../../ReusableComponents/Buttons/StyledAccountButton';
+import { StyledAccountButton } from '../../../../../ReusableComponents/Buttons/StyledAccountButton';
+import { StyledUserButton } from './UserNav.styled';
 
 export const UserNav = () => {
-  return <StyledNavButton route="/user" buttonName="Account" />;
+  return (
+    <StyledUserButton>
+      <StyledAccountButton route="/user" buttonName="Account" />
+    </StyledUserButton>
+  );
 };
