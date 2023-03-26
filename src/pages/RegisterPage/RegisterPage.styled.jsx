@@ -5,9 +5,14 @@ import background728 from '../../img/background728.svg';
 import background1280 from "../../img/background1280.svg"
 
 const SectionRegisterPage = styled.section`
-    width: 100vw;
+    
+    // display: block;
+    // max-width: 100%;
+    // margin-left: auto;
+    // margin-right: auto;
     height: 100vh;
 
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;

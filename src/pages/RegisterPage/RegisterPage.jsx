@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
-import { useToggleForm } from '../../hooks/useToggleForm';
+import { useDispatch } from 'react-redux';
+import { useToggleForm } from 'hooks/useToggleForm';
 import { SectionRegisterPage } from './RegisterPage.styled';
 import {
   RegisterFormFirst,
   RegisterFormSecond,
 } from 'components/RegisterForm/RegisterForm';
-
+import { postRegisterUser } from 'services/postRegisterUser';
+import { logIn } from 'redux/login/logIn-operations';
 
 const RegisterPage = () => {
-
+  const dispatch = useDispatch();
   const { isFormOpen, toggle, setIsFormOpen } = useToggleForm();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
-  const [region, setRegion] = useState('');
-  const [tel, setTel] = useState('');
+  const [city, setCity] = useState('');
+  const [phone, setPhone] = useState('');
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -34,11 +36,11 @@ const RegisterPage = () => {
       case 'name':
         setName(value);
         break;
-      case 'region':
-        setRegion(value);
+      case 'city':
+        setCity(value);
         break;
-      case 'tel':
-        setTel(value);
+      case 'phone':
+        setPhone(value);
         break;
       default:
         return;
@@ -50,20 +52,30 @@ const RegisterPage = () => {
     setPassword('');
     setConfirmPassword('');
     setName('');
-    setRegion('');
-    setTel('');
+    setCity('');
+    setPhone('');
+  };
+
+  const doStuff = async userForm => {
+    try {
+      await postRegisterUser(userForm);
+      const { email, password } = userForm;
+      console.log(email);
+      dispatch(logIn({ email, password }));
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    const user = { email, password, confirmPassword, name, region, tel };
-    console.log(user);
+    const userForm = { email, password, name, city, phone };
+    doStuff(userForm);
     reset();
     setIsFormOpen(true);
-  }
+  };
 
-  
-    return (
+  return (
     <>
       <SectionRegisterPage>
         {isFormOpen ? (
@@ -78,10 +90,10 @@ const RegisterPage = () => {
           <RegisterFormSecond
             toggleForm={toggle}
             name={name}
-            region={region}
-            tel={tel}
-              onChange={handleChange}
-              onSubmit={handleSubmit}
+            city={city}
+            phone={phone}
+            onChange={handleChange}
+            onSubmit={handleSubmit}
           />
         )}
       </SectionRegisterPage>
