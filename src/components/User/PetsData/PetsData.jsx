@@ -43,7 +43,7 @@ const PetsData = () => {
 
       <PetsList pets={pets} />
       {isOpen && (
-        <Modal closeModal={() => setIsOpen(false)}>
+        <Modal onClose={() => setIsOpen(false)}>
           <ModalAddPet closeModal={() => setIsOpen(false)} />
         </Modal>
       )}

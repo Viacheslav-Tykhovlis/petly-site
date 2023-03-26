@@ -5,27 +5,25 @@ const StepOne = () => {
   return (
     <>
       <InputField
+        type="text"
         label="Name pet"
         id="name"
-        type="text"
         name="name"
         placeholder="Type name pet"
         span="*"
       />
-
       <InputField
+        type="text"
         label="Date of birth"
         id="birthdate"
-        type="text"
         name="birthdate"
         placeholder="Type date of birth"
         span="*"
       />
-
       <InputField
+        type="text"
         label="Breed"
         id="breed"
-        type="text"
         name="breed"
         placeholder="Type breed"
         span="*"

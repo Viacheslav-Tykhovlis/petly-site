@@ -65,8 +65,6 @@ export const OurFriendsItem = ({
             )}
           </DataItem>
 
-          {isVisibleWorkDays && <SheduleTable shedule={newWorkDays} />}
-
           <DataItem>
             <Subtitle>Adress:</Subtitle>
             {address ? (
@@ -112,6 +110,7 @@ export const OurFriendsItem = ({
               <p>{NO_DATA}</p>
             )}
           </DataItem>
+          {isVisibleWorkDays && <SheduleTable shedule={newWorkDays} />}
         </DataList>
       </Box>
     </Friend>

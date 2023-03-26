@@ -11,7 +11,7 @@ import {
 const InputField = ({
   label,
   name,
-  type,
+  type = 'text',
   placeholder,
   id,
   span,
@@ -27,6 +27,7 @@ const InputField = ({
         {label}
         <StyledSpan>{span}</StyledSpan>
       </Label>
+
       <FieldStyle
         type={type}
         name={name}
@@ -37,6 +38,7 @@ const InputField = ({
         onBlur={onBlur}
         onFocus={onFocus}
       />
+
       <ErrorStyle name={name} component="div" />
       {children}
     </FieldWrapper>
@@ -46,10 +48,10 @@ const InputField = ({
 export default InputField;
 
 InputField.propTypes = {
-  label: PropTypes.string,
-  placeholder: PropTypes.string,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
   id: PropTypes.string,
   span: PropTypes.string,
   autocomplete: PropTypes.string,
