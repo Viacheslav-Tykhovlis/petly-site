@@ -1,17 +1,17 @@
 import PetsList from 'components/User/PetsList/PetsList';
 import { BoxPetsData, Flex, Span, FlexSvg } from './PetsData.styled';
 import TitleUser from '../TitleUser/TitleUser';
-// import { useEffect, useState } from 'react';
-// import collection from '../../../data/pets.json';
+import { useEffect, useState } from 'react';
 import { ButtonPlus } from '../ButtonUser/ButtonUser';
 import { fetchPets } from 'redux/pets/operations';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import { getStatePets } from 'redux/pets/selectors';
+import ModalAddPet from 'components/ModalAddPet/ModalAddPet';
+import { Modal } from 'components/Modal/Modal';
 
 const PetsData = () => {
   const dispatch = useDispatch();
-
+  const [isOpen, setIsOpen] = useState(false);
   const pets = useSelector(getStatePets);
 
   useEffect(() => {
@@ -21,7 +21,11 @@ const PetsData = () => {
     <BoxPetsData>
       <Flex>
         <TitleUser M={'0px'}>My pets:</TitleUser>
-        <FlexSvg type="button" ariaLabel="add pet button">
+        <FlexSvg
+          type="button"
+          ariaLabel="add pet button"
+          onClick={() => setIsOpen(true)}
+        >
           <Span>Add pet</Span>
           <ButtonPlus
             widthM={'40px'}
