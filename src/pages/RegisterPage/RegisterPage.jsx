@@ -7,9 +7,7 @@ import {
   RegisterFormSecond,
 } from 'components/RegisterForm/RegisterForm';
 import { postRegisterUser } from 'services/postRegisterUser';
-// import {register} from 'redux/register/registerOperation';
 import { logIn } from 'redux/login/logIn-operations';
-import { store } from 'redux/store';
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -60,11 +58,10 @@ const RegisterPage = () => {
 
   const doStuff = async userForm => {
     try {
-      const data = await postRegisterUser(userForm);
+      await postRegisterUser(userForm);
       const { email, password } = userForm;
-      if (data.code === 201) {
-        dispatch(logIn({ email, password }));
-      }
+      console.log(email);
+      dispatch(logIn({ email, password }));
     } catch (error) {
       console.log(error.message);
     }
