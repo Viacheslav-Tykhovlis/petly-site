@@ -11,14 +11,6 @@ const PetsData = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [pets, setPets] = useState([]);
 
-  const handleIsOpen = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
   useEffect(() => {
     setPets(collection);
   }, [pets]);
@@ -27,7 +19,7 @@ const PetsData = () => {
     <BoxPetsData>
       <Flex>
         <TitleUser M={'0px'}>My pets:</TitleUser>
-        <FlexSvg onClick={handleIsOpen}>
+        <FlexSvg onClick={() => setIsOpen(true)}>
           <Span>Add pet</Span>
           <ButtonPlus
             type="button"
@@ -51,8 +43,8 @@ const PetsData = () => {
 
       <PetsList pets={pets} />
       {isOpen && (
-        <Modal onClose={closeModal}>
-          <ModalAddPet closeModal={closeModal} />
+        <Modal onClose={() => setIsOpen(false)}>
+          <ModalAddPet closeModal={() => setIsOpen(false)} />
         </Modal>
       )}
     </BoxPetsData>
