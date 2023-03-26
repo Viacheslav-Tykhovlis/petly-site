@@ -12,6 +12,8 @@ export const StyledItem = styled.li`
   }
 
   @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
     width: 336px;
   }
 
@@ -40,6 +42,36 @@ export const Lable = styled.div`
   letter-spacing: 0.04em;
 `;
 
+export const ImageCardWrap = styled.div`
+  @media screen and (min-width: 320px) {
+    width: 280px;
+    height: 288px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 336px;
+    height: 288px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 288px;
+    height: 288px;
+  }
+`;
+
+export const CardImage = styled.img`
+  object-fit: cover;
+  aspect-ratio: 280/288;
+
+  @media screen and (min-width: 768px) {
+    aspect-ratio: 336/288;
+  }
+
+  @media screen and (min-width: 1280px) {
+    aspect-ratio: 288/288;
+  }
+`;
+
 export const StyledTitle = styled.h2`
   padding: 20px 0 20px 20px;
 
@@ -52,23 +84,34 @@ export const StyledTitle = styled.h2`
 `;
 
 export const StyledList = styled.ul`
-  padding: 0 0 20px 20px;
+  padding: 0 20px 20px 20px;
   color: #111111; */
 `;
 
-export const FeaturesBox = styled.div`
-  display: flex;
-  gap: 40px;
-`;
-
-export const Features = styled.div`
+export const Table = styled.table`
   display: flex;
   flex-direction: column;
   gap: 8px;
 `;
 
-export const Text = styled.p`
-  color: #111111; */
+export const TableBody = styled.tbody`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const FirstColumn = styled.td`
+  min-width: 90px;
+  word-break: break-all;
+`;
+
+export const SecondColumn = styled.td`
+  max-width: 100%;
+  word-break: break-all;
+`;
+
+export const Row = styled.tr`
+  display: flex;
 `;
 
 export const ButtonBox = styled.div`
@@ -81,6 +124,7 @@ export const ButtonBox = styled.div`
 
   @media screen and (min-width: 768px) {
     padding: 0 44px 12px 44px;
+    margin-top: auto;
   }
 
   @media screen and (min-width: 1280px) {

@@ -21,14 +21,26 @@ export const StyledModal = styled.div`
 `;
 
 export const ImageWrap = styled.div`
-  width: 240px;
-  height: 240px;
   border-radius: 0px 0px 40px 40px;
   overflow: hidden;
+
+  @media screen and (min-width: 320px) {
+    width: 240px;
+    height: 240px;
+  }
 
   @media screen and (min-width: 768px) {
     width: 288px;
     height: 328px;
+  }
+`;
+
+export const ModalImage = styled.img`
+  object-fit: cover;
+  aspect-ratio: 240/240;
+
+  @media screen and (min-width: 768px) {
+    aspect-ratio: 288/328;
   }
 `;
 
@@ -87,13 +99,27 @@ export const StyledList = styled.ul`
   padding-bottom: 28px;
 `;
 
-export const Features = styled.li`
+export const Table = styled.table`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 240px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 350px;
+  }
+`;
+
+export const TableBody = styled.tbody`
   display: flex;
   flex-direction: column;
   gap: 8px;
 `;
 
-export const Text = styled.p`
+export const FirstColumn = styled.td`
+  min-width: 116px;
+  word-break: break-all;
+
   font-weight: 600;
   font-size: 14px;
   line-height: 1.36;
@@ -101,12 +127,16 @@ export const Text = styled.p`
   color: #000000;
 
   @media screen and (min-width: 768px) {
+    min-width: 121px;
     font-size: 16px;
     line-height: 1.38;
   }
 `;
 
-export const Descr = styled.p`
+export const SecondColumn = styled.td`
+  max-width: 100%;
+  word-break: break-all;
+
   font-size: 14px;
   line-height: 1.36;
 
@@ -118,7 +148,44 @@ export const Descr = styled.p`
   }
 `;
 
-export const Link = styled.a`
+export const FirstColumnContacts = styled.a`
+  min-width: 116px;
+  word-break: break-all;
+
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.36;
+
+  color: #000000;
+
+  @media screen and (min-width: 768px) {
+    min-width: 121px;
+    font-size: 16px;
+    line-height: 1.38;
+  }
+`;
+
+export const SecondColumnContacts = styled.a`
+  max-width: 100%;
+  word-break: break-all;
+
+  font-size: 14px;
+  line-height: 1.36;
+
+  color: #000000;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1.38;
+  }
+`;
+
+export const Row = styled.td`
+  display: flex;
+`;
+
+export const Text = styled.p`
+  font-weight: 600;
   font-size: 14px;
   line-height: 1.36;
 
