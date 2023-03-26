@@ -1,13 +1,17 @@
 import { Formik } from 'formik';
 import { useState } from 'react';
 
+import {
+  CustomToast,
+  ToastType,
+} from 'components/ReusableComponents/Ui/CustomToast';
+import { format } from 'date-fns';
 import { FormStep1 } from './ModalAddNotice/AddNoticeFormStep1';
 import { FormStep2 } from './ModalAddNotice/AddNoticeFormStep2';
 import {
   validationSchemaStep1,
   validationSchemaStep2,
 } from './ModalAddNotice/schema';
-import { format } from 'date-fns';
 
 const initialValues = {
   category: 'sell',
@@ -25,6 +29,10 @@ const initialValues = {
 const ModalAddNotice = ({ onClose }) => {
   const [step, setStep] = useState(1);
   const [formValues, setFormValues] = useState(initialValues);
+
+  const showToast = () => {
+    CustomToast(ToastType.SUCCESS, 'Pet added successfully! 🥳');
+  };
 
   const handleNext = async (e, values, validateForm) => {
     e.preventDefault();
@@ -56,6 +64,7 @@ const ModalAddNotice = ({ onClose }) => {
         console.log('handleSubmit:\n', formattedValues);
         setFormValues(formattedValues);
         resetForm();
+        showToast();
       }
     } catch (error) {
       console.log(error);
@@ -81,6 +90,7 @@ const ModalAddNotice = ({ onClose }) => {
               handleChange={formik.handleChange}
               handleBlur={formik.handleBlur}
               onClose={onClose}
+              onFocus={formik.onFocus}
               touched={formik.touched}
               errors={formik.errors}
               onNext={e => handleNext(e, formik.values, formik.validateForm)}

@@ -26,6 +26,7 @@ export const FormStep1 = ({
   touched,
   errors,
   setFieldValue,
+  onFocus,
 }) => {
   return (
     <Form>
@@ -96,19 +97,6 @@ export const FormStep1 = ({
           </InputWrapper>
           {category !== 'lost' && (
             <InputWrapper>
-              {/* <StyledTextInputLabel htmlFor="birthdate">
-                Date of birth
-              </StyledTextInputLabel>
-              <StyledInput
-                type="text"
-                name="birthdate"
-                placeholder="Type date of birth"
-                value={birthdate}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                isvalidfield={touched.birthdate && !errors.birthdate}
-              />
-              <FormikErrorMessage name="birthdate" /> */}
               <StyledDatePicker
                 selected={birthdate}
                 dateFormat="dd.MM.yyyy"
@@ -120,8 +108,9 @@ export const FormStep1 = ({
                 id="birthdate"
                 placeholderText="Type date of birth"
                 autoComplete="off"
-                isvalidfield={touched.birthdate && !errors.birthdate}
+                isvalidfield={birthdate && !errors.birthdate}
               />
+              <FormikErrorMessage name="birthdate" />
             </InputWrapper>
           )}
           <InputWrapper>

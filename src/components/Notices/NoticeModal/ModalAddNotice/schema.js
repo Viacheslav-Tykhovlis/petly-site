@@ -16,7 +16,7 @@ export const validationSchemaStep1 = Yup.object().shape({
         .typeError('Enter the birthdate in the format DD.MM.YYYY')
         .required('Required field');
     } else {
-      return Yup.date().typeError(
+      return Yup.string().typeError(
         'Enter the birthdate in the format DD.MM.YYYY',
       );
     }
