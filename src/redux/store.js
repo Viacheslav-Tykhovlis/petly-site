@@ -18,8 +18,6 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-import { newsReducer } from './news/newsSlice';
-
 const logInPersistConfig = {
   key: 'login',
   storage,
