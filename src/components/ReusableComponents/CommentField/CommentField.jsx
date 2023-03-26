@@ -9,13 +9,13 @@ import {
   StyledSpan,
 } from './CommentField.styled.jsx';
 
-const CommentField = ({ name, form, plaseHold, comment }) => {
+const CommentField = ({ name, form, label }) => {
   const [field] = useField(name);
 
   return (
     <TextareaContainer>
       <TextareaLabel>
-        {comment}
+        {label}
         <StyledSpan>*</StyledSpan>
       </TextareaLabel>
       <Textarea
@@ -34,8 +34,7 @@ const CommentField = ({ name, form, plaseHold, comment }) => {
 CommentField.propTypes = {
   name: PropTypes.string,
   form: PropTypes.string,
-  plaseHold: PropTypes.string,
-  comment: PropTypes.string,
+  label: PropTypes.string,
 };
 
 export default CommentField;

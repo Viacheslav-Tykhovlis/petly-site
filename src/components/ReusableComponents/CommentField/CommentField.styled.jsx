@@ -11,6 +11,7 @@ export const TextareaLabel = styled.label`
   font-size: ${props => props.theme.fontSizes.s};
   line-height: 1.44;
   margin-bottom: 8px;
+
   ${props => props.theme.mq.tablet} {
     font-size: ${props => props.theme.fontSizes.l};
     line-height: 1.08;
@@ -23,8 +24,8 @@ export const Textarea = styled(Field)`
   width: 100%;
   height: ${({ form }) => (form === 'userPet' ? '100px' : '40px')};
   border-radius: ${({ form }) => (form === 'userPet' ? '20px' : '40px')};
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin: 8px 0px;
+  padding: 10px 20px 10px 14px;
   cursor: pointer;
   border: 1px solid ${props => props.theme.colors.borderColor};
   background-color: ${props => props.theme.colors.backgroundFormInput};
@@ -32,10 +33,7 @@ export const Textarea = styled(Field)`
   font-size: ${props => props.theme.fontSizes.xxs};
   font-weight: ${props => props.theme.fontWeight.body};
   color: ${props => props.theme.colors.primaryText};
-  padding-left: 14px;
-  padding-right: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+
   ${props => props.theme.mq.tablet} {
     height: 116px;
     border-radius: 20px;

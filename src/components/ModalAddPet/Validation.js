@@ -1,7 +1,6 @@
 import * as Yup from 'yup';
 
 // Values for Formik
-
 export const initialValues = {
   name: '',
   birthdate: '',
@@ -11,7 +10,6 @@ export const initialValues = {
 };
 
 // Yup validation
-
 export const validationSchemaStepOne = Yup.object().shape({
   name: Yup.string()
     .required('Name is required')

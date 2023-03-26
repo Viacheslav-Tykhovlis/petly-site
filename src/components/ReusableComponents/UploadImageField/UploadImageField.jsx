@@ -24,17 +24,12 @@ const UploadImageField = ({ handleChange, fileDataURL, name, label, form }) => {
       </Box>
       {fileDataURL ? (
         <LoadImageCont>
-          <ImagePreview
-            src={fileDataURL}
-            alt="Preview"
-            width="48px"
-            height="48px"
-          />
+          <ImagePreview src={fileDataURL} alt="Preview" />
         </LoadImageCont>
       ) : (
         <>
           <LoadImageCont>
-            <PlusIcon width="48px" height="48px" />
+            <PlusIcon />
             <ErrorStyle name={name} component="div" />
           </LoadImageCont>
           <LoadImgInput

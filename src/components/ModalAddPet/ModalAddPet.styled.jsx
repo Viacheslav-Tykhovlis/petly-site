@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Form } from 'formik';
 
 export const Container = styled.div`
-position: relative,
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,11 +24,12 @@ export const Title = styled.h2`
   font-weight: ${props => props.theme.fontWeight.medium};
   font-size: ${props => props.theme.fontSizes.l};
   line-height: 1.37;
-  margin-bottom: 28px;
+
+  margin-bottom: ${p => (p.step === 1 ? '28px' : '20px')};
 
   @media screen and (min-width: 768px) {
     font-size: 36px;
-    margin-bottom: 40px;
+    margin-bottom: ${p => (p.step === 1 ? '40px' : '20px')};
   }
 `;
 
