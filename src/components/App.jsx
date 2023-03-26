@@ -11,7 +11,9 @@ import LoginPage from 'pages/LoginPage/LoginPage';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import NotFound from 'pages/NotFoundPage/NotFound';
 import UserPage from 'pages/UserPage/UserPage';
-import {RestrictedRoute} from './RestrictedRoutes/RestrictedRoutes';
+import { RestrictedRoute } from './RestrictedRoutes/RestrictedRoutes';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 
@@ -25,7 +27,6 @@ export const App = () => {
             <Route path="/news" element={<NewsPage />} />
             <Route path="/notices/:category" element={<NoticesPage />} />
             <Route path="/friends" element={<OurFriendsPage />} />
-            {/* <Route path="/register" element={<RegisterPage />} /> */}
             <Route
               path="/register"
               element={
@@ -45,6 +46,7 @@ export const App = () => {
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <ToastContainer />
       </Container>
     </>
   );

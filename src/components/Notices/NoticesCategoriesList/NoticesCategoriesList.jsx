@@ -1,21 +1,13 @@
-import styled from '@emotion/styled';
+import { useSelector } from 'react-redux';
+
 import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
+import { StyledList } from './NoticesCategoriesList.styled';
 
-const StyledList = styled.ul`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
+import { getNotices } from 'redux/notices/noticesSelectors';
 
-  @media screen and (min-width: 768px) {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-`;
+const NoticesCategoriesList = ({ onClose }) => {
+  const notices = useSelector(getNotices);
 
-const NoticesCategoriesList = ({ notices, onClose }) => {
   return (
     <StyledList>
       {notices.map(notice => (

@@ -27,7 +27,8 @@ export const GlobalStyles = css`
   h5,
   h6,
   p,
-  ul {
+  ul,
+  td {
     list-style: none;
     margin: 0;
     padding: 0;

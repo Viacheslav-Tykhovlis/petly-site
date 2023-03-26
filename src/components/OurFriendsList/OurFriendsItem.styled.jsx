@@ -11,7 +11,7 @@ export const Friend = styled.li`
   text-align: flex-start;
   padding: 12px 4px;
   font-size: 12px;
-  line-height: 1, 33;
+  line-height: 1.33;
   color: ${props => props.theme.colors.black};
   background-color: ${props => props.theme.colors.white};
   border-radius: 20px;
@@ -22,13 +22,13 @@ export const Friend = styled.li`
     border-radius: 40px;
     padding: 16px 4px;
     font-size: 14px;
-    line-height: 1, 36;
+    line-height: 1.36;
   }
 
   @media screen and (min-width: 1280px) {
     flex-basis: calc((100% - 64px) / 3);
     font-size: 16px;
-    line-height: 1, 375;
+    line-height: 1.375;
   }
 `;
 
@@ -43,16 +43,16 @@ export const Name = styled.h2`
   font-weight: ${props => props.theme.fontWeight.bold};
   text-align: center;
   font-size: 12px;
-  line-height: 1, 33;
+  line-height: 1.33;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 16px;
     font-size: 16px;
-    line-height: 1, 375;
+    line-height: 1.375;
   }
   @media screen and (min-width: 1280px) {
     font-size: 20px;
-    line-height: 1, 35;
+    line-height: 1.35;
   }
 `;
 
@@ -95,12 +95,13 @@ export const DataList = styled.ul`
 export const DataItem = styled.li``;
 export const Subtitle = styled.p``;
 
-export const TextBox = styled.div`
+export const WorkDaysBtn = styled.div`
+  display: inline-block;
   cursor: pointer;
   background-color: ${props => props.theme.colors.white};
   color: ${props => props.theme.colors.black};
   font-size: 12px;
-  line-height: 1, 33;
+  line-height: 1.33;
 
   :hover,
   :focus {
@@ -110,12 +111,12 @@ export const TextBox = styled.div`
 
   @media screen and (min-width: 768px) {
     font-size: 14px;
-    line-height: 1, 36;
+    line-height: 1.36;
   }
 
   @media screen and (min-width: 1280px) {
     font-size: 16px;
-    line-height: 1, 375;
+    line-height: 1.375;
   }
 `;
 

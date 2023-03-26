@@ -1,8 +1,12 @@
-import { Logo } from '../Logo/Logo';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/login/logIn-selectors';
 import Container from 'components/Container/Container';
+import { StyledAccountButton } from 'components/ReusableComponents/Buttons/StyledAccountButton';
 import { StyledNavButton } from '../../../ReusableComponents/Buttons/StyledNavButton';
+import { CloseModalButton } from './MenuButton/MenuButtonClose.styled';
+import { Logo } from '../Logo/Logo';
 import {
-  NavContainer,
+  NavMobileContainer,
   NavList,
   NavGeneralLink,
   NavHeader,
@@ -10,27 +14,32 @@ import {
   NavItem,
 } from './MobileMenu.styled';
 
-import { CloseModalButton } from '../MenuButton/MenuButtonClose.styled';
-
 export const NavMobile = ({ onClose }) => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
-    <NavContainer>
+    <NavMobileContainer>
       <Container>
         <NavHeader>
           <Logo onClick={onClose} />
           <CloseModalButton onClick={onClose} />
         </NavHeader>
         <AuthButton>
-          <StyledNavButton
-            route="/login"
-            buttonName="Login"
-            onClick={onClose}
-          />
-          <StyledNavButton
-            route="/register"
-            buttonName="Registration"
-            onClick={onClose}
-          />
+          {isLoggedIn ? (
+            <StyledAccountButton route="/user" buttonName="Account" />
+          ) : (
+            <>
+              <StyledNavButton
+                route="/login"
+                buttonName="Login"
+                onClick={onClose}
+              />
+              <StyledNavButton
+                route="/register"
+                buttonName="Registration"
+                onClick={onClose}
+              />
+            </>
+          )}
         </AuthButton>
         <NavList>
           <NavItem>
@@ -50,6 +59,6 @@ export const NavMobile = ({ onClose }) => {
           </NavItem>
         </NavList>
       </Container>
-    </NavContainer>
+    </NavMobileContainer>
   );
 };

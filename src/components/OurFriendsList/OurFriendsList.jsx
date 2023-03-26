@@ -7,6 +7,7 @@ const OurFriendsList = ({ friends }) => {
     <OurFriendsUl>
       {friends.map(
         ({
+          _id,
           title,
           url,
           addressUrl,
@@ -15,7 +16,6 @@ const OurFriendsList = ({ friends }) => {
           workDays,
           phone,
           email,
-          _id,
         }) => (
           <OurFriendsItem
             key={_id}
@@ -35,19 +35,7 @@ const OurFriendsList = ({ friends }) => {
 };
 
 OurFriendsList.propTypes = {
-  friends: PropTypes.arrayOf(
-    PropTypes.exact({
-      _id: PropTypes.string,
-      title: PropTypes.string,
-      url: PropTypes.string.isRequired,
-      addressUrl: PropTypes.string,
-      imageUrl: PropTypes.string,
-      address: PropTypes.string,
-      phone: PropTypes.string,
-      email: PropTypes.string,
-      workDays: PropTypes.array,
-    }),
-  ),
+  friends: PropTypes.array,
 };
 
 export default OurFriendsList;

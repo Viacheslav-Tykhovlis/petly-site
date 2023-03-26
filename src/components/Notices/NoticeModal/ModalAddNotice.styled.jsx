@@ -2,7 +2,12 @@ import styled from '@emotion/styled';
 import { Field } from 'formik';
 import { RxCross1 } from 'react-icons/rx';
 import { TfiPlus } from 'react-icons/tfi';
+import { Form } from 'react-router-dom';
 import TextareaAutosize from 'react-textarea-autosize';
+
+export const StyledForm = styled(Form)`
+  top: 160px;
+`;
 
 const CloseButton = styled.button`
   position: absolute;
@@ -43,7 +48,7 @@ const CloseButton = styled.button`
 
 export const CloseModalButton = ({ onClick, step }) => {
   return (
-    <CloseButton onClick={onClick} step={step}>
+    <CloseButton type="button" onClick={onClick} step={step}>
       <RxCross1 />
     </CloseButton>
   );
@@ -90,10 +95,16 @@ export const StyledModal = styled.div`
   width: 280px;
   padding: 40px 20px;
   border-radius: 20px;
+  top: 160px;
 
   @media screen and (min-width: 768px) {
     width: 608px;
     padding: 40px 80px;
+    top: 270px;
+  }
+
+  @media screen and (min-width: 1280) {
+    top: 329px;
   }
 `;
 
@@ -114,8 +125,6 @@ export const InputGroupWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 16px;
-  /* margin-bottom: 20px; */
-  /* margin-bottom: 40px; */
 
   @media screen and (min-width: 768px) {
     row-gap: 28px;
@@ -144,6 +153,7 @@ export const BtnsModalWrapper = styled.div`
   flex-direction: column;
   row-gap: 12px;
   margin-top: 40px;
+
   @media screen and (min-width: 728px) {
     flex-direction: row-reverse;
     row-gap: 0px;

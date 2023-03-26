@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { StyledLearnMoreButton } from 'components/ReusableComponents/Buttons/StyledLearnMoreButton';
 import { StyledLikeButton } from 'components/ReusableComponents/Buttons/StyledLikeButton';
@@ -14,31 +15,32 @@ import {
   Lable,
   StyledTitle,
   StyledList,
-  FeaturesBox,
-  Features,
-  Text,
   ButtonBox,
+  ImageCardWrap,
+  CardImage,
+  Row,
+  TableBody,
+  FirstColumn,
+  Table,
+  SecondColumn,
 } from './NoticeCategoryItem.styled';
 
 import { StyledDeleteButton } from 'components/ReusableComponents/Buttons/StyledDeleteButton';
 
+import { selectIsLoggedIn } from 'redux/login/logIn-selectors';
+import { getIsLoading } from 'redux/notices/noticesSelectors';
+
 import defaultImg from '../../../img/defaultImg.jpg';
 
-const NoticeCategoryItem = ({ notice, onClose }) => {
+const NoticeCategoryItem = ({ notice }) => {
+  const isLoading = useSelector(getIsLoading);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [noticeDetails, setNoticeDetails] = useState(null);
-  const [loading, setLoading] = useState(false);
 
-  const {
-    _id,
-    category,
-    title,
-    birthdate,
-    breed,
-    location,
-    price,
-    // image
-  } = notice;
+  const { _id, category, title, birthdate, breed, location, price, image } =
+    notice;
 
   const onLearMoreButtonClick = () => {
     setShowDetailsModal(!showDetailsModal);
@@ -47,16 +49,17 @@ const NoticeCategoryItem = ({ notice, onClose }) => {
 
   const searchNoticeById = async () => {
     try {
-      setLoading(true);
       const { data } = await fetchNoticeById(_id);
       setNoticeDetails(data);
     } catch (error) {
       console.log(error);
     }
-    setLoading(false);
   };
 
   const onAddToFavorite = () => {
+    if (!isLoggedIn) {
+      return alert('Please, signup or login to add notice to favorites');
+    }
     console.log('add to faforite');
   };
 
@@ -71,24 +74,35 @@ const NoticeCategoryItem = ({ notice, onClose }) => {
           <p>{noticeLabelTranform(category)}</p>
         </Lable>
 
-        <img src={defaultImg} alt="title" />
+        <ImageCardWrap>
+          <CardImage src={image || defaultImg} alt={title} />
+        </ImageCardWrap>
+
         <StyledLikeButton onButtonClick={onAddToFavorite} />
         <StyledTitle>{title}</StyledTitle>
         <StyledList>
-          <FeaturesBox>
-            <Features>
-              <Text>Breed:</Text>
-              <Text>Place:</Text>
-              <Text>Age:</Text>
-              {category === 'sell' && <Text>Price:</Text>}
-            </Features>
-            <Features>
-              <Text>{breed || '-'}</Text>
-              <Text>{location || '-'}</Text>
-              <Text>{birthdate || '-'}</Text>
-              {category === 'sell' && <Text>{`${price || '-'}$`}</Text>}
-            </Features>
-          </FeaturesBox>
+          <Table>
+            <TableBody>
+              <Row>
+                <FirstColumn>Breed:</FirstColumn>
+                <SecondColumn>{breed || '-'}</SecondColumn>
+              </Row>
+              <Row>
+                <FirstColumn>Place:</FirstColumn>
+                <SecondColumn>{location || '-'}</SecondColumn>
+              </Row>
+              <Row>
+                <FirstColumn>Age:</FirstColumn>
+                <SecondColumn>{birthdate || '-'}</SecondColumn>
+              </Row>
+              {category === 'sell' && (
+                <Row>
+                  <FirstColumn>Price:</FirstColumn>
+                  <SecondColumn>{`${price || '-'}`}</SecondColumn>
+                </Row>
+              )}
+            </TableBody>
+          </Table>
         </StyledList>
 
         <ButtonBox>
@@ -105,13 +119,12 @@ const NoticeCategoryItem = ({ notice, onClose }) => {
         </ButtonBox>
       </StyledItem>
 
-      {!loading && noticeDetails && showDetailsModal && (
+      {!isLoading && noticeDetails && showDetailsModal && (
         <Modal onClose={onLearMoreButtonClick}>
           <ModalNotice
             noticeDetails={noticeDetails}
             onClose={onLearMoreButtonClick}
             onAddToFavorite={onAddToFavorite}
-            loading={loading}
           />
         </Modal>
       )}
