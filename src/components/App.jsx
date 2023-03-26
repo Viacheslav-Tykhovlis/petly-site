@@ -12,6 +12,7 @@ import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import NotFound from 'pages/NotFoundPage/NotFound';
 import UserPage from 'pages/UserPage/UserPage';
 import { RestrictedRoute } from './RestrictedRoutes/RestrictedRoutes';
+import { PrivateRoute } from './PravateRoute/PrivateRoute';
 
 // const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 
@@ -32,7 +33,12 @@ export const App = () => {
                 <RestrictedRoute component={LoginPage} redirectTo="/user" />
               }
             />
-            <Route path="/user" element={<UserPage />} />
+            <Route
+              path="/user"
+              element={
+                <PrivateRoute redirectTo="/login" component={<UserPage />} />
+              }
+            />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

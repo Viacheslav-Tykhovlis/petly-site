@@ -1,29 +1,29 @@
 import PetsList from 'components/User/PetsList/PetsList';
 import { BoxPetsData, Flex, Span, FlexSvg } from './PetsData.styled';
 import TitleUser from '../TitleUser/TitleUser';
-import { useEffect, useState } from 'react';
-import collection from '../../../data/pets.json';
+// import { useEffect, useState } from 'react';
+// import collection from '../../../data/pets.json';
 import { ButtonPlus } from '../ButtonUser/ButtonUser';
-import ModalAddPet from 'components/ModalAddPet/ModalAddPet';
-import { Modal } from 'components/Modal/Modal';
+import { fetchPets } from 'redux/pets/operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getStatePets } from 'redux/pets/selectors';
 
 const PetsData = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [pets, setPets] = useState([]);
+  const dispatch = useDispatch();
+
+  const pets = useSelector(getStatePets);
 
   useEffect(() => {
-    setPets(collection);
-  }, [pets]);
-
+    dispatch(fetchPets());
+  }, [dispatch]);
   return (
     <BoxPetsData>
       <Flex>
         <TitleUser M={'0px'}>My pets:</TitleUser>
-        <FlexSvg onClick={() => setIsOpen(true)}>
+        <FlexSvg type="button" ariaLabel="add pet button">
           <Span>Add pet</Span>
           <ButtonPlus
-            type="button"
-            ariaLabel="add pet button"
             widthM={'40px'}
             heightM={'40px'}
             widthT={'40px'}
@@ -42,11 +42,6 @@ const PetsData = () => {
       </Flex>
 
       <PetsList pets={pets} />
-      {isOpen && (
-        <Modal closeModal={() => setIsOpen(false)}>
-          <ModalAddPet closeModal={() => setIsOpen(false)} />
-        </Modal>
-      )}
     </BoxPetsData>
   );
 };

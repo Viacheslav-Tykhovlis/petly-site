@@ -2,20 +2,24 @@ import { FlexBasket, Image } from '../PetsList.styled';
 import { PetName, PetBirth, PetBreed, PetComments } from '../index';
 import { ContainerPets } from '../../PetsData/PetsData.styled';
 import { ButtonBasket } from '../../ButtonUser/ButtonUser';
+import { deletePet } from 'redux/pets/operations';
+import { useDispatch } from 'react-redux';
 
-const PetListItem = ({ photo, name, birthday, breed, comments }) => {
+const PetListItem = ({ photo, name, birthday, breed, comments, _id }) => {
+  const dispatch = useDispatch();
   return (
     <ContainerPets>
-      <Image src={photo} alt="card pet" />
-      <div>
-        <PetName key={name} name={name} />
+      <Image src={photo} alt={name} />
+      <ul>
+        <PetName key={_id} name={name} />
         <PetBirth birthday={birthday} />
         <PetBreed breed={breed} />
         <PetComments comments={comments} />
-      </div>
+      </ul>
       <FlexBasket>
         <ButtonBasket
           type="button"
+          onClick={() => dispatch(deletePet(_id))}
           ariaLabel="basket button"
           widthM={'20px'}
           heightM={'20px'}

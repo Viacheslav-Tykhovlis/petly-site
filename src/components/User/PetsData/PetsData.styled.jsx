@@ -21,7 +21,7 @@ export const BoxPetsData = styled.div`
   margin-bottom: 24px; */
 `;
 
-export const ContainerPets = styled.div`
+export const ContainerPets = styled.li`
   width: 280px;
   /* height: 541px; */
 
@@ -36,15 +36,19 @@ export const ContainerPets = styled.div`
   padding-left: 20px;
   margin-bottom: 20px;
 
+  &:last-child {
+    margin-bottom: 0px;
+  }
+
   @media screen and (min-width: 768px) {
     width: 704px;
     /* height: 230px; */
     border-radius: 40px;
     display: flex;
-    margin-bottom: 22px;
   }
   @media screen and (min-width: 1280px) {
     width: 821px;
+    margin-bottom: 22px;
   }
 `;
 

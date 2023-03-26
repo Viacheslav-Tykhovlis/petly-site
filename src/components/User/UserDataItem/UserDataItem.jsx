@@ -10,7 +10,9 @@ import {
 import { UserPhoto } from './index';
 import { ButtonPencil } from './../ButtonUser/ButtonUser';
 
-const UserDataItem = () => {
+const UserDataItem = ({ user }) => {
+  // const { name, email, birthday, phone, city } = user;
+
   return (
     <BoxUserDataItem>
       <UserPhoto />
