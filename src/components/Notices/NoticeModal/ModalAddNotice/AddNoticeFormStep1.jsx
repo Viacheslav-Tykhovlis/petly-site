@@ -7,9 +7,7 @@ import {
   ModalBtnBack,
   ModalBtnNext,
   RadioWrapper,
-  StyledField,
   StyledInput,
-  StyledLabel,
   StyledModal,
   StyledSubtitle,
   StyledTextInputLabel,
@@ -17,6 +15,7 @@ import {
 } from '../ModalAddNotice.styled';
 import { FormikErrorMessage } from './FormikErrorMessage';
 import { RadioOption } from './RadioOption';
+import { StyledDatePicker } from './DatePicker';
 
 export const FormStep1 = ({
   onNext,
@@ -26,6 +25,7 @@ export const FormStep1 = ({
   handleBlur,
   touched,
   errors,
+  setFieldValue,
 }) => {
   return (
     <Form>
@@ -96,7 +96,7 @@ export const FormStep1 = ({
           </InputWrapper>
           {category !== 'lost' && (
             <InputWrapper>
-              <StyledTextInputLabel htmlFor="birthdate">
+              {/* <StyledTextInputLabel htmlFor="birthdate">
                 Date of birth
               </StyledTextInputLabel>
               <StyledInput
@@ -108,7 +108,20 @@ export const FormStep1 = ({
                 onBlur={handleBlur}
                 isvalidfield={touched.birthdate && !errors.birthdate}
               />
-              <FormikErrorMessage name="birthdate" />
+              <FormikErrorMessage name="birthdate" /> */}
+              <StyledDatePicker
+                selected={birthdate}
+                dateFormat="dd.MM.yyyy"
+                onChange={date => {
+                  setFieldValue('birthdate', date);
+                }}
+                onBlur={handleBlur}
+                name="birthdate"
+                id="birthdate"
+                placeholderText="Type date of birth"
+                autoComplete="off"
+                isvalidfield={touched.birthdate && !errors.birthdate}
+              />
             </InputWrapper>
           )}
           <InputWrapper>

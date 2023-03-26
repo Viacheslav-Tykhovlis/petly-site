@@ -7,6 +7,7 @@ import {
   validationSchemaStep1,
   validationSchemaStep2,
 } from './ModalAddNotice/schema';
+import { format } from 'date-fns';
 
 const initialValues = {
   category: 'sell',
@@ -47,13 +48,13 @@ const ModalAddNotice = ({ onClose }) => {
       const errors = await validateForm(values);
 
       if (Object.keys(errors).length === 0) {
-        setFormValues({
+        const formattedValues = {
           ...formValues,
-          sex: values.sex,
-          location: values.location,
-          comments: values.comments,
-        });
-        console.log('handleSubmit:\n', { ...formValues, ...values });
+          ...values,
+          birthdate: format(formValues.birthdate, 'dd.MM.yyyy'),
+        };
+        console.log('handleSubmit:\n', formattedValues);
+        setFormValues(formattedValues);
         resetForm();
       }
     } catch (error) {
@@ -84,6 +85,7 @@ const ModalAddNotice = ({ onClose }) => {
               errors={formik.errors}
               onNext={e => handleNext(e, formik.values, formik.validateForm)}
               values={formik.values}
+              setFieldValue={formik.setFieldValue}
             />
           ) : (
             <FormStep2

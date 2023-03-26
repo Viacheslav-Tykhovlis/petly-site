@@ -12,15 +12,11 @@ export const validationSchemaStep1 = Yup.object().shape({
   birthdate: Yup.lazy((value, schema) => {
     const category = schema.parent.category;
     if (category !== 'lost') {
-      return Yup.string()
-        .matches(
-          /^(0[1-9]|[12][0-9]|3[01])\.([01][0-9]|2[0-4])\.\d{4}$/,
-          'Enter the birthdate in the format DD.MM.YYYY',
-        )
+      return Yup.date()
+        .typeError('Enter the birthdate in the format DD.MM.YYYY')
         .required('Required field');
     } else {
-      return Yup.string().matches(
-        /^(0[1-9]|[12][0-9]|3[01])\.([01][0-9]|2[0-4])\.\d{4}$/,
+      return Yup.date().typeError(
         'Enter the birthdate in the format DD.MM.YYYY',
       );
     }
