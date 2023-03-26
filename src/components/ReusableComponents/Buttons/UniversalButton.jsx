@@ -8,7 +8,7 @@ const UniversalButton = ({
   onClick,
   children,
   name,
-  width,
+  width = '100%',
   selected,
 }) => {
   return (

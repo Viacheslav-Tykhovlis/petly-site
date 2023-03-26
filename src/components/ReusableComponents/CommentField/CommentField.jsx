@@ -6,6 +6,7 @@ import {
   Textarea,
   TextareaContainer,
   ErrorStyle,
+  StyledSpan,
 } from './CommentField.styled.jsx';
 
 const CommentField = ({ name, form, plaseHold, comment }) => {
@@ -15,7 +16,7 @@ const CommentField = ({ name, form, plaseHold, comment }) => {
     <TextareaContainer>
       <TextareaLabel>
         {comment}
-        {/* <span>*</span> */}
+        <StyledSpan>*</StyledSpan>
       </TextareaLabel>
       <Textarea
         {...field}
@@ -23,7 +24,7 @@ const CommentField = ({ name, form, plaseHold, comment }) => {
         form={form}
         as="textarea"
         type="text"
-        placeholder={plaseHold}
+        placeholder="Type comments"
       />
       <ErrorStyle name={name} component="div" />
     </TextareaContainer>

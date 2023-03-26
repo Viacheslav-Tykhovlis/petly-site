@@ -27,6 +27,7 @@ const InputField = ({
         {label}
         <StyledSpan>{span}</StyledSpan>
       </Label>
+
       <FieldStyle
         type={type}
         name={name}
@@ -37,6 +38,7 @@ const InputField = ({
         onBlur={onBlur}
         onFocus={onFocus}
       />
+
       <ErrorStyle name={name} component="div" />
       {children}
     </FieldWrapper>

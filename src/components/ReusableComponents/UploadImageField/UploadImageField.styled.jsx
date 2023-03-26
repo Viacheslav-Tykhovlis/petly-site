@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 export const LoadImageCont = styled.div`
@@ -25,7 +25,8 @@ export const LoadImgLabel = styled.label`
   font-weight: ${props => props.theme.fontWeight.medium};
   font-size: ${props => props.theme.fontSizes.s};
   line-height: 1.37;
-  ${props => props.theme.mq.tablet}: {
+
+  @media screen and (min-width: 768px) {
     font-size: ${props => props.theme.fontSizes.l};
     line-height: 1.08;
     margin-top: ${({ form }) => (form === 'userPet' ? '0px' : '16px')};

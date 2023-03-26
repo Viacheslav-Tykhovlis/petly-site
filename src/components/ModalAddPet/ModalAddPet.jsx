@@ -2,13 +2,7 @@ import { useState } from 'react';
 import { Formik } from 'formik';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
-import {
-  CloseModalButton,
-  Container,
-  ControlBox,
-  FormStyled,
-  Title,
-} from './ModalAddPet.styled';
+import { Container, ControlBox, FormStyled, Title } from './ModalAddPet.styled';
 import {
   initialValues,
   validationSchemaStepOne,
@@ -17,9 +11,11 @@ import {
 import UniversalButton from 'components/ReusableComponents/Buttons/UniversalButton';
 import UploadImageField from 'components/ReusableComponents/UploadImageField/UploadImageField';
 import CommentField from 'components/ReusableComponents/CommentField/CommentField';
+import { CloseModalButton } from 'components/ReusableComponents/Buttons/CloseModalButton';
 
-const ModalAddPet = ({ onClose }) => {
+const ModalAddPet = ({ closeModal }) => {
   const [currentStep, setCurrentStep] = useState(1);
+  console.log(currentStep);
   // const [file, setFile] = useState(null);
   // const [fileDataURL, setFileDataURL] = useState(null);
 
@@ -50,7 +46,7 @@ const ModalAddPet = ({ onClose }) => {
 
   return (
     <Container>
-      <CloseModalButton onClick={onClose} step={currentStep} />
+      <CloseModalButton closeModal={closeModal} step={currentStep} />
       <Title>Add pet</Title>
 
       <Formik
@@ -64,8 +60,9 @@ const ModalAddPet = ({ onClose }) => {
         {({ isSubmitting, values, setFieldValue }) => (
           <FormStyled>
             {currentStep === 1 && (
-              <StepOne handleNext={handleNext} onClose={onClose} />
+              <StepOne handleNext={handleNext} onClose={closeModal} />
             )}
+
             {currentStep === 2 && (
               <StepTwo>
                 <UploadImageField
@@ -78,39 +75,36 @@ const ModalAddPet = ({ onClose }) => {
                   //   setFieldValue('photo', e.currentTarget.files[0]);
                   // }}
                 />
-                <CommentField name="comments" form="userPet" />
+                <CommentField
+                  name="comments"
+                  form="userPet"
+                  comment="Comments"
+                />
               </StepTwo>
             )}
 
             <ControlBox>
               {currentStep === 1 && (
-                <UniversalButton
-                  name="transparent"
-                  type="button"
-                  width="100%"
-                  onClick={onClose}
-                >
-                  <span>Cancel</span>
-                </UniversalButton>
+                <>
+                  <UniversalButton name="filled" onClick={handleNext}>
+                    <span>Next</span>
+                  </UniversalButton>
+                  <UniversalButton name="transparent" onClick={closeModal}>
+                    <span>Cancel</span>
+                  </UniversalButton>
+                </>
               )}
+
               {currentStep === 2 && (
-                <UniversalButton
-                  name="transparent"
-                  type="button"
-                  width="100%"
-                  onClick={handleBack}
-                >
-                  <span>back</span>
-                </UniversalButton>
+                <>
+                  <UniversalButton name="filled" disabled={isSubmitting}>
+                    <span>Done</span>
+                  </UniversalButton>
+                  <UniversalButton name="transparent" onClick={handleBack}>
+                    <span>Back</span>
+                  </UniversalButton>
+                </>
               )}
-              <UniversalButton
-                name="filled"
-                type="submit"
-                width="100%"
-                disabled={isSubmitting}
-              >
-                {currentStep < 2 ? <span> next</span> : <span>done</span>}
-              </UniversalButton>
             </ControlBox>
           </FormStyled>
         )}

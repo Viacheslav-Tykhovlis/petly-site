@@ -12,7 +12,6 @@ const StepOne = () => {
         placeholder="Type name pet"
         span="*"
       />
-
       <InputField
         label="Date of birth"
         id="birthdate"
@@ -21,7 +20,6 @@ const StepOne = () => {
         placeholder="Type date of birth"
         span="*"
       />
-
       <InputField
         label="Breed"
         id="breed"

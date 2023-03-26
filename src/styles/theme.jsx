@@ -1,13 +1,12 @@
-const breakpoints = ['320', '768', '1280'];
+export const breakpoints = ['320', '768', '1280'];
 
 export const theme = Object.freeze({
   colors: {
     white: '#ffffff',
     black: '#111111',
-    accent: '#f59256',
-    backgroundFormInput: '#fdf7f2',
+    accent: '#f59256', //orange
+    backgroundFormInput: '#FDF7F2',
     transparentBackground: 'rgba(255, 255, 255, 0.6)',
-    mainBackground: '#fdf7f2', //orange
     borderColor: 'rgba(245, 146, 86, 0.5)',
     secondaryText: 'rgba(17, 17, 17, 0.6)', // grey
     primaryText: '#535353', // grey text search

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { Field, ErrorMessage } from 'formik';
 
 export const TextareaContainer = styled.label`
@@ -59,4 +59,8 @@ export const ErrorStyle = styled(ErrorMessage)`
     font-size: ${props => props.theme.fontSizes.xxxs};
     bottom: -10px;
   }
+`;
+
+export const StyledSpan = styled.span`
+  color: ${props => props.theme.colors.accent};
 `;
