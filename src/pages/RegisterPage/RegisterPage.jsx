@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-import { useToggleForm } from '../../hooks/useToggleForm';
+import { useDispatch } from 'react-redux';
+import { useToggleForm } from 'hooks/useToggleForm';
 import { SectionRegisterPage } from './RegisterPage.styled';
 import {
   RegisterFormFirst,
   RegisterFormSecond,
 } from 'components/RegisterForm/RegisterForm';
 import { postRegisterUser } from 'services/postRegisterUser';
-
+// import {register} from 'redux/register/registerOperation';
+import { logIn } from 'redux/login/logIn-operations';
+import { store } from 'redux/store';
 
 const RegisterPage = () => {
-
+  const dispatch = useDispatch();
   const { isFormOpen, toggle, setIsFormOpen } = useToggleForm();
 
   const [email, setEmail] = useState('');
@@ -55,17 +58,27 @@ const RegisterPage = () => {
     setPhone('');
   };
 
+  const doStuff = async userForm => {
+    try {
+      const data = await postRegisterUser(userForm);
+      const { email, password } = userForm;
+      if (data.code === 201) {
+        dispatch(logIn({ email, password }));
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
-    const user = { email, password, name, city, phone };
-    postRegisterUser(user);
+    const userForm = { email, password, name, city, phone };
+    doStuff(userForm);
     reset();
     setIsFormOpen(true);
   };
 
-
-  
-    return (
+  return (
     <>
       <SectionRegisterPage>
         {isFormOpen ? (
@@ -82,8 +95,8 @@ const RegisterPage = () => {
             name={name}
             city={city}
             phone={phone}
-              onChange={handleChange}
-              onSubmit={handleSubmit}
+            onChange={handleChange}
+            onSubmit={handleSubmit}
           />
         )}
       </SectionRegisterPage>

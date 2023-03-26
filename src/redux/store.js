@@ -15,7 +15,6 @@ import {
 
 import { newsReducer } from './news/newsSlice';
 
-
 const logInPersistConfig = {
   key: 'login',
   storage,
