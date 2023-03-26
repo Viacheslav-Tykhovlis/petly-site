@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 export const ButtonStyled = styled.button`
   height: 40px;
@@ -46,9 +46,9 @@ export const ButtonStyled = styled.button`
     }
   }};
 
-  transition: color ${({ theme }) => theme.amimation.cubicBezier},
-    background-color ${({ theme }) => theme.amimation.cubicBezier},
-    border-color ${({ theme }) => theme.amimation.cubicBezier};
+  transition: color ${props => props.theme.animation.cubicBezier},
+    background-color ${props => props.theme.animation.cubicBezier},
+    border-color ${props => props.theme.animation.cubicBezier};
   &:hover,
   &:focus {
     border-color: ${({ theme }) => theme.colors.accent};

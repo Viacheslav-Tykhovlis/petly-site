@@ -1,73 +1,35 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { Form } from 'formik';
-import { RxCross1 } from 'react-icons/rx';
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   padding: 40px 20px;
-  ${props => props.theme.mq.tablet} {
+  background-color: ${props => props.theme.colors.white};
+  border-radius: 20px;
+
+  @media screen and (min-width: 768px) {
     width: 608px;
     padding: 40px 80px;
   }
 `;
 
-export const CloseModalButton = ({ onClick, step }) => {
-  return (
-    <CloseButton onClick={onClick} step={step}>
-      <RxCross1 />
-    </CloseButton>
-  );
-};
-
-const CloseButton = styled.button`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background-color: ${props => props.theme.colors.mainBackground};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: flex-end;
-  border: none;
-  cursor: pointer;
-  transition: all ${p => p.theme.animation.cubicBezier};
-
-  &:hover {
-    opacity: 0.9;
-    transform: rotate(15deg);
-  }
-  svg {
-    color: black;
-    font-size: ${props => props.theme.fontSizes.l};
-  }
-
-  ${props => props.theme.mq.tablet} {
-    width: 44px;
-    height: 44px;
-    /* top: ${p => (p.step === 1 ? '20px' : '24px')};
-    right: ${p => (p.step === 1 ? '20px' : '24px')}; */
-    svg {
-      font-size: ${props => props.theme.fontSizes.xl};
-    }
-  }
-`;
-
 export const Title = styled.h2`
   font-family: 'Manrope';
-  font-style: normal;
+  text-align: center;
   font-weight: ${props => props.theme.fontWeight.medium};
   font-size: ${props => props.theme.fontSizes.l};
   line-height: 1.37;
-  margin-bottom: 20px;
-  ${props => props.theme.mq.tablet} {
+
+  margin-bottom: ${p => (p.step === 1 ? '28px' : '20px')};
+
+  @media screen and (min-width: 768px) {
     font-size: 36px;
+    margin-bottom: ${p => (p.step === 1 ? '40px' : '20px')};
   }
 `;
 
@@ -79,20 +41,18 @@ export const FormStyled = styled(Form)`
 `;
 
 export const ControlBox = styled.div`
-  width: 100%;
-  height: 92px;
   display: flex;
-  margin-top: 32px;
   flex-direction: column;
-  justify-content: space-between;
-  ${props => props.theme.mq.tablet} {
-    height: 44px;
-    display: flex;
-    flex-direction: row;
-    /* flex: grid; */
-    gap: 0 20px;
+  gap: 12px;
+  margin-top: 24px;
+
+  @media screen and (min-width: 768px) {
     width: 380px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 20px;
+    margin-top: 12px;
   }
 `;
 

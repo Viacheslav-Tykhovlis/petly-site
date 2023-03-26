@@ -42,6 +42,11 @@ const PetsData = () => {
       </Flex>
 
       <PetsList pets={pets} />
+      {isOpen && (
+        <Modal onClose={() => setIsOpen(false)}>
+          <ModalAddPet closeModal={() => setIsOpen(false)} />
+        </Modal>
+      )}
     </BoxPetsData>
   );
 };
