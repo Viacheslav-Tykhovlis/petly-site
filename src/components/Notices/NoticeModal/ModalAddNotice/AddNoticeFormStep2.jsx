@@ -1,32 +1,34 @@
+import { Field, Form } from 'formik';
 import femaleIcon from 'img/icons/female.png';
 import maleIcon from 'img/icons/male.png';
-import { Form, ErrorMessage, Field } from 'formik';
 import {
-  StyledModal,
+  BtnsModalWrapper,
   CloseModalButton,
-  StyledTitle,
-  StyledTextInputLabel,
-  RadioSexBtnWrapper,
-  RadioSexLabel,
-  RadioSexButton,
-  MaleIcon,
-  RadioSexTitle,
   FemaleIcon,
   InputTextGroupWrapper,
   InputWrapper,
-  StyledInput,
-  StyledFileInput,
-  UploadButton,
-  PlusIcon,
-  StyledTextareaAutosize,
-  BtnsModalWrapper,
-  ModalBtnNext,
+  MaleIcon,
   ModalBtnBack,
+  ModalBtnNext,
+  PlusIcon,
+  RadioSexBtnWrapper,
+  RadioSexButton,
+  RadioSexLabel,
+  RadioSexTitle,
+  StyledFileInput,
+  StyledInput,
+  StyledModal,
+  StyledTextInputLabel,
+  StyledTextareaAutosize,
+  StyledTitle,
+  UploadButton,
 } from '../ModalAddNotice.styled';
+import { FormikErrorMessage } from './FormikErrorMessage';
+import { SexRadioButton } from './SexRadioButton ';
 
 export const FormStep2 = ({
   onBack,
-  values,
+  values: { sex, location, category, price, comments },
   handleChange,
   onClose,
   handleBlur,
@@ -42,35 +44,25 @@ export const FormStep2 = ({
         <StyledTextInputLabel>The sex:</StyledTextInputLabel>
 
         <RadioSexBtnWrapper>
-          <RadioSexLabel htmlFor="male">
-            <RadioSexButton
-              type="radio"
-              name="sex"
-              value="male"
-              id="male"
-              checked={values.sex === 'male'}
-              onChange={handleChange}
-            />
+          <SexRadioButton
+            id="male"
+            value="male"
+            label="Male"
+            iconSrc={maleIcon}
+            altText="Male Icon"
+            checked={sex === 'male'}
+            onChange={handleChange}
+          />
 
-            <MaleIcon src={maleIcon} alt="Male Icon" />
-            <RadioSexTitle active={values.sex === 'male'}>Male</RadioSexTitle>
-          </RadioSexLabel>
-
-          <RadioSexLabel htmlFor="female">
-            <RadioSexButton
-              type="radio"
-              name="sex"
-              value="female"
-              id="female"
-              checked={values.sex === 'female'}
-              onChange={handleChange}
-            />
-
-            <FemaleIcon src={femaleIcon} alt="Female Icon" />
-            <RadioSexTitle active={values.sex === 'female'}>
-              Female
-            </RadioSexTitle>
-          </RadioSexLabel>
+          <SexRadioButton
+            id="female"
+            value="female"
+            label="Female"
+            iconSrc={femaleIcon}
+            altText="Female Icon"
+            checked={sex === 'female'}
+            onChange={handleChange}
+          />
         </RadioSexBtnWrapper>
 
         <InputTextGroupWrapper>
@@ -82,17 +74,15 @@ export const FormStep2 = ({
               type="text"
               name="location"
               placeholder="Type location"
-              value={values.location}
+              value={location}
               onChange={handleChange}
               onBlur={handleBlur}
               isvalidfield={touched.location && !errors.location}
             />
-            <ErrorMessage name="location">
-              {msg => <div style={{ color: 'red' }}>{msg}</div>}
-            </ErrorMessage>
+            <FormikErrorMessage name="location" />
           </InputWrapper>
 
-          {values.category === 'sell' && (
+          {category === 'sell' && (
             <InputWrapper>
               <StyledTextInputLabel htmlFor="Price">
                 Price:
@@ -101,14 +91,12 @@ export const FormStep2 = ({
                 type="text"
                 name="price"
                 placeholder="Type price"
-                value={values.price}
+                value={price}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 isvalidfield={touched.price && !errors.price}
               />
-              <ErrorMessage name="price">
-                {msg => <div style={{ color: 'red' }}>{msg}</div>}
-              </ErrorMessage>
+              <FormikErrorMessage name="price" />
             </InputWrapper>
           )}
         </InputTextGroupWrapper>
@@ -140,15 +128,13 @@ export const FormStep2 = ({
             name="comments"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.comments}
+            value={comments}
             placeholder="Type comment"
             minRows={1}
             maxRows={6}
             isvalidfield={touched.comments && !errors.comments}
           />
-          <ErrorMessage name="comments">
-            {msg => <div style={{ color: 'red' }}>{msg}</div>}
-          </ErrorMessage>
+          <FormikErrorMessage name="comments" />
         </InputWrapper>
 
         <BtnsModalWrapper>

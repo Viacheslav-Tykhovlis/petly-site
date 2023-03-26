@@ -1,4 +1,4 @@
-import { ErrorMessage, Form } from 'formik';
+import { Form } from 'formik';
 import {
   BtnsModalWrapper,
   CloseModalButton,
@@ -15,11 +15,12 @@ import {
   StyledTextInputLabel,
   StyledTitle,
 } from '../ModalAddNotice.styled';
-// CloseModalButton
+import { FormikErrorMessage } from './FormikErrorMessage';
+import { RadioOption } from './RadioOption';
 
 export const FormStep1 = ({
   onNext,
-  values,
+  values: { category, title, name, birthdate, breed },
   handleChange,
   onClose,
   handleBlur,
@@ -32,48 +33,35 @@ export const FormStep1 = ({
         <CloseModalButton onClick={onClose} step={1} />
         <StyledTitle step={1}>Add pet</StyledTitle>
         <StyledSubtitle>
-          Lorem ipsum dolor, sit amet consectetur Lorem ipsum dolor, sit amet
-          consectetur
+          Add a new pet advertisement and provide necessary details.
         </StyledSubtitle>
         <RadioWrapper>
-          <StyledLabel htmlFor="lost" selected={values.category === 'lost'}>
-            <StyledField
-              type="radio"
-              name="category"
-              value="lost"
-              id="lost"
-              checked={values.category === 'lost'}
-              onChange={handleChange}
-            />
-            lost/found
-          </StyledLabel>
+          <RadioOption
+            name="category"
+            value="lost"
+            id="lost"
+            label="lost/found"
+            checked={category === 'lost'}
+            onChange={handleChange}
+          />
 
-          <StyledLabel
-            htmlFor="goodHands"
-            selected={values.category === 'goodHands'}
-          >
-            <StyledField
-              type="radio"
-              name="category"
-              value="goodHands"
-              id="goodHands"
-              checked={values.category === 'goodHands'}
-              onChange={handleChange}
-            />
-            in good hands
-          </StyledLabel>
+          <RadioOption
+            name="category"
+            value="goodHands"
+            id="goodHands"
+            label="in good hands"
+            checked={category === 'goodHands'}
+            onChange={handleChange}
+          />
 
-          <StyledLabel htmlFor="sell" selected={values.category === 'sell'}>
-            <StyledField
-              type="radio"
-              name="category"
-              value="sell"
-              id="sell"
-              checked={values.category === 'sell'}
-              onChange={handleChange}
-            />
-            sell
-          </StyledLabel>
+          <RadioOption
+            name="category"
+            value="sell"
+            id="sell"
+            label="sell"
+            checked={category === 'sell'}
+            onChange={handleChange}
+          />
         </RadioWrapper>
 
         <InputGroupWrapper>
@@ -85,14 +73,12 @@ export const FormStep1 = ({
               type="text"
               name="title"
               placeholder="Type name"
-              value={values.title}
+              value={title}
               onChange={handleChange}
               onBlur={handleBlur}
               isvalidfield={touched.title && !errors.title}
             />
-            <ErrorMessage name="title">
-              {msg => <div style={{ color: 'red' }}>{msg}</div>}
-            </ErrorMessage>
+            <FormikErrorMessage name="title" />
           </InputWrapper>
 
           <InputWrapper>
@@ -101,16 +87,14 @@ export const FormStep1 = ({
               type="text"
               name="name"
               placeholder="Type name pet"
-              value={values.name}
+              value={name}
               onChange={handleChange}
               onBlur={handleBlur}
               isvalidfield={touched.name && !errors.name}
             />
-            <ErrorMessage name="name">
-              {msg => <div style={{ color: 'red' }}>{msg}</div>}
-            </ErrorMessage>
+            <FormikErrorMessage name="name" />
           </InputWrapper>
-          {values.category !== 'lost' && (
+          {category !== 'lost' && (
             <InputWrapper>
               <StyledTextInputLabel htmlFor="birthdate">
                 Date of birth
@@ -119,14 +103,12 @@ export const FormStep1 = ({
                 type="text"
                 name="birthdate"
                 placeholder="Type date of birth"
-                value={values.birthdate}
+                value={birthdate}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 isvalidfield={touched.birthdate && !errors.birthdate}
               />
-              <ErrorMessage name="birthdate">
-                {msg => <div style={{ color: 'red' }}>{msg}</div>}
-              </ErrorMessage>
+              <FormikErrorMessage name="birthdate" />
             </InputWrapper>
           )}
           <InputWrapper>
@@ -135,14 +117,12 @@ export const FormStep1 = ({
               type="text"
               name="breed"
               placeholder="Type breed"
-              value={values.breed}
+              value={breed}
               onChange={handleChange}
               onBlur={handleBlur}
               isvalidfield={touched.breed && !errors.breed}
             />
-            <ErrorMessage name="breed">
-              {msg => <div style={{ color: 'red' }}>{msg}</div>}
-            </ErrorMessage>
+            <FormikErrorMessage name="breed" />
           </InputWrapper>
         </InputGroupWrapper>
 
