@@ -4,6 +4,8 @@ import storage from 'redux-persist/lib/storage';
 import { logInReducer } from './login/logIn-slice';
 import { newsReducer } from './news/newsSlice';
 import { noticesReducer } from './notices/noticesSlice';
+import { userReducer } from './users/userSlice';
+import { petsReducer } from './pets/petSlice';
 
 import {
   persistStore,
@@ -27,6 +29,8 @@ export const store = configureStore({
     logIn: persistReducer(logInPersistConfig, logInReducer),
     news: newsReducer,
     notices: noticesReducer,
+    users: userReducer,
+    pets: petsReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

@@ -1,21 +1,19 @@
 import React from 'react';
-// import { useDispatch } from 'react-redux';
-// import { logout } from 'redux/user/userSlice';
+import { useDispatch } from 'react-redux';
+import { logOut } from 'redux/login/logIn-operations';
 import { BoxLogOut, LogoutSpan } from './Logout.styled';
 import { ButtonLogout } from '../ButtonUser/ButtonUser';
+// import { Navigate } from 'react-router';
 
 const Logout = () => {
-  // const dispatch = useDispatch();
-  // const handleLogout = () => {
-  //   dispatch(logout());
-  // };
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logOut());
+    // return <Navigate to="/login" />;
+  };
   return (
-    <BoxLogOut>
-      <ButtonLogout
-        type="button"
-        ariaLabel="logout button"
-        //   onClick={handleLogout}
-      />
+    <BoxLogOut type="button" ariaLabel="logout button">
+      <ButtonLogout onClick={handleLogout} />
       <LogoutSpan>Log Out</LogoutSpan>
     </BoxLogOut>
   );

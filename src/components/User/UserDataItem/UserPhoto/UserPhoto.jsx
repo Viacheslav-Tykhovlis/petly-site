@@ -13,18 +13,16 @@ const UserPhoto = () => {
   return (
     <Flex>
       <input type="file" name="file" id="file" style={inputfile}></input>
-      <label for="file">
+      <label htmlFor="file">
         <ImageStyled>
           <AiOutlinePlus style={PlusStyle} />
         </ImageStyled>
       </label>
 
       <input type="file" name="file" id="foto" style={inputfile}></input>
-      <label for="file">
-        <FlexSvg>
+      <label htmlFor="file">
+        <FlexSvg type="button" ariaLabel="edit photo button">
           <ButtonEditPhoto
-            type="button"
-            ariaLabel="edit photo button"
             widthMsvg={'20px'}
             heighthMsvg={'20px'}
             widthTsvg={'20px'}
