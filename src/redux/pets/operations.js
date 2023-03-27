@@ -8,7 +8,7 @@ export const fetchPets = createAsyncThunk(
   async (_, { thunkAPI }) => {
     try {
       const response = await axios.get('/user/about');
-      return response.data.allUserPets;
+      return response.data.data.userWithPet;
     } catch (error) {
       console.log('fetchPetsError:', error.message);
       return thunkAPI(error.message);
@@ -29,13 +29,13 @@ export const addPet = createAsyncThunk(
 );
 
 export const deletePet = createAsyncThunk(
-  'pets/deletePet',
-  async (_id, { thunkAPI }) => {
+  'pet/deletePet',
+  async (petId, thunkAPI) => {
     try {
-      const response = await axios.delete(`/pets/${_id}`);
-      return response.data.allUserPets;
+      const response = await axios.delete(`/pets/${petId}`);
+      return response.data;
     } catch (error) {
-      return thunkAPI(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );

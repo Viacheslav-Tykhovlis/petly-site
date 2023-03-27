@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   fetchUser,
+  uploadAvatar,
   // addContact, deleteContact
 } from './operations';
 
@@ -8,7 +9,7 @@ const pendingReducer = state => {
   state.isLoading = true;
 };
 
-const fetchNewsSucceesReducer = (state, action) => {
+const fetchUserSucceesReducer = (state, action) => {
   state.items = action.payload;
   state.isLoading = false;
 };
@@ -28,8 +29,11 @@ const userSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchUser.pending, pendingReducer)
-      .addCase(fetchUser.fulfilled, fetchNewsSucceesReducer)
-      .addCase(fetchUser.rejected, rejectedReducer);
+      .addCase(fetchUser.fulfilled, fetchUserSucceesReducer)
+      .addCase(fetchUser.rejected, rejectedReducer)
+      .addCase(uploadAvatar.pending, pendingReducer)
+      .addCase(uploadAvatar.fulfilled, fetchUserSucceesReducer)
+      .addCase(uploadAvatar.rejected, rejectedReducer);
   },
   // extraReducers: {
   //   [fetchUser.pending]: handlePending,
