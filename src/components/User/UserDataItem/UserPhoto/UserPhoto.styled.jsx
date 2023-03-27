@@ -29,7 +29,7 @@ export const Flex = styled.div`
     margin-left: 0px;
   }
 `;
-export const FlexSvg = styled.button`
+export const FlexSvg = styled.div`
   position: absolute;
   display: flex;
   align-items: center;

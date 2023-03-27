@@ -10,14 +10,6 @@ const fetchPetsSucceesReducer = (state, action) => {
   state.isLoading = false;
 };
 
-// const deletePetsSucceesReducer = (state, action) => {
-//   state.isLoading = false;
-//   state.error = null;
-//   const { items } = state;
-//   const index = items.findIndex(pet => pet._id === action.payload._id);
-//   items.splice(index, 1);
-// };
-
 const addPetSucceesReducer = (state, action) => {
   state.isLoading = false;
   state.error = null;
@@ -49,7 +41,7 @@ const petsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         const { items } = state;
-        const index = items.findIndex(pet => pet.id === action.payload.id);
+        const index = items.findIndex(pet => pet._id === action.payload.id);
         items.splice(index, 1);
       })
       .addCase(deletePet.rejected, rejectedReducer);
@@ -57,11 +49,3 @@ const petsSlice = createSlice({
 });
 
 export const petsReducer = petsSlice.reducer;
-
-// [addContact.pending]: handlePending,
-//     [addContact.fulfilled](state, action) {
-//       state.isLoading = false;
-//       state.error = null;
-//       state.items.push(action.payload);
-//     },
-//     [addContact.rejected]: handleRejected,
