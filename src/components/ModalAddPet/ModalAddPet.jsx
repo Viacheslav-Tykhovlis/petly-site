@@ -13,11 +13,14 @@ import UniversalButton from 'components/ReusableComponents/Buttons/UniversalButt
 import UploadImageField from 'components/ReusableComponents/UploadImageField/UploadImageField';
 import CommentField from 'components/ReusableComponents/CommentField/CommentField';
 import { CloseModalButton } from 'components/ReusableComponents/Buttons/CloseModalButton';
+import { useDispatch } from 'react-redux';
+import { addPet } from 'redux/pets/operations';
 
 const ModalAddPet = ({ closeModal }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [file, setFile] = useState(null);
   const [fileDataURL, setFileDataURL] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let fileReader,
@@ -46,6 +49,7 @@ const ModalAddPet = ({ closeModal }) => {
       setCurrentStep(currentStep + 1);
     } else {
       const birthdate = convertStringToDate(values.birthdate);
+
       const data = new FormData();
       data.append('name', values.name);
       data.append('birthdate', birthdate);
@@ -54,7 +58,7 @@ const ModalAddPet = ({ closeModal }) => {
       data.append('comments', values.comments);
 
       try {
-        // const response = await addUserPet(data);
+        dispatch(addPet(...{ data }));
       } catch (error) {
         console.log('Failed to add pet:', error);
       }
