@@ -69,22 +69,36 @@ export const SearchBtn = styled.button`
   position: absolute;
   right: 12px;
   top: 8px;
-  background: transparent;
-  border: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: transparent;
+  border-color: transparent;
+  border: none;
+  fill: #111111;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:focus,
+  &:hover {
+    outline: transparent;
+    fill: rgba(245, 146, 86, 0.5);
+  }
   @media screen and (min-width: 768px) {
     width: 24px;
     height: 24px;
     top: 10px;
   }
 `;
-export const DeleteBtn = styled.button`
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  right: 12px;
-  top: 8px;
-  background: transparent;
-  border: transparent;
+export const DeleteBtn = styled(SearchBtn)`
+  stroke: #111111;
+  transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:focus,
+  &:hover {
+    outline: transparent;
+    stroke: rgba(245, 146, 86, 0.5);
+  }
   @media screen and (min-width: 768px) {
     width: 24px;
     height: 24px;
