@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { StyledLearnMoreButton } from 'components/ReusableComponents/Buttons/StyledLearnMoreButton';
 import { StyledLikeButton } from 'components/ReusableComponents/Buttons/StyledLikeButton';
@@ -28,16 +28,24 @@ import {
 import { StyledDeleteButton } from 'components/ReusableComponents/Buttons/StyledDeleteButton';
 
 import { selectIsLoggedIn } from 'redux/login/logIn-selectors';
-import { getIsLoading } from 'redux/notices/noticesSelectors';
+import { getIsLoading, getNotices } from 'redux/notices/noticesSelectors';
 
 import defaultImg from '../../../img/defaultImg.jpg';
+import {
+  addToFavorite,
+  deleteFromFavorite,
+} from 'redux/notices/noticesOperations';
 
 const NoticeCategoryItem = ({ notice }) => {
+  const dispatch = useDispatch();
+  const notices = useSelector(getNotices);
   const isLoading = useSelector(getIsLoading);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [noticeDetails, setNoticeDetails] = useState(null);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isOwnNotice, setIsOwnNotice] = useState(false);
 
   const { _id, category, title, birthdate, breed, location, price, image } =
     notice;
@@ -60,11 +68,38 @@ const NoticeCategoryItem = ({ notice }) => {
     if (!isLoggedIn) {
       return alert('Please, signup or login to add notice to favorites');
     }
+
     console.log('add to faforite');
+    if (isFavorite) {
+      dispatch(addToFavorite(_id));
+      setIsFavorite(true);
+      console.log(isFavorite);
+    }
+    if (!isFavorite) {
+      dispatch(deleteFromFavorite());
+      setIsFavorite(isFavorite);
+    }
   };
 
-  const onDeleteFromFavorite = () => {
-    console.log('delete from faforite');
+  useEffect(() => {
+    const findOwnNotices = () => {
+      // console.log(_id);
+      // console.log(notices);
+      // const own = notices.some(elem => elem._id === _id);
+      // console.log(own);
+      // if (own) {
+      //   setIsOwnNotice(true);
+      //   return;
+      // }
+      setIsOwnNotice(false);
+
+      // _id
+    };
+    findOwnNotices();
+  }, [_id, notices]);
+
+  const onDeleteNotice = () => {
+    console.log('delete notice');
   };
 
   return (
@@ -98,7 +133,7 @@ const NoticeCategoryItem = ({ notice }) => {
               {category === 'sell' && (
                 <Row>
                   <FirstColumn>Price:</FirstColumn>
-                  <SecondColumn>{`${price || '-'}`}</SecondColumn>
+                  <SecondColumn>{`${price || '-'}$`}</SecondColumn>
                 </Row>
               )}
             </TableBody>
@@ -110,9 +145,9 @@ const NoticeCategoryItem = ({ notice }) => {
             onButtonClick={onLearMoreButtonClick}
             buttonName="Learn more"
           />
-          {true && (
+          {isLoggedIn && isOwnNotice && (
             <StyledDeleteButton
-              onButtonClick={onDeleteFromFavorite}
+              onButtonClick={onDeleteNotice}
               buttonName="Delete"
             />
           )}
@@ -125,6 +160,7 @@ const NoticeCategoryItem = ({ notice }) => {
             noticeDetails={noticeDetails}
             onClose={onLearMoreButtonClick}
             onAddToFavorite={onAddToFavorite}
+            // isFavorite={isFavorite}
           />
         </Modal>
       )}

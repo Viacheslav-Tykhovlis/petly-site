@@ -17,6 +17,7 @@ import { Modal } from 'components/Modal/Modal';
 import { selectIsLoggedIn } from 'redux/login/logIn-selectors';
 import { getIsLoading } from 'redux/notices/noticesSelectors';
 import {
+  fetchFavoriteNotices,
   fetchNoticesByCategory,
   fetchNoticesByOwner,
 } from 'redux/notices/noticesOperations';
@@ -30,6 +31,14 @@ const NoticesPage = () => {
 
   useEffect(() => {
     // list of functions
+    const searchNoticeByCategory = () => {
+      try {
+        dispatch(fetchNoticesByCategory(category));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     const searchNoticesByOwner = () => {
       try {
         dispatch(fetchNoticesByOwner());
@@ -38,9 +47,9 @@ const NoticesPage = () => {
       }
     };
 
-    const searchNoticeByCategory = () => {
+    const searchFavoriteNotices = () => {
       try {
-        dispatch(fetchNoticesByCategory(category));
+        dispatch(fetchFavoriteNotices());
       } catch (error) {
         console.log(error);
       }
@@ -53,12 +62,18 @@ const NoticesPage = () => {
     }
 
     if (category === 'favorite') {
-      // array of favorite notices
-      // dispatch favorite
+      searchFavoriteNotices();
       return;
     }
 
-    searchNoticeByCategory();
+    if (
+      category === 'sell' ||
+      category === 'lost-found' ||
+      category === 'for-free'
+    ) {
+      searchNoticeByCategory();
+      return;
+    }
   }, [category, dispatch]);
 
   const onAddButtonClick = () => {
