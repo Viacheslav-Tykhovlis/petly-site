@@ -5,10 +5,10 @@ import { ButtonBasket } from '../../ButtonUser/ButtonUser';
 import { deletePet } from 'redux/pets/operations';
 import { useDispatch } from 'react-redux';
 
-const PetListItem = ({ photo, name, birthday, breed, comments, _id }) => {
+const PetListItem = ({ photo, name, birthday, breed, comments, petId }) => {
   const dispatch = useDispatch();
   return (
-    <ContainerPets key={_id}>
+    <ContainerPets key={petId}>
       <Image src={photo} alt={name} />
       <ul>
         <PetName name={name} />
@@ -19,7 +19,9 @@ const PetListItem = ({ photo, name, birthday, breed, comments, _id }) => {
       <FlexBasket>
         <ButtonBasket
           type="button"
-          onClick={() => dispatch(deletePet(_id))}
+          onClick={() => {
+            dispatch(deletePet(petId));
+          }}
           ariaLabel="basket button"
           widthM={'20px'}
           heightM={'20px'}

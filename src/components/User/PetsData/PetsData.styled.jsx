@@ -14,6 +14,13 @@ export const Flex = styled.div`
 `;
 
 export const BoxPetsData = styled.div`
+  width: 280px;
+  @media screen and (min-width: 768px) {
+    width: 704px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 821px;
+  }
   /* display: flex;
   justify-content: space-between;
   padding-right: 16px;
