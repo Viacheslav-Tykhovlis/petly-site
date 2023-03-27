@@ -29,11 +29,10 @@ export const fetchNoticesByTitle = createAsyncThunk(
   },
 );
 
-// убрать userId ??
 export const fetchNoticesByOwner = createAsyncThunk(
   'notices/fetchByOwner',
-  async (userId, thunkAPI) => {
-    const url = `/notices/userNotices/${userId}`;
+  async (_, thunkAPI) => {
+    const url = `/notices/userNotices`;
     try {
       const result = await axios.get(url);
       return result.data.data;
