@@ -30,7 +30,7 @@ export const ButtonCloseModal = styled.button`
   ${props => props.theme.mq.tablet} {
     width: 44px;
     height: 44px;
-    top: 28px;
-    right: 28px;
+    top: 24px;
+    right: 24px;
   }
 `;
