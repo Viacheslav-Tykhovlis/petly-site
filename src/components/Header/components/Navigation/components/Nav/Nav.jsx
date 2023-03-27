@@ -1,17 +1,17 @@
-import { NavList, NavGeneralLink, NavItem } from './Nav.styled';
+import { NavList, NavGeneralLink } from './Nav.styled';
 
 export const Nav = () => {
   return (
     <NavList>
-      <NavItem>
+      <li>
         <NavGeneralLink to="/news">News</NavGeneralLink>
-      </NavItem>
-      <NavItem>
+      </li>
+      <li>
         <NavGeneralLink to="/notices/sell">Find pet</NavGeneralLink>
-      </NavItem>
-      <NavItem>
+      </li>
+      <li>
         <NavGeneralLink to="/friends">Our friends</NavGeneralLink>
-      </NavItem>
+      </li>
     </NavList>
   );
 };

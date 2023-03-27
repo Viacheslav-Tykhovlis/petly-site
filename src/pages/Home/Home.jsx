@@ -6,7 +6,8 @@ import dog1280 from '../../img/homeImages/fullDogDesk.png';
 export const Background = styled.div`
   z-index: -100;
   position: absolute;
-  bottom: 0;
+  /* bottom: 0; */
+  margin-top: -60px;
   left: 0;
   width: 100%;
   background-image: url(${dog320});
@@ -16,32 +17,32 @@ export const Background = styled.div`
   height: 395px;
 
   @media screen and (min-width: 768px) {
-    /* margin-top: -270px; */
+    margin-top: -270px;
     height: 1008px;
     background-image: url(${dog768});
   }
   @media screen and (min-width: 1280px) {
-    /* margin-top: -308px; */
+    margin-top: -250px;
     height: 700px;
     background-image: url(${dog1280});
   }
 `;
 
 export const HomeTitle = styled.h1`
-  padding-top: 20px;
+  padding-top: 60px;
 
   font-weight: 700;
   font-size: 32px;
   color: #000000;
 
   @media screen and (min-width: 768px) {
-    padding-top: 0;
+    padding-top: 88px;
     font-size: 68px;
     line-height: 1.47;
   }
 
   @media screen and (min-width: 1280px) {
-    padding-top: 32px;
+    padding-top: 92px;
   }
 `;
 

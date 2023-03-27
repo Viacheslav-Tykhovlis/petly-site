@@ -11,7 +11,6 @@ import {
   NavGeneralLink,
   NavHeader,
   AuthButton,
-  NavItem,
 } from './MobileMenu.styled';
 
 export const NavMobile = ({ onClose }) => {
@@ -42,21 +41,21 @@ export const NavMobile = ({ onClose }) => {
           )}
         </AuthButton>
         <NavList>
-          <NavItem>
+          <li>
             <NavGeneralLink to="/news" onClick={onClose}>
               News
             </NavGeneralLink>
-          </NavItem>
-          <NavItem>
+          </li>
+          <li>
             <NavGeneralLink to="/notices/sell" onClick={onClose}>
               Find pet
             </NavGeneralLink>
-          </NavItem>
-          <NavItem>
+          </li>
+          <li>
             <NavGeneralLink to="/friends" onClick={onClose}>
               Our friends
             </NavGeneralLink>
-          </NavItem>
+          </li>
         </NavList>
       </Container>
     </NavMobileContainer>
