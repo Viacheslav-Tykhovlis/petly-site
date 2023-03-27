@@ -13,11 +13,14 @@ import UniversalButton from 'components/ReusableComponents/Buttons/UniversalButt
 import UploadImageField from 'components/ReusableComponents/UploadImageField/UploadImageField';
 import CommentField from 'components/ReusableComponents/CommentField/CommentField';
 import { CloseModalButton } from 'components/ReusableComponents/Buttons/CloseModalButton';
+import { useDispatch } from 'react-redux';
+import { addPet } from 'redux/pets/operations';
 
 const ModalAddPet = ({ closeModal }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [file, setFile] = useState(null);
   const [fileDataURL, setFileDataURL] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let fileReader,
@@ -46,15 +49,16 @@ const ModalAddPet = ({ closeModal }) => {
       setCurrentStep(currentStep + 1);
     } else {
       const birthdate = convertStringToDate(values.birthdate);
+
       const data = new FormData();
       data.append('name', values.name);
       data.append('birthdate', birthdate);
       data.append('breed', values.breed);
       data.append('photo', values.photo);
       data.append('comments', values.comments);
-
       try {
-        // const response = await addUserPet(data);
+        console.log(data);
+        dispatch(addPet(data));
       } catch (error) {
         console.log('Failed to add pet:', error);
       }
@@ -65,7 +69,7 @@ const ModalAddPet = ({ closeModal }) => {
 
   return (
     <Container>
-      <CloseModalButton closeModal={closeModal} step={currentStep} />
+      <CloseModalButton closeModal={closeModal} />
       <Title step={currentStep}>Add pet</Title>
 
       <Formik
@@ -97,32 +101,28 @@ const ModalAddPet = ({ closeModal }) => {
             )}
 
             <ControlBox>
+              <UniversalButton
+                name="filled"
+                type="submit"
+                width="100%"
+                disabled={isSubmitting}
+              >
+                {currentStep < 2 ? <span>Next</span> : <span>Done</span>}
+              </UniversalButton>
+
               {currentStep === 1 && (
-                <>
-                  <UniversalButton
-                    name="filled"
-                    onClick={() => setCurrentStep(2)}
-                  >
-                    <span>Next</span>
-                  </UniversalButton>
-                  <UniversalButton name="transparent" onClick={closeModal}>
-                    <span>Cancel</span>
-                  </UniversalButton>
-                </>
+                <UniversalButton name="transparent" onClick={closeModal}>
+                  <span>Cancel</span>
+                </UniversalButton>
               )}
 
               {currentStep === 2 && (
-                <>
-                  <UniversalButton name="filled" disabled={isSubmitting}>
-                    <span>Done</span>
-                  </UniversalButton>
-                  <UniversalButton
-                    name="transparent"
-                    onClick={() => setCurrentStep(1)}
-                  >
-                    <span>Back</span>
-                  </UniversalButton>
-                </>
+                <UniversalButton
+                  name="transparent"
+                  onClick={() => setCurrentStep(1)}
+                >
+                  <span>Back</span>
+                </UniversalButton>
               )}
             </ControlBox>
           </FormStyled>
