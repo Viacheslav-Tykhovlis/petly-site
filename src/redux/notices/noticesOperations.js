@@ -66,15 +66,42 @@ export const deleteNotice = createAsyncThunk(
   },
 );
 
-// export const fetchNoticeById = createAsyncThunk(
-//   'notices/fetchById',
-//   async (noticeId, thunkAPI) => {
-//     const url = `/notices/noticeId/${noticeId}`;
-//     try {
-//       const result = await axios.get(url);
-//       return result.data.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   },
-// );
+export const fetchFavoriteNotices = createAsyncThunk(
+  'notices/fetchFavorite',
+  async (_, thunkAPI) => {
+    const url = `/notices/getFavorite`;
+    try {
+      const result = await axios.get(url);
+      return result.data.data[0].userLikePets;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const addToFavorite = createAsyncThunk(
+  'notices/addFavorite',
+  async (noticeId, thunkAPI) => {
+    const url = `/notices/addFavorite/${noticeId}`;
+    try {
+      const result = await axios.patch(url);
+      console.log(result);
+      return result.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const deleteFromFavorite = createAsyncThunk(
+  'notices/deleteFavorite',
+  async (noticeId, thunkAPI) => {
+    const url = `/notices/delFavorite/${noticeId}`;
+    try {
+      const result = await axios.patch(url);
+      return result.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);

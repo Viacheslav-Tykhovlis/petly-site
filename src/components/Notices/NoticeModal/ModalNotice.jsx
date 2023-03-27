@@ -19,7 +19,6 @@ import {
   Row,
   FirstColumn,
   SecondColumn,
-  FirstColumnContacts,
   SecondColumnContacts,
 } from './ModalNotice.styled';
 
@@ -83,20 +82,24 @@ const ModalNotice = ({ noticeDetails, onClose, onAddToFavorite }) => {
                 {category === 'sell' && (
                   <Row>
                     <FirstColumn>Price:</FirstColumn>
-                    <SecondColumn>{`${price || '-'}`}</SecondColumn>
+                    <SecondColumn>{`${price || '-'}$`}</SecondColumn>
                   </Row>
                 )}
                 <Row>
-                  <FirstColumnContacts>Email:</FirstColumnContacts>
-                  <SecondColumnContacts href={`mailto:${owner?.email}`}>
-                    {owner?.email || '-'}
-                  </SecondColumnContacts>
+                  <FirstColumn>Email:</FirstColumn>
+                  <td>
+                    <SecondColumnContacts href={`mailto:${owner?.email}`}>
+                      {owner?.email || '-'}
+                    </SecondColumnContacts>
+                  </td>
                 </Row>
                 <Row>
-                  <FirstColumnContacts>Phone:</FirstColumnContacts>
-                  <SecondColumnContacts href={`tel:${owner?.phone}`}>
-                    {owner?.phone || '-'}
-                  </SecondColumnContacts>
+                  <FirstColumn>Phone:</FirstColumn>
+                  <td>
+                    <SecondColumnContacts href={`tel:${owner?.phone}`}>
+                      {owner?.phone || '-'}
+                    </SecondColumnContacts>
+                  </td>
                 </Row>
               </TableBody>
             </Table>
