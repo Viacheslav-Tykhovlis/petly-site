@@ -17,6 +17,7 @@ export const uploadAvatar = createAsyncThunk(
   'user/change',
   async (file, { thunkAPI }) => {
     try {
+      console.log(file);
       const formData = new FormData();
       formData.append('file', file);
       const response = await axios.patch('/auth/change', formData);

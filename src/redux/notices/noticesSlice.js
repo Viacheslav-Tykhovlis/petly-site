@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   addNotice,
+  addToFavorite,
+  deleteFromFavorite,
   deleteNotice,
-  // fetchNoticeById,
+  fetchFavoriteNotices,
   fetchNoticesByCategory,
   fetchNoticesByOwner,
   fetchNoticesByTitle,
@@ -10,6 +12,8 @@ import {
 
 const noticesInitialState = {
   noticesList: [],
+  ownList: [],
+  favoriteList: [],
   isLoading: false,
   searchBtnIsActive: true,
   error: null,
@@ -38,6 +42,7 @@ const noticesSlice = createSlice({
         state.searchBtnIsActive = true;
       })
 
+      // notices by title
       .addCase(fetchNoticesByTitle.pending, state => {
         state.isLoading = true;
         state.error = null;
@@ -55,6 +60,7 @@ const noticesSlice = createSlice({
         state.searchBtnIsActive = true;
       })
 
+      // notices by owner
       .addCase(fetchNoticesByOwner.pending, state => {
         state.isLoading = true;
         state.error = null;
@@ -72,6 +78,7 @@ const noticesSlice = createSlice({
         state.searchBtnIsActive = true;
       })
 
+      // add new notice
       .addCase(addNotice.pending, state => {
         state.isLoading = true;
         state.error = null;
@@ -86,6 +93,7 @@ const noticesSlice = createSlice({
         state.error = action.payload;
       })
 
+      // delete notice
       .addCase(deleteNotice.pending, state => {
         state.isLoading = true;
         state.error = null;
@@ -102,21 +110,61 @@ const noticesSlice = createSlice({
       .addCase(deleteNotice.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-      });
+      })
 
-    //  .addCase(fetchNoticeById.pending, state => {
-    //   state.isLoading = true;
-    //   state.error = null;
-    // })
-    // .addCase(fetchNoticeById.fulfilled, (state, action) => {
-    //   state.isLoading = false;
-    //   state.error = null;
-    //   state.noticesList = action.payload;
-    // })
-    // .addCase(fetchNoticeById.rejected, (state, action) => {
-    //   state.isLoading = false;
-    //   state.error = action.payload;
-    // })
+      // favorite notices
+      .addCase(fetchFavoriteNotices.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+        state.searchBtnIsActive = false;
+      })
+      .addCase(fetchFavoriteNotices.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.noticesList = action.payload;
+        state.searchBtnIsActive = false;
+      })
+      .addCase(fetchFavoriteNotices.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+        state.searchBtnIsActive = true;
+      })
+
+      // add to favorite
+      .addCase(addToFavorite.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+        state.searchBtnIsActive = false;
+      })
+      .addCase(addToFavorite.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.noticesList = action.payload;
+        state.searchBtnIsActive = false;
+      })
+      .addCase(addToFavorite.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+        state.searchBtnIsActive = true;
+      })
+
+      // delete from favorite
+      .addCase(deleteFromFavorite.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+        state.searchBtnIsActive = false;
+      })
+      .addCase(deleteFromFavorite.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.noticesList = action.payload;
+        state.searchBtnIsActive = false;
+      })
+      .addCase(deleteFromFavorite.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+        state.searchBtnIsActive = true;
+      });
   },
 });
 

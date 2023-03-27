@@ -180,7 +180,7 @@ export const SecondColumnContacts = styled.a`
   }
 `;
 
-export const Row = styled.td`
+export const Row = styled.tr`
   display: flex;
 `;
 

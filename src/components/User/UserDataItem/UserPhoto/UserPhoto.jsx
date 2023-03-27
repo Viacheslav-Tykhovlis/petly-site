@@ -9,45 +9,37 @@ import {
 // import { AiOutlinePlus } from 'react-icons/ai';
 import { ButtonEditPhoto } from '../../ButtonUser/ButtonUser.jsx';
 import photoCover from 'img/photo_cover.png';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getStateUsers } from 'redux/users/selectors.js';
 import { API } from 'API.js';
+import { uploadAvatar } from 'redux/users/operations.js';
 
 const UserPhoto = () => {
-  const currentUser = useSelector(getStateUsers);
-  const avatar = currentUser.avatarUrl
-    ? `${API + currentUser.avatar}`
-    : photoCover;
+  const dispatch = useDispatch();
+
+  function changeHandler(e) {
+    const file = e.target.files[0];
+    dispatch(uploadAvatar(file));
+  }
+  const user = useSelector(getStateUsers);
+  const avatar = user.avatarUrl ? `${API + user.avatar}` : photoCover;
   return (
     <Flex>
       <ImageStyled src={avatar} alt="" />
-      <input
-        type="file"
-        // name="file" id="file"
-        placeholder="edit photo"
-        style={inputfile}
-      ></input>
-      <label htmlFor="file">
-        <FlexSvg type="button" ariaLabel="edit photo button">
-          <ButtonEditPhoto
-            widthMsvg={'20px'}
-            heighthMsvg={'20px'}
-            widthTsvg={'20px'}
-            heighthTsvg={'20px'}
-          />
-          <Span>Edit photo</Span>
-        </FlexSvg>
-      </label>
-      {/* <input type="file" name="file" id="file" style={inputfile}></input>
-      <label htmlFor="file">
-        <ImageStyled>
-          <AiOutlinePlus style={PlusStyle} />
-        </ImageStyled>
-      </label>
 
-      <input type="file" name="file" id="foto" style={inputfile}></input>
-      <label htmlFor="file">
-        <FlexSvg type="button" ariaLabel="edit photo button">
+      <label>
+        <input
+          type="file"
+          name="file"
+          id="file"
+          placeholder="edit photo"
+          accept="image/*"
+          onChange={e => changeHandler(e)}
+          // type="file"
+          // placeholder="Загрузить аватар"
+          style={inputfile}
+        ></input>
+        <FlexSvg>
           <ButtonEditPhoto
             widthMsvg={'20px'}
             heighthMsvg={'20px'}
@@ -56,9 +48,35 @@ const UserPhoto = () => {
           />
           <Span>Edit photo</Span>
         </FlexSvg>
-      </label> */}
+      </label>
     </Flex>
   );
 };
 
 export default UserPhoto;
+
+// {/* <input
+//         accept="image/*"
+//         onChange={e => changeHandler(e)}
+//         type="file"
+//         placeholder="Загрузить аватар"
+//       /> */}
+//       {/* <input type="file" name="file" id="file" style={inputfile}></input>
+//       <label htmlFor="file">
+//         <ImageStyled>
+//           <AiOutlinePlus style={PlusStyle} />
+//         </ImageStyled>
+//       </label>
+
+//       <input type="file" name="file" id="foto" style={inputfile}></input>
+//       <label htmlFor="file">
+//         <FlexSvg type="button" ariaLabel="edit photo button">
+//           <ButtonEditPhoto
+//             widthMsvg={'20px'}
+//             heighthMsvg={'20px'}
+//             widthTsvg={'20px'}
+//             heighthTsvg={'20px'}
+//           />
+//           <Span>Edit photo</Span>
+//         </FlexSvg>
+//       </label> */}
