@@ -16,20 +16,28 @@ import { Modal } from 'components/Modal/Modal';
 
 import { selectIsLoggedIn } from 'redux/login/logIn-selectors';
 import { getIsLoading } from 'redux/notices/noticesSelectors';
-import { fetchNoticesByCategory } from 'redux/notices/noticesOperations';
+import {
+  fetchNoticesByCategory,
+  fetchNoticesByOwner,
+} from 'redux/notices/noticesOperations';
 
 const NoticesPage = () => {
   const { category } = useParams();
   const dispatch = useDispatch();
   const isLoading = useSelector(getIsLoading);
   const isLoggedIn = useSelector(selectIsLoggedIn);
-
   const [showAddModal, setShowAddModal] = useState(false);
 
   useEffect(() => {
-    if (category === 'favorite' || category === 'own') {
-      return;
-    }
+    // list of functions
+    const searchNoticesByOwner = () => {
+      try {
+        dispatch(fetchNoticesByOwner());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     const searchNoticeByCategory = () => {
       try {
         dispatch(fetchNoticesByCategory(category));
@@ -37,6 +45,18 @@ const NoticesPage = () => {
         console.log(error);
       }
     };
+
+    // call functions on different conditions
+    if (category === 'own') {
+      searchNoticesByOwner();
+      return;
+    }
+
+    if (category === 'favorite') {
+      // array of favorite notices
+      // dispatch favorite
+      return;
+    }
 
     searchNoticeByCategory();
   }, [category, dispatch]);
