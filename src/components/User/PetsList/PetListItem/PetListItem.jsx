@@ -8,10 +8,10 @@ import { useDispatch } from 'react-redux';
 const PetListItem = ({ photo, name, birthday, breed, comments, _id }) => {
   const dispatch = useDispatch();
   return (
-    <ContainerPets>
+    <ContainerPets key={_id}>
       <Image src={photo} alt={name} />
       <ul>
-        <PetName key={_id} name={name} />
+        <PetName name={name} />
         <PetBirth birthday={birthday} />
         <PetBreed breed={breed} />
         <PetComments comments={comments} />
