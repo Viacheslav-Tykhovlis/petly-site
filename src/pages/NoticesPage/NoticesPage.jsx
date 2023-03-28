@@ -21,6 +21,7 @@ import {
   fetchNoticesByCategory,
   fetchNoticesByOwner,
 } from 'redux/notices/noticesOperations';
+import { showToastInfo } from 'utils/showTost';
 
 const NoticesPage = () => {
   const { category } = useParams();
@@ -55,30 +56,22 @@ const NoticesPage = () => {
       }
     };
 
-    // call functions on different conditions
-    if (category === 'own') {
+    // download data on different conditions
+    searchNoticeByCategory();
+
+    if (isLoggedIn) {
       searchNoticesByOwner();
-      return;
     }
 
-    if (category === 'favorite') {
+    if (isLoggedIn) {
       searchFavoriteNotices();
-      return;
     }
-
-    if (
-      category === 'sell' ||
-      category === 'lost-found' ||
-      category === 'for-free'
-    ) {
-      searchNoticeByCategory();
-      return;
-    }
-  }, [category, dispatch]);
+  }, [category, isLoggedIn, dispatch]);
 
   const onAddButtonClick = () => {
     if (!isLoggedIn) {
-      return alert('Please, signup or login to add notice about your pet.');
+      showToastInfo('Please, signup or login to add notice about your pet.');
+      return;
     }
     setShowAddModal(!showAddModal);
   };
@@ -105,7 +98,10 @@ const NoticesPage = () => {
         {isLoading ? (
           <Loader />
         ) : (
-          <NoticesCategoriesList onClose={onAddButtonClick} />
+          <NoticesCategoriesList
+            category={category}
+            onClose={onAddButtonClick}
+          />
         )}
       </div>
     </StyledSection>

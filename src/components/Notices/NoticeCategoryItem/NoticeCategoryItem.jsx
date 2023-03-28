@@ -5,7 +5,6 @@ import { StyledLearnMoreButton } from 'components/ReusableComponents/Buttons/Sty
 import { StyledLikeButton } from 'components/ReusableComponents/Buttons/StyledLikeButton';
 import { Modal } from 'components/Modal/Modal';
 import ModalNotice from '../NoticeModal/ModalNotice';
-// import Loader from 'components/Loader/Loader';
 
 import { fetchNoticeById } from 'services/getNoticesById';
 import { noticeLabelTranform } from 'utils/noticeLabelTranform';
@@ -28,17 +27,24 @@ import {
 import { StyledDeleteButton } from 'components/ReusableComponents/Buttons/StyledDeleteButton';
 
 import { selectIsLoggedIn } from 'redux/login/logIn-selectors';
-import { getIsLoading, getNotices } from 'redux/notices/noticesSelectors';
+import {
+  getFavoriteNotices,
+  getIsLoading,
+  getOwnNotices,
+} from 'redux/notices/noticesSelectors';
 
 import defaultImg from '../../../img/defaultImg.jpg';
 import {
   addToFavorite,
   deleteFromFavorite,
+  deleteNotice,
 } from 'redux/notices/noticesOperations';
+import { showToastInfo } from 'utils/showTost';
 
 const NoticeCategoryItem = ({ notice }) => {
   const dispatch = useDispatch();
-  const notices = useSelector(getNotices);
+  const ownNotices = useSelector(getOwnNotices);
+  const favoriteNotices = useSelector(getFavoriteNotices);
   const isLoading = useSelector(getIsLoading);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -66,40 +72,59 @@ const NoticeCategoryItem = ({ notice }) => {
 
   const onAddToFavorite = () => {
     if (!isLoggedIn) {
-      return alert('Please, signup or login to add notice to favorites');
+      showToastInfo('Please, signup or login to add notice to favorites');
+      return;
     }
 
-    console.log('add to faforite');
-    if (isFavorite) {
+    if (!isFavorite) {
       dispatch(addToFavorite(_id));
       setIsFavorite(true);
-      console.log(isFavorite);
+      return;
     }
-    if (!isFavorite) {
-      dispatch(deleteFromFavorite());
-      setIsFavorite(isFavorite);
+    if (isFavorite) {
+      dispatch(deleteFromFavorite(_id));
+      setIsFavorite(false);
+      return;
     }
   };
 
+  // find favorite
   useEffect(() => {
-    const findOwnNotices = () => {
-      // console.log(_id);
-      // console.log(notices);
-      // const own = notices.some(elem => elem._id === _id);
-      // console.log(own);
-      // if (own) {
-      //   setIsOwnNotice(true);
-      //   return;
-      // }
-      setIsOwnNotice(false);
+    if (!isLoggedIn) {
+      return;
+    }
 
-      // _id
+    const findFavoriteNotices = () => {
+      const favorite = favoriteNotices.some(elem => elem._id === _id);
+      if (favorite) {
+        setIsFavorite(true);
+        return;
+      }
+      setIsFavorite(false);
+    };
+    findFavoriteNotices();
+  }, [_id, isLoggedIn, favoriteNotices]);
+
+  // find own
+  useEffect(() => {
+    if (!isLoggedIn) {
+      return;
+    }
+
+    const findOwnNotices = () => {
+      const own = ownNotices.some(elem => elem._id === _id);
+      if (own) {
+        setIsOwnNotice(true);
+        return;
+      }
+      setIsOwnNotice(false);
     };
     findOwnNotices();
-  }, [_id, notices]);
+  }, [_id, isLoggedIn, ownNotices]);
 
   const onDeleteNotice = () => {
-    console.log('delete notice');
+    dispatch(deleteFromFavorite(_id));
+    dispatch(deleteNotice(_id));
   };
 
   return (
@@ -113,7 +138,10 @@ const NoticeCategoryItem = ({ notice }) => {
           <CardImage src={image || defaultImg} alt={title} />
         </ImageCardWrap>
 
-        <StyledLikeButton onButtonClick={onAddToFavorite} />
+        <StyledLikeButton
+          onButtonClick={onAddToFavorite}
+          isFavorite={isFavorite}
+        />
         <StyledTitle>{title}</StyledTitle>
         <StyledList>
           <Table>
@@ -160,7 +188,7 @@ const NoticeCategoryItem = ({ notice }) => {
             noticeDetails={noticeDetails}
             onClose={onLearMoreButtonClick}
             onAddToFavorite={onAddToFavorite}
-            // isFavorite={isFavorite}
+            isFavorite={isFavorite}
           />
         </Modal>
       )}

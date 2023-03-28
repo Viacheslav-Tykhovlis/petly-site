@@ -7,15 +7,13 @@ import {
   fetchNoticesByTitle,
 } from 'redux/notices/noticesOperations';
 
-import {
-  // getError,
-  getSearchBtnIsActive,
-} from 'redux/notices/noticesSelectors';
+import { getError, getSearchBtnIsActive } from 'redux/notices/noticesSelectors';
+import { showToastInfo } from 'utils/showTost';
 
 const NoticesSearch = ({ category }) => {
   const dispatch = useDispatch();
   const isButtonClicked = useSelector(getSearchBtnIsActive);
-  // const isError = useSelector(getError);
+  const isError = useSelector(getError);
 
   const searchNoticeByTitle = title => {
     if (!isButtonClicked) {
@@ -31,7 +29,6 @@ const NoticesSearch = ({ category }) => {
       dispatch(fetchNoticesByTitle(title));
     } catch (error) {
       console.log(error);
-      alert('Sorry, no pets by this title');
     }
   };
 
@@ -41,10 +38,14 @@ const NoticesSearch = ({ category }) => {
     const normilizedValue = form.elements.search.value;
 
     if (normilizedValue.trim() === '') {
-      return alert('Please, enter title name.');
+      showToastInfo('Sorry, no pets by this title');
+      return;
     }
 
     searchNoticeByTitle(normilizedValue);
+    if (isError) {
+      showToastInfo('Sorry, no pets by this title');
+    }
 
     if (!isButtonClicked) {
       form.reset();

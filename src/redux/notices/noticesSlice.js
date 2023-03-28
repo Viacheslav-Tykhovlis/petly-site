@@ -69,7 +69,7 @@ const noticesSlice = createSlice({
       .addCase(fetchNoticesByOwner.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.noticesList = action.payload;
+        state.ownList = action.payload;
         state.searchBtnIsActive = false;
       })
       .addCase(fetchNoticesByOwner.rejected, (state, action) => {
@@ -121,7 +121,7 @@ const noticesSlice = createSlice({
       .addCase(fetchFavoriteNotices.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.noticesList = action.payload;
+        state.favoriteList = action.payload;
         state.searchBtnIsActive = false;
       })
       .addCase(fetchFavoriteNotices.rejected, (state, action) => {
@@ -139,7 +139,7 @@ const noticesSlice = createSlice({
       .addCase(addToFavorite.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.noticesList = action.payload;
+        state.favoriteList.push(action.payload);
         state.searchBtnIsActive = false;
       })
       .addCase(addToFavorite.rejected, (state, action) => {
@@ -157,8 +157,12 @@ const noticesSlice = createSlice({
       .addCase(deleteFromFavorite.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.noticesList = action.payload;
-        state.searchBtnIsActive = false;
+        const { favoriteList } = state;
+        const index = favoriteList.findIndex(
+          notice => notice.id === action.payload.id,
+        );
+        favoriteList.splice(index, 1);
+        state.searchBtnIsActive = true;
       })
       .addCase(deleteFromFavorite.rejected, (state, action) => {
         state.isLoading = false;
