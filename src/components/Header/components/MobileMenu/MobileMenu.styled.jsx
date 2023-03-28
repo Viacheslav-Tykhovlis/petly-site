@@ -68,6 +68,7 @@ export const NavGeneralLink = styled(NavLink)`
   &:focus,
   &.active {
     color: #f59256;
+    font-weight: 700;
   }
 
   &::after {
