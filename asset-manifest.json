@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/petly-site/static/css/main.658dd072.css",
-    "main.js": "/petly-site/static/js/main.6f6b65e4.js",
+    "main.js": "/petly-site/static/js/main.4ce5d64d.js",
     "static/media/fullDogTab.png": "/petly-site/static/media/fullDogTab.42f5a3bf29c347239811.png",
     "static/media/fullDogDesk.png": "/petly-site/static/media/fullDogDesk.a0e29d0ba09eff4c7595.png",
     "static/media/bg1280Auth.png": "/petly-site/static/media/bg1280Auth.67fd0d1e6a2f1fbe0f4f.png",
     "static/media/fullDogMob.png": "/petly-site/static/media/fullDogMob.0991abf5e23cb5b4446b.png",
-    "static/media/bg768Auth.png": "/petly-site/static/media/bg768Auth.d4cc1710205d5015910d.png",
+    "static/media/bg768Auth.png": "/petly-site/static/media/bg768Auth.48a1295b902c0f827cad.png",
     "static/media/defaultImg.jpg": "/petly-site/static/media/defaultImg.264c163550b0d7a317d5.jpg",
     "static/media/bg320Auth.png": "/petly-site/static/media/bg320Auth.a76fcf56b350589415ff.png",
     "static/media/no-image.JPG": "/petly-site/static/media/no-image.03d5d356fa934b2a2735.JPG",
@@ -16,10 +16,10 @@
     "index.html": "/petly-site/index.html",
     "static/media/background320.svg": "/petly-site/static/media/background320.f736355f41ac145043ee9fa28d61dfab.svg",
     "main.658dd072.css.map": "/petly-site/static/css/main.658dd072.css.map",
-    "main.6f6b65e4.js.map": "/petly-site/static/js/main.6f6b65e4.js.map"
+    "main.4ce5d64d.js.map": "/petly-site/static/js/main.4ce5d64d.js.map"
   },
   "entrypoints": [
     "static/css/main.658dd072.css",
-    "static/js/main.6f6b65e4.js"
+    "static/js/main.4ce5d64d.js"
   ]
 }
