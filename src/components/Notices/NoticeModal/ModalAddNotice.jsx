@@ -1,17 +1,15 @@
 import { Formik } from 'formik';
 import { useState } from 'react';
 
-import {
-  CustomToast,
-  ToastType,
-} from 'components/ReusableComponents/Ui/CustomToast';
-import { format } from 'date-fns';
 import { FormStep1 } from './ModalAddNotice/AddNoticeFormStep1';
 import { FormStep2 } from './ModalAddNotice/AddNoticeFormStep2';
 import {
   validationSchemaStep1,
   validationSchemaStep2,
 } from './ModalAddNotice/schema';
+import { useDispatch } from 'react-redux';
+import { addNotice } from 'redux/notices/noticesOperations';
+import { toast } from 'react-toastify';
 
 const initialValues = {
   category: 'sell',
@@ -21,7 +19,8 @@ const initialValues = {
   breed: '',
   sex: 'male',
   location: '',
-  imageUrl: '',
+  image:
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJiT-UHSm6w0Jperb8SitpfoAKeMUE3uynPg5YO-2Drw&s',
   comments: '',
   price: '',
 };
@@ -29,10 +28,7 @@ const initialValues = {
 const ModalAddNotice = ({ onClose }) => {
   const [step, setStep] = useState(1);
   const [formValues, setFormValues] = useState(initialValues);
-
-  const showToast = () => {
-    CustomToast(ToastType.SUCCESS, 'Pet added successfully! 🥳');
-  };
+  const dispatch = useDispatch();
 
   const handleNext = async (e, values, validateForm) => {
     e.preventDefault();
@@ -59,12 +55,12 @@ const ModalAddNotice = ({ onClose }) => {
         const formattedValues = {
           ...formValues,
           ...values,
-          birthdate: format(formValues.birthdate, 'dd.MM.yyyy'),
+          // birthdate: format(formValues.birthdate, 'dd-MM-yyyy'),
         };
         console.log('handleSubmit:\n', formattedValues);
-        setFormValues(formattedValues);
+        dispatch(addNotice(formattedValues));
         resetForm();
-        showToast();
+        toast.success('Pet added successfully! 🥳');
       }
     } catch (error) {
       console.log(error);
@@ -78,7 +74,6 @@ const ModalAddNotice = ({ onClose }) => {
   return (
     <Formik
       initialValues={formValues}
-      onSubmit={handleSubmit}
       validationSchema={
         step === 1 ? validationSchemaStep1 : validationSchemaStep2
       }
