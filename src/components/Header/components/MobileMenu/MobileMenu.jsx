@@ -24,7 +24,11 @@ export const NavMobile = ({ onClose }) => {
         </NavHeader>
         <AuthButton>
           {isLoggedIn ? (
-            <StyledAccountButton route="/user" buttonName="Account" />
+            <StyledAccountButton
+              route="/user"
+              buttonName="Account"
+              onClick={onClose}
+            />
           ) : (
             <>
               <StyledNavButton
