@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = `https://petly-site-back.up.railway.app`;
 
@@ -16,11 +17,11 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post('/auth/login', credentials);
-      // console.log(response.data.data.user);
-
       setAuthHeader(response.data.data.accessToken);
+
       return response.data;
     } catch (e) {
+      toast.error(e.response.data.message);
       return thunkAPI.rejectWithValue(e.message);
     }
   },
