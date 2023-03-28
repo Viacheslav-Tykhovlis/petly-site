@@ -85,8 +85,8 @@ export const addToFavorite = createAsyncThunk(
     const url = `/notices/addFavorite/${noticeId}`;
     try {
       const result = await axios.patch(url);
-      console.log(result);
-      return result.data;
+      console.log(result.data.data);
+      return result.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -99,7 +99,8 @@ export const deleteFromFavorite = createAsyncThunk(
     const url = `/notices/delFavorite/${noticeId}`;
     try {
       const result = await axios.patch(url);
-      return result.data;
+      console.log(result.data.data);
+      return result.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

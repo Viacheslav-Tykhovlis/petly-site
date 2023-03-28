@@ -24,9 +24,13 @@ import {
 
 import defaultImg from '../../../img/defaultImg.jpg';
 
-const ModalNotice = ({ noticeDetails, onClose, onAddToFavorite }) => {
+const ModalNotice = ({
+  noticeDetails,
+  onClose,
+  onAddToFavorite,
+  isFavorite,
+}) => {
   const {
-    // _id,
     category,
     title,
     name,
@@ -112,10 +116,18 @@ const ModalNotice = ({ noticeDetails, onClose, onAddToFavorite }) => {
       </Text>
 
       <ButtonBox>
-        <StyledAddToFavoriteButton
-          onAddToFavorite={onAddToFavorite}
-          buttonName="Add to"
-        />
+        {!isFavorite && (
+          <StyledAddToFavoriteButton
+            onAddToFavorite={onAddToFavorite}
+            buttonName="Add to"
+          />
+        )}
+        {isFavorite && (
+          <StyledAddToFavoriteButton
+            onAddToFavorite={onAddToFavorite}
+            buttonName="Delete from"
+          />
+        )}
         <StyledContactButton
           route={`tel:${owner?.phone}`}
           buttonName="Contact"
