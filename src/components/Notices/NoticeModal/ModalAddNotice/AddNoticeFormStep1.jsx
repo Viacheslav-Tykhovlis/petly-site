@@ -39,19 +39,19 @@ export const FormStep1 = ({
         <RadioWrapper>
           <RadioOption
             name="category"
-            value="lost"
-            id="lost"
-            label="lost/found"
-            checked={category === 'lost'}
+            value="lost-found"
+            id="lost-found"
+            label="lost-found/found"
+            checked={category === 'lost-found'}
             onChange={handleChange}
           />
 
           <RadioOption
             name="category"
-            value="goodHands"
-            id="goodHands"
+            value="for-free"
+            id="for-free"
             label="in good hands"
-            checked={category === 'goodHands'}
+            checked={category === 'for-free'}
             onChange={handleChange}
           />
 
@@ -95,7 +95,7 @@ export const FormStep1 = ({
             />
             <FormikErrorMessage name="name" />
           </InputWrapper>
-          {category !== 'lost' && (
+          {category !== 'lost-found' && (
             <InputWrapper>
               <StyledDatePicker
                 selected={birthdate}

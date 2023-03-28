@@ -11,7 +11,7 @@ export const validationSchemaStep1 = Yup.object().shape({
     .required('Required field, enter 2 to 16 characters'),
   birthdate: Yup.lazy((value, schema) => {
     const category = schema.parent.category;
-    if (category !== 'lost') {
+    if (category !== 'lost-found') {
       return Yup.date()
         .typeError('Enter the birthdate in the format DD.MM.YYYY')
         .required('Required field');
