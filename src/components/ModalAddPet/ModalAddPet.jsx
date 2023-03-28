@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Formik } from 'formik';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
-import { convertStringToDate } from '../../helpers/date';
 import { Container, ControlBox, FormStyled, Title } from './ModalAddPet.styled';
 import {
   initialValues,
@@ -13,14 +12,17 @@ import UniversalButton from 'components/ReusableComponents/Buttons/UniversalButt
 import UploadImageField from 'components/ReusableComponents/UploadImageField/UploadImageField';
 import CommentField from 'components/ReusableComponents/CommentField/CommentField';
 import { CloseModalButton } from 'components/ReusableComponents/Buttons/CloseModalButton';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addPet } from 'redux/pets/operations';
+import { getStateUsersId } from 'redux/users/selectors';
+import { format } from 'date-fns';
 
 const ModalAddPet = ({ closeModal }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [file, setFile] = useState(null);
   const [fileDataURL, setFileDataURL] = useState(null);
   const dispatch = useDispatch();
+  const owner = useSelector(getStateUsersId);
 
   useEffect(() => {
     let fileReader,
@@ -48,16 +50,17 @@ const ModalAddPet = ({ closeModal }) => {
     if (currentStep < 2) {
       setCurrentStep(currentStep + 1);
     } else {
-      const birthdate = convertStringToDate(values.birthdate);
+      const dateBD = format(values.birthdate, 'dd.MM.yyyy');
 
       const data = new FormData();
       data.append('name', values.name);
-      data.append('birthdate', birthdate);
+      data.append('birthdate', dateBD);
       data.append('breed', values.breed);
       data.append('photo', values.photo);
       data.append('comments', values.comments);
+      data.append('owner', owner);
+
       try {
-        console.log(data);
         dispatch(addPet(data));
       } catch (error) {
         console.log('Failed to add pet:', error);
