@@ -1,7 +1,7 @@
 import React from 'react';
 import InputField from 'components/ReusableComponents/InputField/InputField';
-// import MyDataPicker from 'components/ReusableComponents/DataPicker/DatePicker';
-// import { DateBox, ErrorData, Label } from './StepOne.styled';
+import MyDataPicker from 'components/ReusableComponents/DataPicker/DatePicker';
+import { DateBox, ErrorData, Label } from './StepOne.styled';
 
 const StepOne = () => {
   return (
@@ -14,26 +14,20 @@ const StepOne = () => {
         placeholder="Type name pet"
         span="*"
       />
-      {/* <DateBox>
+
+      <DateBox>
         <Label>
           Date of birth
           <span>*</span>
         </Label>
         <MyDataPicker
-          name="birthDate"
+          name="birthdate"
           label="Date of birth*"
           placeholderText="Type date of birth"
         />
-        <ErrorData name="birthDate" component="div" />
-      </DateBox> */}
-      <InputField
-        type="text"
-        label="Date of birth"
-        id="birthdate"
-        name="birthdate"
-        placeholder="Type date of birth"
-        span="*"
-      />
+        <ErrorData name="birthdate" component="div" />
+      </DateBox>
+
       <InputField
         type="text"
         label="Breed"

@@ -15,7 +15,7 @@ export const Friend = styled.li`
   color: ${props => props.theme.colors.black};
   background-color: ${props => props.theme.colors.white};
   border-radius: 20px;
-  filter: drop-shadow(7px 4px 14px rgba(49, 21, 4, 0.07));
+  box-shadow: (7px 4px 14px rgba(49, 21, 4, 0.07));
 
   @media screen and (min-width: 768px) {
     flex-basis: calc((100% - 32px) / 2);
