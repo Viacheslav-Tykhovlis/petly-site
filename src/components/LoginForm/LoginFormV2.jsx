@@ -15,6 +15,8 @@ import {
   ApproveMessage,
   InputWrapper,
   Section,
+  //   Background,
+  //   FormStyled,
 } from './LoginForm.styled';
 import { GreenIcon, RedIcon } from './Icons';
 
@@ -62,6 +64,7 @@ const LogInForm = () => {
                 <LogInInput
                   name="email"
                   type="email"
+                  autoComplete="off"
                   placeholder="Email"
                   marginbottom={
                     touched.email && '24' && (errors.email ? '0' : '0')
@@ -89,6 +92,7 @@ const LogInForm = () => {
                 <LogInInput
                   name="password"
                   type="password"
+                  autoComplete="off"
                   placeholder="Password"
                   marginbottom={
                     touched.email && '24' && (errors.email ? '0' : '0')
