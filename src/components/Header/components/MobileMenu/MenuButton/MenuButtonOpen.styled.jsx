@@ -19,11 +19,12 @@ export const StyledMenuButton = styled.button`
       color: orange;
     }
   }
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
-export const MenuButtonOpen = ({ onAddButtonClick }) => {
+export const MenuButtonOpen = ({ onMenuButtonClick }) => {
   return (
-    <StyledMenuButton onClick={onAddButtonClick} type="button">
+    <StyledMenuButton onClick={onMenuButtonClick} type="button">
       <RxHamburgerMenu size={30} />
     </StyledMenuButton>
   );

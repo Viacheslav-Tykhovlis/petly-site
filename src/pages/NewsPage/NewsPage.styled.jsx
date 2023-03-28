@@ -4,7 +4,7 @@ export const NewsSection = styled.div`
   display: flex;
   flex-direction: column;
   padding: 42px 20px 100px 20px;
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 768px) {
     padding: 88px 20px 100px 20px;
   }
   @media screen and (min-width: 1280px) {

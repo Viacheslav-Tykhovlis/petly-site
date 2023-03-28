@@ -26,33 +26,41 @@ export const NavList = styled('ul')`
 
     gap: 60px;
     z-index: 100;
-    transition: left 1s;
   }
 `;
 
 export const NavGeneralLink = styled(NavLink)`
+  position: relative;
   line-height: 1.38;
   letter-spacing: 0.04em;
 
   color: #111111;
 
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   &:hover,
   &:focus,
   &.active {
     color: #f59256;
-    &::after {
-      position: absolute;
-      bottom: 4px;
-      content: '';
-      display: block;
-      width: 100%;
-      height: 1px;
-      background-color: #f59256;
-    }
   }
-`;
 
-export const NavItem = styled.li`
-  position: relative;
-  display: block;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #f59256;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: 250ms;
+  }
+
+  &:hover::after,
+  &:focus::after,
+  &.active::after {
+    transform: scaleX(1);
+  }
 `;

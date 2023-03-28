@@ -7,19 +7,19 @@ import { NavMobile } from '../MobileMenu/MobileMenu';
 import { NavContainer } from './Navigation.styled';
 
 export const Navigation = () => {
-  const [showAddModal, setShowAddModal] = useState(false);
+  const [showMenuModal, setShowMenuModal] = useState(false);
   const isloggedIn = useSelector(selectIsLoggedIn);
 
-  const onAddButtonClick = () => {
-    setShowAddModal(!showAddModal);
+  const onMenuButtonClick = () => {
+    setShowMenuModal(!showMenuModal);
   };
 
   return (
     <NavContainer>
       <Nav />
       {isloggedIn ? <UserNav /> : <AuthNav />}
-      <MenuButtonOpen onAddButtonClick={onAddButtonClick} />
-      {showAddModal && <NavMobile onClose={onAddButtonClick} />}
+      <MenuButtonOpen onMenuButtonClick={onMenuButtonClick} />
+      {showMenuModal && <NavMobile onClose={onMenuButtonClick} />}
     </NavContainer>
   );
 };
