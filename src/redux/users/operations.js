@@ -19,8 +19,8 @@ export const uploadAvatar = createAsyncThunk(
     try {
       console.log(file);
       const formData = new FormData();
-      formData.append('file', file);
-      const response = await axios.patch('/auth/change', formData);
+      formData.append('avatarUrl', file);
+      const response = await axios.put('/auth/change', formData);
       return response.data.data.user;
     } catch (error) {
       return thunkAPI(error.message);
@@ -28,14 +28,15 @@ export const uploadAvatar = createAsyncThunk(
   },
 );
 
-// export const deleteContact = createAsyncThunk(
-//   'contacts/deleteContact',
-//   async (id, { thunkAPI }) => {
-//     try {
-//       const response = await axios.delete(`/contacts/${id}`);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI(error.message);
-//     }
-//   },
-// );
+export const uploadUser = createAsyncThunk(
+  'user/change',
+  async (user, { thunkAPI }) => {
+    try {
+      console.log(user);
+      const response = await axios.put('/auth/change', user);
+      return response.data.data.user;
+    } catch (error) {
+      return thunkAPI(error.message);
+    }
+  },
+);

@@ -29,6 +29,7 @@ export const Flex = styled.div`
     margin-left: 0px;
   }
 `;
+
 export const FlexSvg = styled.div`
   position: absolute;
   display: flex;
@@ -71,8 +72,8 @@ export const ImageStyled = styled.img`
   margin-left: auto;
   margin-right: auto;
   /* background: #fdf7f2; */
-  /* box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.11);
-  border-radius: 50%; */
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.11);
+  border-radius: 50%;
 `;
 
 export const inputfile = {

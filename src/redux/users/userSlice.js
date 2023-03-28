@@ -22,7 +22,7 @@ const rejectedReducer = (state, action) => {
 const userSlice = createSlice({
   name: 'users',
   initialState: {
-    items: [],
+    items: {},
     isLoading: false,
     error: null,
   },

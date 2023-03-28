@@ -11,7 +11,7 @@ import { ButtonEditPhoto } from '../../ButtonUser/ButtonUser.jsx';
 import photoCover from 'img/photo_cover.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { getStateUsers } from 'redux/users/selectors.js';
-import { API } from 'API.js';
+// import { API } from 'API.js';
 import { uploadAvatar } from 'redux/users/operations.js';
 
 const UserPhoto = () => {
@@ -22,7 +22,8 @@ const UserPhoto = () => {
     dispatch(uploadAvatar(file));
   }
   const user = useSelector(getStateUsers);
-  const avatar = user.avatarUrl ? `${API + user.avatar}` : photoCover;
+  // console.log(user.avatarUrl);
+  const avatar = user.avatarUrl ? user.avatarUrl : photoCover;
   return (
     <Flex>
       <ImageStyled src={avatar} alt="" />
