@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { AiOutlinePlus } from 'react-icons/ai';
 
 export const LoadImgLabel = styled.label`
   display: flex;
@@ -48,8 +47,7 @@ export const LoadImgInput = styled.input`
   display: none;
 `;
 
-export const PlusIcon = styled(AiOutlinePlus)`
-  color: ${props => props.theme.colors.secondaryText};
+export const PlusIcon = styled.svg`
   width: 48px;
   height: 48px;
 `;

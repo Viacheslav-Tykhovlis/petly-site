@@ -3,6 +3,7 @@ import { ErrorMessage } from 'formik';
 
 export const DateBox = styled.div`
   position: relative;
+  margin-bottom: 28px;
 `;
 
 export const Label = styled.label`
@@ -17,7 +18,6 @@ export const Label = styled.label`
   ${props => props.theme.mq.tablet} {
     font-size: ${props => props.theme.fontSizes.l};
     margin-bottom: 12px;
-    margin-top: 20px;
   }
 `;
 
@@ -27,6 +27,7 @@ export const ErrorData = styled(ErrorMessage)`
   bottom: -3px;
   font-size: ${props => props.theme.fontSizes.xxxxs};
   color: red;
+
   ${props => props.theme.mq.mobileOnly} {
     transform: translate(0px, 0px);
   }

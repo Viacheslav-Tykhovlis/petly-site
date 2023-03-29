@@ -28,7 +28,6 @@ const ModalAddPet = ({ closeModal }) => {
     let fileReader,
       isCancel = false;
     if (file) {
-      console.log('file in pet', file);
       fileReader = new FileReader();
       fileReader.onload = e => {
         const { result } = e.target;
