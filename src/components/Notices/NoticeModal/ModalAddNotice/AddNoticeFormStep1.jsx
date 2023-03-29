@@ -96,6 +96,9 @@ export const FormStep1 = ({
             <FormikErrorMessage name="name" />
           </InputWrapper>
           <InputWrapper>
+            <StyledTextInputLabel htmlFor="name">
+              Date of birth
+            </StyledTextInputLabel>
             <StyledDatePicker
               selected={birthdate}
               dateFormat="dd.MM.yyyy"

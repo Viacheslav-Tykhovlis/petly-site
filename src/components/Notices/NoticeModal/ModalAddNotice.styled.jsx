@@ -101,7 +101,7 @@ export const StyledModal = styled.div`
   @media screen and (min-width: 768px) {
     width: 608px;
     padding: 40px 80px;
-    top: 270px;
+    top: 50%;
   }
 
   @media screen and (min-width: 1280) {
