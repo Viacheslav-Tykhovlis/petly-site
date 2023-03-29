@@ -11,6 +11,7 @@ export const UserName = ({ isUpdating, setIsUpdating }) => {
   const user = useSelector(getStateUsers);
   const [isDisabled, setIsDisabled] = useState(true);
   const dispatch = useDispatch();
+  const [newUserName, setNewUserName] = useState();
 
   const handleClick = (values, actions) => {
     if (isDisabled) {
@@ -24,6 +25,12 @@ export const UserName = ({ isUpdating, setIsUpdating }) => {
     setIsUpdating(false);
   };
 
+  const handleChange = event => {
+    const nameUser = event.target.value;
+    console.log(nameUser);
+    setNewUserName(nameUser);
+  };
+
   const handleSubmit = async (values, actions) => {
     if (!isDisabled) {
       return;
@@ -31,10 +38,9 @@ export const UserName = ({ isUpdating, setIsUpdating }) => {
 
     if (values.name === user.name) return;
 
-    // const data = new FormData();
-    // data.append('name', values.name);
-    console.log(values.name.name);
-    dispatch(uploadUser(values.name.name));
+    const formData = new FormData();
+    formData.append('name', newUserName);
+    dispatch(uploadUser(formData));
   };
 
   return (
@@ -54,13 +60,12 @@ export const UserName = ({ isUpdating, setIsUpdating }) => {
                 type="name"
                 disabled={isDisabled}
                 placeholder={user.name || ''}
+                onChange={handleChange}
               />
               <ButtonUpdate
                 onClick={() => {
                   if (!values.name) {
                     values.name = user.name;
-                    // console.log(user.name);
-                    // console.log('values.name', values.name);
                     handleClick(values);
                   }
                   if (errors.name) return;

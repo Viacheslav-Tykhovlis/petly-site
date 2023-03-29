@@ -1,19 +1,17 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import { Label, Flex, Input, FormStyled } from '../UserDataItem.styled';
-import {
-  // useDispatch,
-  useSelector,
-} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getStateUsers } from 'redux/users/selectors';
 import { useState } from 'react';
-// import { uploadUser } from 'redux/users/operations.js';
+import { uploadUser } from 'redux/users/operations.js';
 import { ButtonUpdate } from '../../ButtonUser/ButtonUpdate';
 
 export const UserPhone = ({ isUpdating, setIsUpdating }) => {
   const user = useSelector(getStateUsers);
   const [isDisabled, setIsDisabled] = useState(true);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const [newUserPhone, setNewUserPhone] = useState();
 
   const handleClick = (values, actions) => {
     if (isDisabled) {
@@ -27,12 +25,22 @@ export const UserPhone = ({ isUpdating, setIsUpdating }) => {
     setIsUpdating(false);
   };
 
+  const handleChange = event => {
+    const phoneUser = event.target.value;
+    console.log(phoneUser);
+    setNewUserPhone(phoneUser);
+  };
+
   const handleSubmit = async (values, actions) => {
     if (!isDisabled) {
       return;
     }
 
     if (values.phone === user.phone) return;
+
+    const formData = new FormData();
+    formData.append('phone', newUserPhone);
+    dispatch(uploadUser(formData));
   };
 
   return (
@@ -52,6 +60,7 @@ export const UserPhone = ({ isUpdating, setIsUpdating }) => {
                 type="phone"
                 disabled={isDisabled}
                 placeholder={user.phone || ''}
+                onChange={handleChange}
               />
               <ButtonUpdate
                 onClick={() => {
