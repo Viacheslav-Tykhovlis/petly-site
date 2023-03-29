@@ -23,7 +23,7 @@ const initialValues = {
   image:
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJiT-UHSm6w0Jperb8SitpfoAKeMUE3uynPg5YO-2Drw&s',
   comments: '',
-  price: '',
+  price: '0.1',
 };
 
 const ModalAddNotice = ({ onClose }) => {
@@ -90,7 +90,6 @@ const ModalAddNotice = ({ onClose }) => {
         };
 
         const result = await dispatch(addNotice(formattedValues));
-        console.log('Server response:', result);
         if (result.error) {
           toast.error(result.payload + ' something went wrong');
         } else {
