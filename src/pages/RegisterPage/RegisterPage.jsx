@@ -60,7 +60,6 @@ const RegisterPage = () => {
     try {
       await postRegisterUser(userForm);
       const { email, password } = userForm;
-      console.log(email);
       dispatch(logIn({ email, password }));
     } catch (error) {
       console.log(error.message);
