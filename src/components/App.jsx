@@ -54,7 +54,7 @@ export const App = () => {
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <ToastContainer />
+          <ToastContainer autoClose={1500} pauseOnHover={false} />
         </Suspense>
       </Container>
     </>

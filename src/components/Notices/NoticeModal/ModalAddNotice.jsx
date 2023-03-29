@@ -23,7 +23,7 @@ const initialValues = {
   image:
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJiT-UHSm6w0Jperb8SitpfoAKeMUE3uynPg5YO-2Drw&s',
   comments: '',
-  price: '',
+  price: '0.1',
 };
 
 const ModalAddNotice = ({ onClose }) => {
@@ -68,7 +68,7 @@ const ModalAddNotice = ({ onClose }) => {
         setFormValues(values);
         setStep(2);
       } else {
-        toast.error('Please fill all fields.😉', { autoClose: 1200 });
+        toast.error('Please fill all fields.😉');
       }
     } catch (error) {
       console.log(error.message);
@@ -90,26 +90,19 @@ const ModalAddNotice = ({ onClose }) => {
         };
 
         const result = await dispatch(addNotice(formattedValues));
-        console.log('Server response:', result);
         if (result.error) {
           toast.error(result.payload + ' something went wrong');
         } else {
           resetForm();
           toast.success(
-            'Pet added successfully,! 🥳' + result.payload.message,
-            {
-              autoClose: 1200,
-              pauseOnHover: false,
-            },
+            'Pet added successfully,! 🥳 ' + result.payload.message,
           );
         }
 
         onClose();
         navigate('/notices/own');
       } else {
-        toast.error('Please fill all fields. Even photo😉', {
-          autoClose: 1500,
-        });
+        toast.error('Please fill all fields. Even photo😉');
       }
     } catch (error) {
       console.log(error.message);
