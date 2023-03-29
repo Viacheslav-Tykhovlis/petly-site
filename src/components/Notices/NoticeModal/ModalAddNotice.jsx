@@ -68,7 +68,7 @@ const ModalAddNotice = ({ onClose }) => {
         setFormValues(values);
         setStep(2);
       } else {
-        toast.error('Please fill all fields.😉', { autoClose: 1200 });
+        toast.error('Please fill all fields.😉');
       }
     } catch (error) {
       console.log(error.message);
@@ -96,20 +96,14 @@ const ModalAddNotice = ({ onClose }) => {
         } else {
           resetForm();
           toast.success(
-            'Pet added successfully,! 🥳' + result.payload.message,
-            {
-              autoClose: 1200,
-              pauseOnHover: false,
-            },
+            'Pet added successfully,! 🥳 ' + result.payload.message,
           );
         }
 
         onClose();
         navigate('/notices/own');
       } else {
-        toast.error('Please fill all fields. Even photo😉', {
-          autoClose: 1500,
-        });
+        toast.error('Please fill all fields. Even photo😉');
       }
     } catch (error) {
       console.log(error.message);
