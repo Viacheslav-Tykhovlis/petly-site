@@ -25,7 +25,6 @@ export const validationSchemaStep1 = Yup.object().shape({
 
 export const validationSchemaStep2 = Yup.object().shape({
   location: Yup.string()
-    .matches(lettersOnly, 'Only letters are allowed')
     .matches(
       /^([a-zA-Zа-яА-ЯёЁіІїЇґҐ\s]+),\s*([a-zA-Zа-яА-ЯёЁіІїЇґҐ\s]+)$/,
       'Enter the city and region in the format "City, Region"',
