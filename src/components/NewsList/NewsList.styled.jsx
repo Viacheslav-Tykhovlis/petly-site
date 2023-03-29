@@ -1,4 +1,3 @@
-// import styled from 'styled-components';
 import styled from '@emotion/styled';
 
 export const NewsSection = styled.div`
@@ -14,7 +13,6 @@ export const NewsSection = styled.div`
   }
 `;
 export const StyledForm = styled.form`
-  /* position: relative; */
   align-self: center;
   display: flex;
   margin-top: 28px;

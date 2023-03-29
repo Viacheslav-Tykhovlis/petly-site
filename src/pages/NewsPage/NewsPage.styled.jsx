@@ -85,6 +85,7 @@ export const SearchBtn = styled.button`
     outline: transparent;
     fill: rgba(245, 146, 86, 0.5);
   }
+
   @media screen and (min-width: 768px) {
     width: 24px;
     height: 24px;
