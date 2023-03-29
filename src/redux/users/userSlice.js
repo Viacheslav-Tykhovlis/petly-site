@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  fetchUser,
-  uploadAvatar,
-  // addContact, deleteContact
-} from './operations';
+import { fetchUser, uploadAvatar, uploadUser } from './operations';
 
 const pendingReducer = state => {
   state.isLoading = true;
@@ -33,37 +29,11 @@ const userSlice = createSlice({
       .addCase(fetchUser.rejected, rejectedReducer)
       .addCase(uploadAvatar.pending, pendingReducer)
       .addCase(uploadAvatar.fulfilled, fetchUserSucceesReducer)
-      .addCase(uploadAvatar.rejected, rejectedReducer);
+      .addCase(uploadAvatar.rejected, rejectedReducer)
+      .addCase(uploadUser.pending, pendingReducer)
+      .addCase(uploadUser.fulfilled, fetchUserSucceesReducer)
+      .addCase(uploadUser.rejected, rejectedReducer);
   },
-  // extraReducers: {
-  //   [fetchUser.pending]: handlePending,
-  //   [fetchUser.fulfilled](state, action) {
-  //     state.isLoading = false;
-  //     state.error = null;
-  //     state.items = action.payload;
-  //   },
-  //   [fetchUser.rejected]: handleRejected,
-
-  // [addContact.pending]: handlePending,
-  // [addContact.fulfilled](state, action) {
-  //   state.isLoading = false;
-  //   state.error = null;
-  //   state.items.push(action.payload);
-  // },
-  // [addContact.rejected]: handleRejected,
-
-  // [deleteContact.pending]: handlePending,
-  // [deleteContact.fulfilled](state, action) {
-  //   state.isLoading = false;
-  //   state.error = null;
-  //   const { items } = state;
-  //   const index = items.findIndex(
-  //     contact => contact.id === action.payload.id,
-  //   );
-  //   items.splice(index, 1);
-  // },
-  // [deleteContact.rejected]: handleRejected,
-  //   },
 });
 
 export const userReducer = userSlice.reducer;

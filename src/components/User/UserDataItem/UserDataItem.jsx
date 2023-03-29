@@ -1,138 +1,25 @@
 import React from 'react';
-import { Formik, Form } from 'formik';
+import { FormStyled, BoxUserDataItem } from './UserDataItem.styled';
 import {
-  Label,
-  Flex,
-  Input,
-  FormStyled,
-  BoxUserDataItem,
-} from './UserDataItem.styled';
-import { UserPhoto } from './index';
-import { ButtonPencil } from './../ButtonUser/ButtonUser';
+  UserPhoto,
+  UserName,
+  UserEmail,
+  UserBirthday,
+  UserPhone,
+  UserCity,
+} from './index';
 
-const UserDataItem = ({ user }) => {
-  // const { name, email, birthday, phone, city } = user;
-
+const UserDataItem = ({ isUpdating, setIsUpdating }) => {
   return (
     <BoxUserDataItem>
       <UserPhoto />
-      <Formik
-        initialValues={{
-          name: '',
-          email: '',
-          birthday: '',
-          phone: '',
-          city: '',
-        }}
-        onSubmit={async values => {
-          await new Promise(r => setTimeout(r, 500));
-          alert(JSON.stringify(values, null, 2));
-        }}
-      >
-        <Form>
-          <FormStyled>
-            <Flex>
-              <Label htmlFor="name">Name:</Label>
-              <Input id="name" name="name" placeholder="Hanna" />
-              <ButtonPencil
-                type="button"
-                ariaLabel="pencil button"
-                widthM={'20px'}
-                heightM={'20px'}
-                widthT={'32px'}
-                heightT={'32px'}
-                widthMsvg={'12.5px'}
-                heighthMsvg={'12.5px'}
-                widthTsvg={'20px'}
-                heighthTsvg={'20px'}
-                bgT={'#fdf7f2'}
-                bgM={'#fdf7f2'}
-              />
-            </Flex>
-
-            <Flex>
-              <Label htmlFor="email">Email:</Label>
-              <Input
-                id="email"
-                name="email"
-                placeholder="hanna@gmail.com"
-                type="email"
-              />
-              <ButtonPencil
-                type="button"
-                ariaLabel="pencil button"
-                widthM={'20px'}
-                heightM={'20px'}
-                widthT={'32px'}
-                heightT={'32px'}
-                widthMsvg={'12.5px'}
-                heighthMsvg={'12.5px'}
-                widthTsvg={'20px'}
-                heighthTsvg={'20px'}
-                bgT={'#fdf7f2'}
-                bgM={'#fdf7f2'}
-              />
-            </Flex>
-
-            <Flex>
-              <Label htmlFor="birthday">Birthday:</Label>
-              <Input id="birthday" name="birthday" placeholder="00.00.0000" />
-              <ButtonPencil
-                type="button"
-                ariaLabel="pencil button"
-                widthM={'20px'}
-                heightM={'20px'}
-                widthT={'32px'}
-                heightT={'32px'}
-                widthMsvg={'12.5px'}
-                heighthMsvg={'12.5px'}
-                widthTsvg={'20px'}
-                heighthTsvg={'20px'}
-                bgT={'#fdf7f2'}
-                bgM={'#fdf7f2'}
-              />
-            </Flex>
-
-            <Flex>
-              <Label htmlFor="phone">Phone:</Label>
-              <Input id="phone" name="phone" placeholder="+38000000000" />
-              <ButtonPencil
-                type="button"
-                ariaLabel="pencil button"
-                widthM={'20px'}
-                heightM={'20px'}
-                widthT={'32px'}
-                heightT={'32px'}
-                widthMsvg={'12.5px'}
-                heighthMsvg={'12.5px'}
-                widthTsvg={'20px'}
-                heighthTsvg={'20px'}
-                bgT={'#fdf7f2'}
-                bgM={'#fdf7f2'}
-              />
-            </Flex>
-
-            <Flex margin={'0px'}>
-              <Label htmlFor="city">City:</Label>
-              <Input id="city" name="city" placeholder="Kiev" />
-              <ButtonPencil
-                type="button"
-                ariaLabel="pencil button"
-                widthM={'20px'}
-                heightM={'20px'}
-                widthT={'32px'}
-                heightT={'32px'}
-                widthMsvg={'12.5px'}
-                heighthMsvg={'12.5px'}
-                widthTsvg={'20px'}
-                heighthTsvg={'20px'}
-                bgT={'#fdf7f2'}
-                bgM={'#fdf7f2'}
-              />
-            </Flex>
-          </FormStyled>
-        </Form>
-      </Formik>
+      <FormStyled>
+        <UserName isUpdating={isUpdating} setIsUpdating={setIsUpdating} />
+        <UserEmail isUpdating={isUpdating} setIsUpdating={setIsUpdating} />
+        <UserBirthday isUpdating={isUpdating} setIsUpdating={setIsUpdating} />
+        <UserPhone isUpdating={isUpdating} setIsUpdating={setIsUpdating} />
+        <UserCity isUpdating={isUpdating} setIsUpdating={setIsUpdating} />
+      </FormStyled>
     </BoxUserDataItem>
   );
 };
