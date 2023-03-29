@@ -1,11 +1,15 @@
 import * as Yup from 'yup';
 
+const lettersOnly = /^([a-zA-Zа-яА-ЯёЁіІїЇґҐ\s]+)$/;
+
 export const validationSchemaStep1 = Yup.object().shape({
   title: Yup.string()
+    .matches(lettersOnly, 'Only letters are allowed')
     .min(2, 'Minimum 2 characters')
     .max(48, 'Maximum 48 characters')
     .required('Required field'),
   name: Yup.string()
+    .matches(lettersOnly, 'Only letters are allowed')
     .min(2, 'Minimum 2 characters')
     .max(16, 'Maximum 16 characters')
     .required('Required field, enter 2 to 16 characters'),
@@ -13,19 +17,22 @@ export const validationSchemaStep1 = Yup.object().shape({
     .typeError('Enter the birthdate in the format DD.MM.YYYY')
     .required('Required field'),
   breed: Yup.string()
+    .matches(lettersOnly, 'Only letters are allowed')
     .min(2, 'Minimum 2 characters')
-    .max(24, 'Maximum 24 characters')
+    .max(35, 'Maximum 35 characters')
     .required('Required field'),
 });
 
 export const validationSchemaStep2 = Yup.object().shape({
   location: Yup.string()
+    .matches(lettersOnly, 'Only letters are allowed')
     .matches(
-      /^([a-zA-Zа-яА-ЯёЁ\s]+),\s*([a-zA-Zа-яА-ЯёЁ\s]+)$/,
+      /^([a-zA-Zа-яА-ЯёЁіІїЇґҐ\s]+),\s*([a-zA-Zа-яА-ЯёЁіІїЇґҐ\s]+)$/,
       'Enter the city and region in the format "City, Region"',
     )
     .required('Required field'),
   comments: Yup.string()
+    .matches(lettersOnly, 'Only letters are allowed')
     .min(8, 'Minimum 8 characters')
     .max(120, 'Maximum 120 characters')
     .required('Required field'),
