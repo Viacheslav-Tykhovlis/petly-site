@@ -1,19 +1,17 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import { Label, Flex, Input, FormStyled } from '../UserDataItem.styled';
-import {
-  // useDispatch,
-  useSelector,
-} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getStateUsers } from 'redux/users/selectors';
 import { useState } from 'react';
-// import { uploadUser } from 'redux/users/operations.js';
+import { uploadUser } from 'redux/users/operations.js';
 import { ButtonUpdate } from '../../ButtonUser/ButtonUpdate';
 
 export const UserCity = ({ isUpdating, setIsUpdating }) => {
   const user = useSelector(getStateUsers);
   const [isDisabled, setIsDisabled] = useState(true);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const [newUserCity, setNewUserCity] = useState();
 
   const handleClick = (values, actions) => {
     if (isDisabled) {
@@ -27,12 +25,22 @@ export const UserCity = ({ isUpdating, setIsUpdating }) => {
     setIsUpdating(false);
   };
 
+  const handleChange = event => {
+    const cityUser = event.target.value;
+    console.log(cityUser);
+    setNewUserCity(cityUser);
+  };
+
   const handleSubmit = async (values, actions) => {
     if (!isDisabled) {
       return;
     }
 
     if (values.city === user.city) return;
+
+    const formData = new FormData();
+    formData.append('city', newUserCity);
+    dispatch(uploadUser(formData));
   };
 
   return (
@@ -52,6 +60,7 @@ export const UserCity = ({ isUpdating, setIsUpdating }) => {
                 type="city"
                 disabled={isDisabled}
                 placeholder={user.city || ''}
+                onChange={handleChange}
               />
               <ButtonUpdate
                 onClick={() => {
