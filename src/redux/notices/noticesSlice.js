@@ -64,13 +64,13 @@ const noticesSlice = createSlice({
       .addCase(fetchNoticesByOwner.pending, state => {
         state.isLoading = true;
         state.error = null;
-        state.searchBtnIsActive = false;
+        state.searchBtnIsActive = true;
       })
       .addCase(fetchNoticesByOwner.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         state.ownList = action.payload;
-        state.searchBtnIsActive = false;
+        state.searchBtnIsActive = true;
       })
       .addCase(fetchNoticesByOwner.rejected, (state, action) => {
         state.isLoading = false;
@@ -116,13 +116,13 @@ const noticesSlice = createSlice({
       .addCase(fetchFavoriteNotices.pending, state => {
         state.isLoading = true;
         state.error = null;
-        state.searchBtnIsActive = false;
+        state.searchBtnIsActive = true;
       })
       .addCase(fetchFavoriteNotices.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         state.favoriteList = action.payload;
-        state.searchBtnIsActive = false;
+        state.searchBtnIsActive = true;
       })
       .addCase(fetchFavoriteNotices.rejected, (state, action) => {
         state.isLoading = false;
@@ -134,25 +134,21 @@ const noticesSlice = createSlice({
       .addCase(addToFavorite.pending, state => {
         state.isLoading = true;
         state.error = null;
-        state.searchBtnIsActive = false;
       })
       .addCase(addToFavorite.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         state.favoriteList.push(action.payload);
-        state.searchBtnIsActive = false;
       })
       .addCase(addToFavorite.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-        state.searchBtnIsActive = true;
       })
 
       // delete from favorite
       .addCase(deleteFromFavorite.pending, state => {
         state.isLoading = true;
         state.error = null;
-        state.searchBtnIsActive = false;
       })
       .addCase(deleteFromFavorite.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -162,12 +158,10 @@ const noticesSlice = createSlice({
           notice => notice.id === action.payload.id,
         );
         favoriteList.splice(index, 1);
-        state.searchBtnIsActive = true;
       })
       .addCase(deleteFromFavorite.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-        state.searchBtnIsActive = true;
       });
   },
 });
