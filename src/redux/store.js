@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 
+import { registerReducer } from './register/registerSlice';
 import { logInReducer } from './login/logIn-slice';
 import { newsReducer } from './news/newsSlice';
 import { noticesReducer } from './notices/noticesSlice';
@@ -24,8 +25,15 @@ const logInPersistConfig = {
   whitelist: ['token'],
 };
 
+const registerPersistConfig = {
+  key: 'register',
+  storage,
+  whitelist: ['token'],
+};
+
 export const store = configureStore({
   reducer: {
+    register: persistReducer(registerPersistConfig, registerReducer),
     logIn: persistReducer(logInPersistConfig, logInReducer),
     news: newsReducer,
     notices: noticesReducer,
