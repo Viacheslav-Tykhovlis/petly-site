@@ -1,15 +1,16 @@
 import { Formik } from 'formik';
-import { useState } from 'react';
-
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { addNotice } from 'redux/notices/noticesOperations';
 import { FormStep1 } from './ModalAddNotice/AddNoticeFormStep1';
 import { FormStep2 } from './ModalAddNotice/AddNoticeFormStep2';
 import {
   validationSchemaStep1,
   validationSchemaStep2,
 } from './ModalAddNotice/schema';
-import { useDispatch } from 'react-redux';
-import { addNotice } from 'redux/notices/noticesOperations';
-import { toast } from 'react-toastify';
+import { format } from 'date-fns';
 
 const initialValues = {
   category: 'sell',
@@ -29,6 +30,34 @@ const ModalAddNotice = ({ onClose }) => {
   const [step, setStep] = useState(1);
   const [formValues, setFormValues] = useState(initialValues);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [file, setFile] = useState(null);
+  const [fileDataURL, setFileDataURL] = useState(null);
+
+  useEffect(() => {
+    let fileReader,
+      isCancel = false;
+
+    if (file) {
+      fileReader = new FileReader();
+      fileReader.onload = e => {
+        const { result } = e.target;
+
+        if (result && !isCancel) {
+          setFileDataURL(result);
+        }
+      };
+      fileReader.readAsDataURL(file);
+    }
+
+    return () => {
+      isCancel = true;
+      if (fileReader && fileReader.readyState === 1) {
+        fileReader.abort();
+      }
+    };
+  }, [file]);
 
   const handleNext = async (e, values, validateForm) => {
     e.preventDefault();
@@ -36,12 +65,13 @@ const ModalAddNotice = ({ onClose }) => {
       const errors = await validateForm(values);
 
       if (Object.keys(errors).length === 0) {
-        console.log('step one:\n ', values);
         setFormValues(values);
         setStep(2);
+      } else {
+        toast.error('Please fill all fields.😉', { autoClose: 1200 });
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
 
@@ -55,15 +85,35 @@ const ModalAddNotice = ({ onClose }) => {
         const formattedValues = {
           ...formValues,
           ...values,
-          // birthdate: format(formValues.birthdate, 'dd-MM-yyyy'),
+          image: fileDataURL || initialValues.image,
+          birthdate: await format(formValues.birthdate, 'dd.MM.yyyy'),
         };
-        console.log('handleSubmit:\n', formattedValues);
-        dispatch(addNotice(formattedValues));
-        resetForm();
-        toast.success('Pet added successfully! 🥳');
+
+        const result = await dispatch(addNotice(formattedValues));
+        console.log('Server response:', result);
+        if (result.error) {
+          toast.error(result.payload + ' something went wrong');
+        } else {
+          resetForm();
+          toast.success(
+            'Pet added successfully,! 🥳' + result.payload.message,
+            {
+              autoClose: 1200,
+              pauseOnHover: false,
+            },
+          );
+        }
+
+        onClose();
+        navigate('/notices/own');
+      } else {
+        toast.error('Please fill all fields. Even photo😉', {
+          autoClose: 1500,
+        });
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
+      toast.error('Something went wrong.');
     }
   };
 
@@ -102,6 +152,9 @@ const ModalAddNotice = ({ onClose }) => {
               errors={formik.errors}
               onBack={handleBack}
               onDone={e => handleSubmit(e, formik)}
+              setFile={setFile}
+              setFieldValue={formik.setFieldValue}
+              fileDataURL={fileDataURL}
             />
           )}
         </>

@@ -9,18 +9,9 @@ export const validationSchemaStep1 = Yup.object().shape({
     .min(2, 'Minimum 2 characters')
     .max(16, 'Maximum 16 characters')
     .required('Required field, enter 2 to 16 characters'),
-  birthdate: Yup.lazy((value, schema) => {
-    const category = schema.parent.category;
-    if (category !== 'lost-found') {
-      return Yup.date()
-        .typeError('Enter the birthdate in the format DD.MM.YYYY')
-        .required('Required field');
-    } else {
-      return Yup.string().typeError(
-        'Enter the birthdate in the format DD.MM.YYYY',
-      );
-    }
-  }),
+  birthdate: Yup.date()
+    .typeError('Enter the birthdate in the format DD.MM.YYYY')
+    .required('Required field'),
   breed: Yup.string()
     .min(2, 'Minimum 2 characters')
     .max(24, 'Maximum 24 characters')

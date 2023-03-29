@@ -30,6 +30,9 @@ export const FormStep2 = ({
   onDone,
   touched,
   errors,
+  setFile,
+  setFieldValue,
+  fileDataURL,
 }) => {
   return (
     <Form>
@@ -47,6 +50,16 @@ export const FormStep2 = ({
             altText="Male Icon"
             checked={sex === 'male'}
             onChange={handleChange}
+            imgSize={{
+              mobile: {
+                width: '36px',
+                height: '36px',
+              },
+              tablet: {
+                width: '54px',
+                height: '54px',
+              },
+            }}
           />
 
           <SexRadioButton
@@ -57,6 +70,16 @@ export const FormStep2 = ({
             altText="Female Icon"
             checked={sex === 'female'}
             onChange={handleChange}
+            imgSize={{
+              mobile: {
+                width: '26px',
+                height: '40px',
+              },
+              tablet: {
+                width: '38px',
+                height: '60px',
+              },
+            }}
           />
         </RadioSexBtnWrapper>
 
@@ -107,10 +130,22 @@ export const FormStep2 = ({
             name="file"
             id="file"
             style={{ display: 'none' }}
-            onChange={handleChange}
+            fileDataURL={fileDataURL}
+            onChange={e => {
+              setFieldValue('image', e.currentTarget.files[0]);
+              setFile(e.currentTarget.files[0]);
+            }}
           />
           <UploadButton htmlFor="file">
-            <PlusIcon />
+            {fileDataURL ? (
+              <img
+                src={fileDataURL}
+                alt="Uploaded"
+                style={{ maxWidth: '100%', maxHeight: '100%' }}
+              />
+            ) : (
+              <PlusIcon />
+            )}
           </UploadButton>
         </StyledFileInput>
 
