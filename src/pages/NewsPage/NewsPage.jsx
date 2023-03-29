@@ -17,6 +17,7 @@ import {
 } from './NewsPage.styled';
 import Title from '../../components/Title/Title';
 
+import { toast } from 'react-toastify';
 import { useSearchParams } from 'react-router-dom';
 
 import { selectNews, selectIsLoading } from 'redux/news/newsSelectors';
@@ -34,17 +35,11 @@ const NewsPage = () => {
     dispatch(fetchNews());
   }, [dispatch]);
 
-  // const updateQueryString = e => {
-  //   // console.log('update', e.target.value);
-  //   setSearchParams({ query: e.target.value });
-  // };
   const visibleNews =
     news.length &&
     news.filter(item =>
       item.title.toLowerCase().includes(newsTitle.toLowerCase()),
     );
-
-  // console.log(visibleNews);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -52,7 +47,12 @@ const NewsPage = () => {
     const normilizedValue = form.elements.filter.value;
 
     if (normilizedValue.trim() === '') {
-      return alert('Please, enter title name.');
+      return toast.error('Please, enter title name.', {
+        position: 'top-center',
+        theme: 'colored',
+        autoClose: 1500,
+        closeOnClick: true,
+      });
     }
     setSearchParams({ query: normilizedValue });
   };
@@ -70,12 +70,10 @@ const NewsPage = () => {
       <StyledForm onSubmit={handleSubmit}>
         <FilterLabel>
           <FilterInput
-            // value={newsTitle}
             type="text"
             name="filter"
             placeholder="Search"
             ref={ref}
-            // onChange={updateQueryString}
           />
 
           {!newsTitle ? (

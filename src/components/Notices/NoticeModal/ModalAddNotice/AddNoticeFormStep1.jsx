@@ -95,24 +95,22 @@ export const FormStep1 = ({
             />
             <FormikErrorMessage name="name" />
           </InputWrapper>
-          {category !== 'lost-found' && (
-            <InputWrapper>
-              <StyledDatePicker
-                selected={birthdate}
-                dateFormat="dd.MM.yyyy"
-                onChange={date => {
-                  setFieldValue('birthdate', date);
-                }}
-                onBlur={handleBlur}
-                name="birthdate"
-                id="birthdate"
-                placeholderText="Type date of birth"
-                autoComplete="off"
-                isvalidfield={birthdate && !errors.birthdate}
-              />
-              <FormikErrorMessage name="birthdate" />
-            </InputWrapper>
-          )}
+          <InputWrapper>
+            <StyledDatePicker
+              selected={birthdate}
+              dateFormat="dd.MM.yyyy"
+              onChange={date => {
+                setFieldValue('birthdate', date);
+              }}
+              onBlur={handleBlur}
+              name="birthdate"
+              id="birthdate"
+              placeholderText="Type date of birth"
+              autoComplete="off"
+              isvalidfield={birthdate && !errors.birthdate}
+            />
+            <FormikErrorMessage name="birthdate" />
+          </InputWrapper>
           <InputWrapper>
             <StyledTextInputLabel htmlFor="breed">Breed</StyledTextInputLabel>
             <StyledInput

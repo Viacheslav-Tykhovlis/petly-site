@@ -31,7 +31,7 @@ const CloseButton = styled.button`
   }
 
   svg {
-    color: black;
+    color: #000;
     font-size: 22px;
   }
 
@@ -95,6 +95,7 @@ export const StyledModal = styled.div`
   width: 280px;
   padding: 40px 20px;
   border-radius: 20px;
+  overflow: hidden;
   top: 160px;
 
   @media screen and (min-width: 768px) {
@@ -193,7 +194,7 @@ export const ModalBtnNext = ({ onClick, children, type }) => {
       textColor="white"
       bgColor={p => p.theme.colors.accent}
       border="none"
-      hoverTextColor="black"
+      hoverTextColor="#000"
       onClick={onClick}
     >
       {children}
@@ -205,7 +206,7 @@ export const ModalBtnBack = ({ onClick, children, type }) => {
   return (
     <BaseButton
       type={type}
-      textColor="black"
+      textColor="#000"
       bgColor={p => p.theme.colors.white}
       border={`2px solid #f59256`}
       hoverTextColor="#f59256"
@@ -218,23 +219,22 @@ export const ModalBtnBack = ({ onClick, children, type }) => {
 
 export const StyledLabel = styled.label`
   display: inline-block;
-  padding: 8px 23px;
+  padding: 6px 21px;
   border-radius: 40px;
   background-color: ${({ selected }) => (selected ? '#f59256' : 'white')};
-  color: ${({ selected }) => (selected ? 'white' : 'black')};
-  outline: ${({ selected }) => (selected ? 'none' : '2px solid #f59256')};
-  outline-offset: -2px;
+  color: ${({ selected }) => (selected ? 'white' : '#000')};
+  border: 2px solid #f59256;
   cursor: pointer;
   transition: all ${p => p.theme.animation.cubicBezier};
 
   &:hover {
-    background-color: ${({ selected }) => (selected ? '#f59256' : '#f59256')};
-    color: ${({ selected }) => (selected ? 'black' : 'black')};
+    background-color: #f59256;
+    color: #000;
   }
 
   @media screen and (min-width: 768px) {
     font-size: 20px;
-    padding: 10px 28px;
+    padding: 8px 26px;
   }
 `;
 
@@ -326,6 +326,7 @@ export const StyledFileInput = styled.div`
     margin-bottom: 28px;
   }
 `;
+
 export const StyledInput = styled(Field)`
   width: 240px;
   height: 40px;
@@ -371,25 +372,5 @@ export const StyledTextareaAutosize = styled(TextareaAutosize)`
     padding: 16px 18px;
     min-height: 113px;
     font-size: 16px;
-  }
-`;
-
-export const FemaleIcon = styled.img`
-  width: 26px;
-  height: 40px;
-
-  @media only screen and (min-width: 768px) {
-    width: 38px;
-    height: 60px;
-  }
-`;
-
-export const MaleIcon = styled.img`
-  width: 36px;
-  height: 36px;
-
-  @media only screen and (min-width: 768px) {
-    width: 54px;
-    height: 54px;
   }
 `;
