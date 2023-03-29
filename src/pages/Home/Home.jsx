@@ -6,24 +6,26 @@ import dog1280 from '../../img/homeImages/fullDogDesk.png';
 export const Background = styled.div`
   z-index: -100;
   position: absolute;
-  /* bottom: 0; */
-  margin-top: -60px;
+  bottom: 0;
+  margin-top: auto;
   left: 0;
   width: 100%;
   background-image: url(${dog320});
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: contain;
-  height: 395px;
+  height: 100vh;
 
   @media screen and (min-width: 768px) {
-    margin-top: -270px;
-    height: 1008px;
+    top: 0;
+    background-position: center;
     background-image: url(${dog768});
+    background-size: 768px 1000px;
   }
   @media screen and (min-width: 1280px) {
-    margin-top: -250px;
-    height: 700px;
+    background-size: contain;
+    background-position: bottom;
+    bottom: 0;
     background-image: url(${dog1280});
   }
 `;
