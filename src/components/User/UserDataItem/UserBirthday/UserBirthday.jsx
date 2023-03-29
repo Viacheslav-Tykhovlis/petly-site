@@ -13,6 +13,15 @@ export const UserBirthday = ({ isUpdating, setIsUpdating }) => {
   const dispatch = useDispatch();
   const [newUserBirthday, setNewUserBirthday] = useState();
 
+  const format = new Date(user.birthday);
+  const options = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  };
+  const formatBirthday = format.toLocaleString('ua', options);
+  console.log(formatBirthday);
+
   const handleClick = (values, actions) => {
     if (isDisabled) {
       setIsDisabled(false);
@@ -45,7 +54,7 @@ export const UserBirthday = ({ isUpdating, setIsUpdating }) => {
   return (
     <Formik
       initialValues={{
-        birthday: { birthday: user?.birthday || '00.00.0000' },
+        birthday: { birthday: formatBirthday || 'MM.DD.YYYY' },
       }}
       onSubmit={handleSubmit}
     >
@@ -58,7 +67,7 @@ export const UserBirthday = ({ isUpdating, setIsUpdating }) => {
                 name="birthday"
                 type="birthday"
                 disabled={isDisabled}
-                placeholder={user.birthday || '00.00.0000'}
+                placeholder={formatBirthday || 'MM.DD.YYYY'}
                 onChange={handleChange}
               />
               <ButtonUpdate
