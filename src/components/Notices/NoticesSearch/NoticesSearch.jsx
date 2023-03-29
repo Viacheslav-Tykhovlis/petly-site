@@ -15,6 +15,10 @@ const NoticesSearch = ({ category }) => {
   const isButtonClicked = useSelector(getSearchBtnIsActive);
   const isError = useSelector(getError);
 
+  if (isError) {
+    showToastInfo('Sorry, no pets by this title');
+  }
+
   const searchNoticeByTitle = title => {
     if (!isButtonClicked) {
       try {
@@ -43,9 +47,6 @@ const NoticesSearch = ({ category }) => {
     }
 
     searchNoticeByTitle(normilizedValue);
-    if (isError) {
-      showToastInfo('Sorry, no pets by this title');
-    }
 
     if (!isButtonClicked) {
       form.reset();

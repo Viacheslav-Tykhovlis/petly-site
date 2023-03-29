@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react';
 
 import Container from './Container/Container';
 import SharedLayout from './SharedLayout/SharedLayout';
+import { ConditionalRoutes } from './ConditionalRoutes/ConditionalRoutes';
 import { RestrictedRoute } from './RestrictedRoutes/RestrictedRoutes';
 import { PrivateRoute } from './PravateRoute/PrivateRoute';
 import { ToastContainer } from 'react-toastify';
@@ -28,7 +29,15 @@ export const App = () => {
             <Route path="/" element={<SharedLayout />}>
               <Route index element={<Home />} />
               <Route path="/news" element={<NewsPage />} />
-              <Route path="/notices/:category" element={<NoticesPage />} />
+              <Route
+                path="/notices/:category"
+                element={
+                  <ConditionalRoutes
+                    redirectTo="/user"
+                    component={<NoticesPage />}
+                  />
+                }
+              />
               <Route path="/friends" element={<OurFriendsPage />} />
               <Route
                 path="/register"
@@ -54,7 +63,7 @@ export const App = () => {
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <ToastContainer autoClose={1500} pauseOnHover={false} />
+          <ToastContainer autoClose={1500} pauseOnHover={false} limit={2} />
         </Suspense>
       </Container>
     </>

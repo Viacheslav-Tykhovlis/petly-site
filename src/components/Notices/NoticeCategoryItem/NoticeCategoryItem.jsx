@@ -40,6 +40,7 @@ import {
   deleteNotice,
 } from 'redux/notices/noticesOperations';
 import { showToastInfo } from 'utils/showTost';
+import Loader from 'components/Loader/Loader';
 
 const NoticeCategoryItem = ({ notice }) => {
   const dispatch = useDispatch();
@@ -182,14 +183,17 @@ const NoticeCategoryItem = ({ notice }) => {
         </ButtonBox>
       </StyledItem>
 
-      {!isLoading && noticeDetails && showDetailsModal && (
+      {showDetailsModal && (
         <Modal onClose={onLearMoreButtonClick}>
-          <ModalNotice
-            noticeDetails={noticeDetails}
-            onClose={onLearMoreButtonClick}
-            onAddToFavorite={onAddToFavorite}
-            isFavorite={isFavorite}
-          />
+          {!isLoading && !noticeDetails && <Loader top="50vh" />}
+          {noticeDetails && (
+            <ModalNotice
+              noticeDetails={noticeDetails}
+              onClose={onLearMoreButtonClick}
+              onAddToFavorite={onAddToFavorite}
+              isFavorite={isFavorite}
+            />
+          )}
         </Modal>
       )}
     </>

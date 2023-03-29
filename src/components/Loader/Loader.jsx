@@ -3,7 +3,7 @@ import { RotatingLines } from 'react-loader-spinner';
 
 export const StyledLoader = styled.section`
   position: absolute;
-  top: 15vh;
+  top: ${props => props.top || '15h'};
   left: 50%;
   display: flex;
   justify-content: center;
