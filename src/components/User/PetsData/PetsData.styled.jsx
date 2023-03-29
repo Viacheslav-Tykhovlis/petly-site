@@ -21,16 +21,10 @@ export const BoxPetsData = styled.div`
   @media screen and (min-width: 1280px) {
     width: 821px;
   }
-  /* display: flex;
-  justify-content: space-between;
-  padding-right: 16px;
-  margin-top: 0px;
-  margin-bottom: 24px; */
 `;
 
 export const ContainerPets = styled.li`
   width: 280px;
-  /* height: 541px; */
 
   background: #ffffff;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
@@ -49,7 +43,6 @@ export const ContainerPets = styled.li`
 
   @media screen and (min-width: 768px) {
     width: 704px;
-    /* height: 230px; */
     border-radius: 40px;
     display: flex;
   }
@@ -60,14 +53,11 @@ export const ContainerPets = styled.li`
 `;
 
 export const FlexSvg = styled.button`
-  /* position: absolute; */
   display: flex;
   align-items: center;
   justify-content: center;
   background: #fdf7f2;
   border: 0px;
-  /* right: 0px; */
-  /* bottom: -32px; */
 
   @media screen and (min-width: 1280px) {
     right: 0px;

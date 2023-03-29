@@ -34,8 +34,6 @@ const PetListItem = ({ photo, name, birthday, breed, comments, petId }) => {
           bgT={'#fdf7f2'}
           fillM={'rgba(17, 17, 17, 0.6)'}
           strokeM={'#fdf7f2'}
-          bgHover={'#ffffff'}
-          borderHover={'2px solid #f59256'}
         />
       </FlexBasket>
     </ContainerPets>

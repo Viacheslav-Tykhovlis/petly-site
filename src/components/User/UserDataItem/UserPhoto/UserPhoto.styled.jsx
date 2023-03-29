@@ -64,16 +64,19 @@ export const Span = styled.span`
 `;
 
 export const ImageStyled = styled.img`
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   width: 233px;
   height: 233px;
   margin-left: auto;
   margin-right: auto;
-  /* background: #fdf7f2; */
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 50%;
+`;
+
+export const ImageCover = styled.img`
+  width: 233px;
+  height: 233px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const inputfile = {

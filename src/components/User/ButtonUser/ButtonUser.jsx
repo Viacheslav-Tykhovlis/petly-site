@@ -1,10 +1,11 @@
-import { StyleButton } from './ButtonUser.styled';
+import { StyleButton, StyleUpdateButton } from './ButtonUser.styled';
 import {
   StyledSvgLogout,
   StyledSvgBasket,
   StyledSvgEditPhoto,
   StyledSvgPlus,
   StyledSvgPencil,
+  StyledSvgCheck,
 } from '../ButtonUser';
 
 export const ButtonLogout = props => (
@@ -32,7 +33,13 @@ export const ButtonPlus = props => (
 );
 
 export const ButtonPencil = props => (
-  <StyleButton {...props}>
+  <StyleUpdateButton {...props}>
     <StyledSvgPencil></StyledSvgPencil>
-  </StyleButton>
+  </StyleUpdateButton>
+);
+
+export const ButtonCheck = props => (
+  <StyleUpdateButton {...props}>
+    <StyledSvgCheck></StyledSvgCheck>
+  </StyleUpdateButton>
 );

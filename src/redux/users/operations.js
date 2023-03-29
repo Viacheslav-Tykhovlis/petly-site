@@ -14,7 +14,7 @@ export const fetchUser = createAsyncThunk('/user', async (_, { thunkAPI }) => {
 });
 
 export const uploadAvatar = createAsyncThunk(
-  'user/change',
+  'user/changeAvatar',
   async (file, { thunkAPI }) => {
     try {
       console.log(file);
@@ -33,6 +33,8 @@ export const uploadUser = createAsyncThunk(
   async (user, { thunkAPI }) => {
     try {
       console.log(user);
+      const formData = new FormData();
+      formData.append('name', user);
       const response = await axios.put('/auth/change', user);
       return response.data.data.user;
     } catch (error) {
