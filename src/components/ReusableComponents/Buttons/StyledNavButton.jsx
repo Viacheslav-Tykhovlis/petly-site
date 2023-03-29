@@ -23,7 +23,7 @@ export const StyledNavLink = styled(NavLink)`
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
-    height: 38px;
+    height: 44px;
     font-size: 20px;
   }
 

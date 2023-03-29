@@ -326,6 +326,7 @@ export const StyledFileInput = styled.div`
     margin-bottom: 28px;
   }
 `;
+
 export const StyledInput = styled(Field)`
   width: 240px;
   height: 40px;
@@ -371,25 +372,5 @@ export const StyledTextareaAutosize = styled(TextareaAutosize)`
     padding: 16px 18px;
     min-height: 113px;
     font-size: 16px;
-  }
-`;
-
-export const FemaleIcon = styled.img`
-  width: 26px;
-  height: 40px;
-
-  @media only screen and (min-width: 768px) {
-    width: 38px;
-    height: 60px;
-  }
-`;
-
-export const MaleIcon = styled.img`
-  width: 36px;
-  height: 36px;
-
-  @media only screen and (min-width: 768px) {
-    width: 54px;
-    height: 54px;
   }
 `;

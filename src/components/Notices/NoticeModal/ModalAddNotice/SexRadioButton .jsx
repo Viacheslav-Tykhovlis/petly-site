@@ -1,8 +1,19 @@
+import styled from '@emotion/styled';
 import {
   RadioSexButton,
   RadioSexLabel,
   RadioSexTitle,
 } from '../ModalAddNotice.styled';
+
+const StyledImg = styled.img`
+  width: ${p => p.size.mobile.width};
+  height: ${p => p.size.mobile.height};
+
+  @media (min-width: 768px) {
+    width: ${p => p.size.tablet.width};
+    height: ${p => p.size.tablet.height};
+  }
+`;
 
 export const SexRadioButton = ({
   id,
@@ -12,6 +23,7 @@ export const SexRadioButton = ({
   altText,
   checked,
   onChange,
+  imgSize,
 }) => (
   <RadioSexLabel htmlFor={id}>
     <RadioSexButton
@@ -22,7 +34,7 @@ export const SexRadioButton = ({
       checked={checked}
       onChange={onChange}
     />
-    <img src={iconSrc} alt={altText} />
+    <StyledImg src={iconSrc} alt={altText} size={imgSize} />
     <RadioSexTitle active={checked}>{label}</RadioSexTitle>
   </RadioSexLabel>
 );
