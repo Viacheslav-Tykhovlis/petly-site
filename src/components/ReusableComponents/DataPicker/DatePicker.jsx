@@ -16,7 +16,7 @@ const MyDatePicker = ({ name }) => {
       {...field}
       selected={value}
       onChange={date => setValue(date)}
-      // placeholderText={placeholderText}
+      placeholderText={'Select date'}
       dateFormat="dd.MM.yyyy"
       maxDate={new Date()}
       customInput={<DatePickerInput />}
@@ -30,6 +30,5 @@ const MyDatePicker = ({ name }) => {
 
 MyDatePicker.propTypes = {
   name: PropTypes.string,
-  // placeholderText: PropTypes.string,
 };
 export default MyDatePicker;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SectionBox = styled.div`
+export const SectionBox = styled.main`
   margin: 0 auto;
   padding-top: 42px;
   padding-bottom: 100px;
