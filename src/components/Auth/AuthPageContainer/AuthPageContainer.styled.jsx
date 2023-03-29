@@ -15,7 +15,6 @@ export const Wrapper = styled.div`
   }
 
   ${props => props.theme.mq.desktop} {
-    position: fixed;
     background: bottom 65px center no-repeat url(${waveDesktop});
   }
 `;
