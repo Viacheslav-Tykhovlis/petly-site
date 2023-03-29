@@ -21,7 +21,6 @@ export const addPet = createAsyncThunk(
   'pets/addPet',
   async (pet, { thunkAPI }) => {
     try {
-      console.log(pet);
       const response = await axios.post('/pets/pet', pet);
       toast.success(`Pet added`);
       return response.data;
