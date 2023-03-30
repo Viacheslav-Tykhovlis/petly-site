@@ -1,25 +1,25 @@
+import { StyledAddToFavoriteButton } from 'components/ReusableComponents/Buttons/StyledAddToFavorite';
+import { StyledContactButton } from 'components/ReusableComponents/Buttons/StyledContactButton';
 import { noticeLabelTranform } from 'utils/noticeLabelTranform';
 import { CloseModalButton } from './ModalAddNotice.styled';
-import { StyledContactButton } from 'components/ReusableComponents/Buttons/StyledContactButton';
-import { StyledAddToFavoriteButton } from 'components/ReusableComponents/Buttons/StyledAddToFavorite';
 
 import {
-  StyledModal,
-  ImageWrap,
-  ModalLabel,
-  StyledTitle,
-  ImageListBox,
-  StyledList,
-  Text,
-  DescrSpan,
   ButtonBox,
-  ModalImage,
-  Table,
-  TableBody,
-  Row,
+  DescrSpan,
   FirstColumn,
+  ImageListBox,
+  ImageWrap,
+  ModalImage,
+  ModalLabel,
+  Row,
   SecondColumn,
   SecondColumnContacts,
+  StyledList,
+  StyledModal,
+  StyledTitle,
+  Table,
+  TableBody,
+  Text,
 } from './ModalNotice.styled';
 
 import defaultImg from '../../../img/defaultImg.jpg';

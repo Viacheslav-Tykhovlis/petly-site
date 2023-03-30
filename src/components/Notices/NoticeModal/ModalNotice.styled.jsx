@@ -174,6 +174,13 @@ export const SecondColumnContacts = styled.a`
 
   color: #000000;
 
+  cursor: pointer;
+  transition: color 0.25s;
+
+  &:hover {
+    color: #f59256;
+  }
+
   @media screen and (min-width: 768px) {
     font-size: 16px;
     line-height: 1.38;
