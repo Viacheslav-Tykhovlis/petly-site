@@ -335,7 +335,8 @@ export const StyledInput = styled(Field)`
   padding-left: 14px;
   background-color: #fdf7f2;
   border: 1px solid
-    ${({ isvalidfield }) => (isvalidfield ? 'green' : '#f5925680')};
+    ${({ __isvalidfield }) =>
+      __isvalidfield === 'true' ? 'green' : '#f5925680'};
 
   &:focus {
     outline: none;
@@ -359,7 +360,8 @@ export const StyledTextareaAutosize = styled(TextareaAutosize)`
 
   background-color: #fdf7f2;
   border: 1px solid
-    ${({ isvalidfield }) => (isvalidfield ? 'green' : '#f5925680')};
+    ${({ __isvalidfield }) =>
+      __isvalidfield === 'true' ? 'green' : '#f5925680'};
 
   resize: none;
   overflow: hidden;
