@@ -8,11 +8,10 @@ import { NavLink } from 'react-router-dom';
 export const LogInWrapper = styled.div`
   display: block;
   max-width: 100%;
-  /* min-height: 100vh; */
   margin-left: auto;
   margin-right: auto;
+  padding: 0 32px;
 
-  /* margin-bottom: 151px; */
   @media screen and (min-width: 768px) {
     max-width: 608px;
     min-height: 492px;
@@ -20,12 +19,10 @@ export const LogInWrapper = styled.div`
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
     padding: 60px 75px;
-    /* margin-bottom: 124px; */
   }
   @media screen and (min-width: 1280px) {
     max-width: 618px;
     min-height: 496px;
-    /* margin-bottom: 260px; */
     padding: 60px 80px;
   }
 `;
@@ -35,7 +32,6 @@ export const LogInTitle = styled.h1`
   font-weight: 700;
   text-align: center;
   margin-bottom: 40px;
-  /* margin-top: 42px; */
   letter-spacing: 0.04em;
   @media screen and (min-width: 768px) {
     margin-top: 0;
@@ -68,7 +64,6 @@ export const LogInInput = styled(Field)`
     font-size: 18px;
     margin-bottom: ${props => props.marginbottom || `16px`};
   }
-  /* margin-bottom: 24px; */
 `;
 
 export const LogInButton = styled.button`
@@ -175,21 +170,25 @@ export const Icon = styled.svg`
 `;
 
 export const Section = styled.section`
+  position: absolute;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  margin-top: 42px;
   background-image: url(${bg320});
   background-repeat: no-repeat;
   background-size: contain;
-
-  background-position: bottom;
-  height: 100vh;
-  margin-top: 42px;
+  background-position: center top 255px;
 
   @media screen and (min-width: 768px) {
     background-image: url(${bg780});
+
     margin-top: 204px;
   }
 
   @media screen and (min-width: 1280px) {
     background-image: url(${bg1280});
+
     margin-top: 80px;
   }
 `;
