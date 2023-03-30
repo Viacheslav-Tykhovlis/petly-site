@@ -41,6 +41,7 @@ const PetsData = () => {
             strokeM={'#ffffff'}
             bgHover={'#ffffff'}
             borderHover={'2px solid #f59256'}
+            strokeHover={'#f59256'}
           />
         </FlexSvg>
       </Flex>

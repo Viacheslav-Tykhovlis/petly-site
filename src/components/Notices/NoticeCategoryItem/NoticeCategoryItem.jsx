@@ -124,7 +124,9 @@ const NoticeCategoryItem = ({ notice }) => {
   }, [_id, isLoggedIn, ownNotices]);
 
   const onDeleteNotice = () => {
-    dispatch(deleteFromFavorite(_id));
+    if (isFavorite) {
+      dispatch(deleteFromFavorite(_id));
+    }
     dispatch(deleteNotice(_id));
   };
 

@@ -15,14 +15,13 @@ const NoticesSearch = ({ category }) => {
   const isButtonClicked = useSelector(getSearchBtnIsActive);
   const isError = useSelector(getError);
 
-  if (isError) {
-    showToastInfo('Sorry, no pets by this title');
-  }
-
   const searchNoticeByTitle = title => {
     if (!isButtonClicked) {
       try {
         dispatch(fetchNoticesByCategory(category));
+        if (isError) {
+          showToastInfo('Sorry, no pets by this title');
+        }
       } catch (error) {
         console.log(error);
       }
