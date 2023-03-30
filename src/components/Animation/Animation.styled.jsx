@@ -34,6 +34,10 @@ const rotateHead = keyframes`
 `;
 
 export const DogHead = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   z-index: 100;
   animation: ${rotateHead} 1s ease-in-out infinite;
   -moz-animation: ${rotateHead} 1s ease-in-out infinite;
