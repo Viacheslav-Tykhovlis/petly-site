@@ -13,7 +13,7 @@ const logInSlice = createSlice({
     builder
       .addCase(logIn.pending, (state, action) => state)
       .addCase(logIn.fulfilled, (state, action) => {
-        state.user = action.payload.data.user;
+        state.user = action.payload.data.userUpdated;
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
       })
