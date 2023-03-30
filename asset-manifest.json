@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/petly-site/static/css/main.200e89ca.css",
-    "main.js": "/petly-site/static/js/main.d2ff9cfa.js",
+    "main.js": "/petly-site/static/js/main.9d4f1761.js",
     "static/js/544.0b10a239.chunk.js": "/petly-site/static/js/544.0b10a239.chunk.js",
     "static/js/541.8f1e217e.chunk.js": "/petly-site/static/js/541.8f1e217e.chunk.js",
     "static/js/159.8836b25c.chunk.js": "/petly-site/static/js/159.8836b25c.chunk.js",
     "static/js/474.51b5cd2b.chunk.js": "/petly-site/static/js/474.51b5cd2b.chunk.js",
-    "static/js/878.f65e386d.chunk.js": "/petly-site/static/js/878.f65e386d.chunk.js",
+    "static/js/878.fb68372d.chunk.js": "/petly-site/static/js/878.fb68372d.chunk.js",
     "static/js/62.27b1df98.chunk.js": "/petly-site/static/js/62.27b1df98.chunk.js",
     "static/js/65.75a585b5.chunk.js": "/petly-site/static/js/65.75a585b5.chunk.js",
     "static/js/691.4262b5d9.chunk.js": "/petly-site/static/js/691.4262b5d9.chunk.js",
@@ -36,12 +36,12 @@
     "index.html": "/petly-site/index.html",
     "static/media/wave-login-register.svg": "/petly-site/static/media/wave-login-register.8bf5073e8fd97448d3f71547116682ac.svg",
     "main.200e89ca.css.map": "/petly-site/static/css/main.200e89ca.css.map",
-    "main.d2ff9cfa.js.map": "/petly-site/static/js/main.d2ff9cfa.js.map",
+    "main.9d4f1761.js.map": "/petly-site/static/js/main.9d4f1761.js.map",
     "544.0b10a239.chunk.js.map": "/petly-site/static/js/544.0b10a239.chunk.js.map",
     "541.8f1e217e.chunk.js.map": "/petly-site/static/js/541.8f1e217e.chunk.js.map",
     "159.8836b25c.chunk.js.map": "/petly-site/static/js/159.8836b25c.chunk.js.map",
     "474.51b5cd2b.chunk.js.map": "/petly-site/static/js/474.51b5cd2b.chunk.js.map",
-    "878.f65e386d.chunk.js.map": "/petly-site/static/js/878.f65e386d.chunk.js.map",
+    "878.fb68372d.chunk.js.map": "/petly-site/static/js/878.fb68372d.chunk.js.map",
     "62.27b1df98.chunk.js.map": "/petly-site/static/js/62.27b1df98.chunk.js.map",
     "65.75a585b5.chunk.js.map": "/petly-site/static/js/65.75a585b5.chunk.js.map",
     "691.4262b5d9.chunk.js.map": "/petly-site/static/js/691.4262b5d9.chunk.js.map",
@@ -55,6 +55,6 @@
   },
   "entrypoints": [
     "static/css/main.200e89ca.css",
-    "static/js/main.d2ff9cfa.js"
+    "static/js/main.9d4f1761.js"
   ]
 }
