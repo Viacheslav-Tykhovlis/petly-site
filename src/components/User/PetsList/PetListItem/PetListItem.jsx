@@ -5,10 +5,18 @@ import { ButtonBasket } from '../../ButtonUser/ButtonUser';
 import { deletePet } from 'redux/pets/operations';
 import { useDispatch } from 'react-redux';
 
-const PetListItem = ({ photo, name, birthday, breed, comments, petId }) => {
+const PetListItem = ({
+  photo,
+  name,
+  birthday,
+  breed,
+  comments,
+  petId,
+  key,
+}) => {
   const dispatch = useDispatch();
   return (
-    <ContainerPets key={petId}>
+    <ContainerPets key={key}>
       <Image src={photo} alt={name} />
       <ul>
         <PetName name={name} />

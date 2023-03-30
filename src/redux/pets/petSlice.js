@@ -41,7 +41,7 @@ const petsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         const { items } = state;
-        const index = items.findIndex(pet => pet._id === action.payload.id);
+        const index = items.findIndex(pet => pet.id === action.payload._id);
         items.splice(index, 1);
       })
       .addCase(deletePet.rejected, rejectedReducer);
