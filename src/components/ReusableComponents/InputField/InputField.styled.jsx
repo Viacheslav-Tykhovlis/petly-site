@@ -7,7 +7,9 @@ export const FieldWrapper = styled.div`
 
 export const FieldStyle = styled(Field)`
   @media screen and (max-width: 767px) {
+    padding-left: 14px;
     margin-bottom: 16px;
+    font-size: ${props => props.theme.fontSizes.xxs};
   }
 
   margin-bottom: 28px;
