@@ -98,7 +98,6 @@ export const deleteFromFavorite = createAsyncThunk(
     const url = `/notices/delFavorite/${noticeId}`;
     try {
       const result = await axios.patch(url);
-      console.log(result.data.data);
       return result.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

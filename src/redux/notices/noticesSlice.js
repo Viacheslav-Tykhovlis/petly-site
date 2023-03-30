@@ -86,7 +86,8 @@ const noticesSlice = createSlice({
       .addCase(addNotice.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.noticesList.push(action.payload);
+        state.noticesList.push(action.payload.data);
+        state.ownList.push(action.payload.data);
       })
       .addCase(addNotice.rejected, (state, action) => {
         state.isLoading = false;
@@ -101,11 +102,17 @@ const noticesSlice = createSlice({
       .addCase(deleteNotice.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const { noticesList } = state;
-        const index = noticesList.findIndex(
-          notice => notice.id === action.payload.id,
+        const { noticesList, ownList } = state;
+
+        const indexNotice = noticesList.findIndex(
+          notice => notice._id === action.payload.data._id,
         );
-        noticesList.splice(index, 1);
+        noticesList.splice(indexNotice, 1);
+
+        const indexOwn = ownList.findIndex(
+          notice => notice._id === action.payload.data._id,
+        );
+        ownList.splice(indexOwn, 1);
       })
       .addCase(deleteNotice.rejected, (state, action) => {
         state.isLoading = false;
