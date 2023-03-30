@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = `https://petly-site-back.up.railway.app`;
 
@@ -20,10 +21,11 @@ export const addPet = createAsyncThunk(
   'pets/addPet',
   async (pet, { thunkAPI }) => {
     try {
-      console.log(pet);
       const response = await axios.post('/pets/pet', pet);
+      toast.success(`Pet added`);
       return response.data;
     } catch (error) {
+      toast.error(error.response.data.message);
       return thunkAPI(error.message);
     }
   },

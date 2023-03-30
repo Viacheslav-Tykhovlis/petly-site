@@ -5,7 +5,6 @@ const PetsList = ({ pets }) => {
     <ul>
       {pets.map(({ photo, name, birthday, breed, comments, _id }) => (
         <PetListItem
-          key={_id}
           petId={_id}
           photo={photo}
           name={name}

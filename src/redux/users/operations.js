@@ -17,7 +17,6 @@ export const uploadAvatar = createAsyncThunk(
   'user/changeAvatar',
   async (file, { thunkAPI }) => {
     try {
-      console.log(file);
       const formData = new FormData();
       formData.append('avatarUrl', file);
       const response = await axios.put('/auth/change', formData);
@@ -30,12 +29,9 @@ export const uploadAvatar = createAsyncThunk(
 
 export const uploadUser = createAsyncThunk(
   'user/change',
-  async (user, { thunkAPI }) => {
+  async (formData, { thunkAPI }) => {
     try {
-      console.log(user);
-      const formData = new FormData();
-      formData.append('name', user);
-      const response = await axios.put('/auth/change', user);
+      const response = await axios.put('/auth/change', formData);
       return response.data.data.user;
     } catch (error) {
       return thunkAPI(error.message);

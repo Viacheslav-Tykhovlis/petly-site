@@ -1,19 +1,26 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import { Label, Flex, Input, FormStyled } from '../UserDataItem.styled';
-import {
-  // useDispatch,
-  useSelector,
-} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getStateUsers } from 'redux/users/selectors';
 import { useState } from 'react';
-// import { uploadUser } from 'redux/users/operations.js';
+import { uploadUser } from 'redux/users/operations.js';
 import { ButtonUpdate } from '../../ButtonUser/ButtonUpdate';
 
 export const UserBirthday = ({ isUpdating, setIsUpdating }) => {
   const user = useSelector(getStateUsers);
   const [isDisabled, setIsDisabled] = useState(true);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const [newUserBirthday, setNewUserBirthday] = useState();
+
+  const format = new Date(user.birthday);
+  const options = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  };
+  const formatBirthday = format.toLocaleString('ua', options);
+  console.log(formatBirthday);
 
   const handleClick = (values, actions) => {
     if (isDisabled) {
@@ -27,18 +34,27 @@ export const UserBirthday = ({ isUpdating, setIsUpdating }) => {
     setIsUpdating(false);
   };
 
+  const handleChange = event => {
+    const birthdayUser = event.target.value;
+    setNewUserBirthday(birthdayUser);
+  };
+
   const handleSubmit = async (values, actions) => {
     if (!isDisabled) {
       return;
     }
 
     if (values.birthday === user.birthday) return;
+
+    const formData = new FormData();
+    formData.append('birthday', newUserBirthday);
+    dispatch(uploadUser(formData));
   };
 
   return (
     <Formik
       initialValues={{
-        birthday: { birthday: user?.birthday || '00.00.0000' },
+        birthday: { birthday: formatBirthday || 'MM.DD.YYYY' },
       }}
       onSubmit={handleSubmit}
     >
@@ -51,7 +67,8 @@ export const UserBirthday = ({ isUpdating, setIsUpdating }) => {
                 name="birthday"
                 type="birthday"
                 disabled={isDisabled}
-                placeholder={user.birthday || ''}
+                placeholder={formatBirthday || 'MM.DD.YYYY'}
+                onChange={handleChange}
               />
               <ButtonUpdate
                 onClick={() => {

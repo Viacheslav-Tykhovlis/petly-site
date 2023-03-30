@@ -29,9 +29,19 @@ const UploadImageField = ({ handleChange, fileDataURL, name, label, form }) => {
       ) : (
         <>
           <LoadImageCont>
-            <PlusIcon />
+            <PlusIcon width="50" height="50" viewBox="0 0 50 50">
+              <path
+                d="M25 49V25M25 25V1M25 25H49M25 25H1"
+                stroke="#111111"
+                strokeOpacity="0.6"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            </PlusIcon>
+
             <ErrorStyle name={name} component="div" />
           </LoadImageCont>
+
           <LoadImgInput
             selected={value}
             name={name}
