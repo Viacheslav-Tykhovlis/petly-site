@@ -41,6 +41,7 @@ import {
 } from 'redux/notices/noticesOperations';
 import { showToastInfo } from 'utils/showTost';
 import Loader from 'components/Loader/Loader';
+import { workWithBirthdate } from 'utils/numdersConverter';
 
 const NoticeCategoryItem = ({ notice }) => {
   const dispatch = useDispatch();
@@ -159,7 +160,7 @@ const NoticeCategoryItem = ({ notice }) => {
               </Row>
               <Row>
                 <FirstColumn>Age:</FirstColumn>
-                <SecondColumn>{birthdate || '-'}</SecondColumn>
+                <SecondColumn>{workWithBirthdate(birthdate)}</SecondColumn>
               </Row>
               {category === 'sell' && (
                 <Row>
