@@ -27,7 +27,6 @@ export const UserPhone = ({ isUpdating, setIsUpdating }) => {
 
   const handleChange = event => {
     const phoneUser = event.target.value;
-    console.log(phoneUser);
     setNewUserPhone(phoneUser);
   };
 
@@ -57,7 +56,7 @@ export const UserPhone = ({ isUpdating, setIsUpdating }) => {
               <Label htmlFor="phone">Phone:</Label>
               <Input
                 name="phone"
-                type="phone"
+                type=""
                 disabled={isDisabled}
                 placeholder={user.phone || ''}
                 onChange={handleChange}

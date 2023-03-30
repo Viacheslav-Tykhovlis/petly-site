@@ -27,7 +27,6 @@ export const UserName = ({ isUpdating, setIsUpdating }) => {
 
   const handleChange = event => {
     const nameUser = event.target.value;
-    console.log(nameUser);
     setNewUserName(nameUser);
   };
 
