@@ -58,6 +58,7 @@ export const LogInInput = styled(Field)`
   font-weight: 400;
   line-height: 1.4;
   color: rgba(17, 17, 17, 0.6);
+  outline-color: rgba(245, 146, 86, 0.5);
   @media screen and (min-width: 768px) {
     padding: 14px 32px;
     font-size: 18px;
