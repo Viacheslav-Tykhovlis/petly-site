@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  fetchUser,
-  uploadAvatar,
-  // addContact, deleteContact
-} from './operations';
+import { fetchUser, uploadAvatar, currenthUser } from './operations';
 
 const pendingReducer = state => {
   state.isLoading = true;
@@ -11,7 +7,14 @@ const pendingReducer = state => {
 
 const fetchUserSucceesReducer = (state, action) => {
   state.items = action.payload;
-  state.isLoading = false;
+  state.isLoading = true;
+};
+
+const currenthUserSucceesReducer = (state, action) => {
+  console.log(action.payload);
+  state.user = action.payload.data.user;
+  state.token = action.payload.data.user.accessToken;
+  state.isLoggedIn = true;
 };
 
 const rejectedReducer = (state, action) => {
@@ -33,37 +36,11 @@ const userSlice = createSlice({
       .addCase(fetchUser.rejected, rejectedReducer)
       .addCase(uploadAvatar.pending, pendingReducer)
       .addCase(uploadAvatar.fulfilled, fetchUserSucceesReducer)
-      .addCase(uploadAvatar.rejected, rejectedReducer);
+      .addCase(uploadAvatar.rejected, rejectedReducer)
+      .addCase(currenthUser.pending, pendingReducer)
+      .addCase(currenthUser.fulfilled, currenthUserSucceesReducer)
+      .addCase(currenthUser.rejected, rejectedReducer);
   },
-  // extraReducers: {
-  //   [fetchUser.pending]: handlePending,
-  //   [fetchUser.fulfilled](state, action) {
-  //     state.isLoading = false;
-  //     state.error = null;
-  //     state.items = action.payload;
-  //   },
-  //   [fetchUser.rejected]: handleRejected,
-
-  // [addContact.pending]: handlePending,
-  // [addContact.fulfilled](state, action) {
-  //   state.isLoading = false;
-  //   state.error = null;
-  //   state.items.push(action.payload);
-  // },
-  // [addContact.rejected]: handleRejected,
-
-  // [deleteContact.pending]: handlePending,
-  // [deleteContact.fulfilled](state, action) {
-  //   state.isLoading = false;
-  //   state.error = null;
-  //   const { items } = state;
-  //   const index = items.findIndex(
-  //     contact => contact.id === action.payload.id,
-  //   );
-  //   items.splice(index, 1);
-  // },
-  // [deleteContact.rejected]: handleRejected,
-  //   },
 });
 
 export const userReducer = userSlice.reducer;

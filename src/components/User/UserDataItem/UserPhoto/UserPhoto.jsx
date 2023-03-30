@@ -22,7 +22,7 @@ const UserPhoto = () => {
     dispatch(uploadAvatar(file));
   }
   const user = useSelector(getStateUsers);
-  const avatar = user.avatarUrl ? `${API + user.avatar}` : photoCover;
+  const avatar = user?.avatarUrl ? `${API + user.avatar}` : photoCover;
   return (
     <Flex>
       <ImageStyled src={avatar} alt="" />

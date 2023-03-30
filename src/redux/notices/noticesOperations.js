@@ -1,14 +1,16 @@
+import { API } from '../../API';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+// import Notiflix from 'notiflix';
+// import { notifySettings } from '../../utils/notifySettings';
 
-axios.defaults.baseURL = `https://petly-site-back.up.railway.app`;
+
 
 export const fetchNoticesByCategory = createAsyncThunk(
   'notices/fetchByCategory',
   async (category, thunkAPI) => {
     const url = `/notices/category/${category}`;
     try {
-      const result = await axios.get(url);
+      const result = await API.get(url);
       return result.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -21,7 +23,7 @@ export const fetchNoticesByTitle = createAsyncThunk(
   async (title, thunkAPI) => {
     const url = `/notices/title/${title}`;
     try {
-      const result = await axios.get(url);
+      const result = await API.get(url);
       return result.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -34,7 +36,7 @@ export const fetchNoticesByOwner = createAsyncThunk(
   async (_, thunkAPI) => {
     const url = `/notices/userNotices`;
     try {
-      const result = await axios.get(url);
+      const result = await API.get(url);
       return result.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -46,7 +48,7 @@ export const addNotice = createAsyncThunk(
   'notices/addNotice',
   async (newNotice, thunkAPI) => {
     try {
-      const response = await axios.post('/notices/create', newNotice);
+      const response = await API.post('/notices/create', newNotice);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -58,7 +60,7 @@ export const deleteNotice = createAsyncThunk(
   'notices/deleteNotice',
   async (noticeId, thunkAPI) => {
     try {
-      const response = await axios.delete(`/notices/delete/${noticeId}`);
+      const response = await API.delete(`/notices/delete/${noticeId}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -71,7 +73,7 @@ export const fetchFavoriteNotices = createAsyncThunk(
   async (_, thunkAPI) => {
     const url = `/notices/getFavorite`;
     try {
-      const result = await axios.get(url);
+      const result = await API.get(url);
       return result.data.data[0].userLikePets;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -84,7 +86,7 @@ export const addToFavorite = createAsyncThunk(
   async (noticeId, thunkAPI) => {
     const url = `/notices/addFavorite/${noticeId}`;
     try {
-      const result = await axios.patch(url);
+      const result = await API.patch(url);
       console.log(result.data.data);
       return result.data.data;
     } catch (error) {
@@ -98,7 +100,7 @@ export const deleteFromFavorite = createAsyncThunk(
   async (noticeId, thunkAPI) => {
     const url = `/notices/delFavorite/${noticeId}`;
     try {
-      const result = await axios.patch(url);
+      const result = await API.patch(url);
       console.log(result.data.data);
       return result.data.data;
     } catch (error) {

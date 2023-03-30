@@ -1,6 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 // import { lazy } from 'react';
 
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectAccessToken } from '../redux/login/logIn-selectors';
+import { currenthUser } from '../redux/users/operations';
 import Container from './Container/Container';
 import SharedLayout from './SharedLayout/SharedLayout';
 import Home from 'pages/Home/Home';
@@ -16,9 +20,20 @@ import { PrivateRoute } from './PravateRoute/PrivateRoute';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const token = useSelector(selectAccessToken);
+
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+    dispatch(currenthUser());
+    // eslint-disable-next-line
+  }, [dispatch]);
+
+
   return (
     <>
       <Container>

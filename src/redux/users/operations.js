@@ -1,14 +1,13 @@
-import axios from 'axios';
+import { API, authToken } from '../../API';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-axios.defaults.baseURL = `https://petly-site-back.up.railway.app`;
+import Notiflix from 'notiflix';
+import { notifySettings } from '../../utils/notifySettings';
 
 export const fetchUser = createAsyncThunk('/user', async (_, { thunkAPI }) => {
   try {
-    const response = await axios.get('/user/about');
+    const response = await API.get('/user/about');
     return response.data.data.user;
   } catch (error) {
-    console.log('fetchUserError:', error.message);
     return thunkAPI(error.message);
   }
 });
@@ -20,22 +19,27 @@ export const uploadAvatar = createAsyncThunk(
       console.log(file);
       const formData = new FormData();
       formData.append('file', file);
-      const response = await axios.patch('/auth/change', formData);
+      const response = await API.patch('/auth/change', formData);
       return response.data.data.user;
     } catch (error) {
       return thunkAPI(error.message);
     }
   },
 );
-
-// export const deleteContact = createAsyncThunk(
-//   'contacts/deleteContact',
-//   async (id, { thunkAPI }) => {
-//     try {
-//       const response = await axios.delete(`/contacts/${id}`);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI(error.message);
-//     }
-//   },
-// );
+export const currenthUser = createAsyncThunk(
+  'user/current',
+  async (_, { thunkAPI }) => {
+    try {
+      const { data } = await API.post('/user/current');
+      authToken.set(data.data.user.accessToken);
+      console.log(data);
+      Notiflix.Notify.success(
+        `З поверненням, ${data.user.email}!`,
+        notifySettings,
+      );
+      return data;
+    } catch (error) {
+      return thunkAPI(error.message);
+    }
+  },
+);

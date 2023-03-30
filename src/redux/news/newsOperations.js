@@ -1,14 +1,14 @@
-import axios from 'axios';
-
+import { API } from '../../API';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+// import Notiflix from 'notiflix';
+// import { notifySettings } from '../../utils/notifySettings';
 
-axios.defaults.baseURL = `https://petly-site-back.up.railway.app`;
 
 export const fetchNews = createAsyncThunk(
   '/news',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('/news');
+      const response = await API.get('/news');
       return response.data;
     } catch (e) {
       console.log('fetchNewsErr:', e.message);

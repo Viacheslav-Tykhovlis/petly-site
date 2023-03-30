@@ -1,8 +1,10 @@
 import axios from 'axios';
+import Notiflix from 'notiflix';
+import { notifySettings } from './utils/notifySettings';
 
 const API = axios.create({
-  //   baseURL: 'http://185.233.118.244:8080',
-  baseURL: 'http://localhost:8080',
+  // baseURL: 'https://petly-site-back.up.railway.app',
+  baseURL: 'http://localhost:3002',
 });
 
 const authToken = {
@@ -15,30 +17,28 @@ const authToken = {
   },
 };
 
-const getAllNews = async () => {
-  return await API.get(`/news`);
-};
 
 API.interceptors.response.use(
   response => response,
   async error => {
-    if (error.response.status === 401) {
+    // eslint-disable-next-line
+    if (error.response.status == 401) {
       const refreshToken = localStorage.getItem('refreshToken');
-      console.log(refreshToken);
       try {
-        const { data } = await API.post('/auth/users/refresh', {
-          refreshToken,
-        });
-        if (data.accessToken) {
-          authToken.set(data.accessToken);
-          localStorage.setItem('refreshToken', data.refreshToken);
-        }
+        console.log(refreshToken);
+        const { data } = await API.post('/user/refresh', { refreshToken });
+        authToken.set(data.accessToken);
+        console.log(data.accessToken);
+        localStorage.setItem('accessToken', data.accessToken);
+        localStorage.setItem('refreshToken', data.refreshToken);
+        console.log(data.refreshToken);
         return API(error.config);
       } catch (error) {
+         Notiflix.Notify.failure('interceptors catch', notifySettings);
         return Promise.reject(error);
       }
     }
     return Promise.reject(error);
   },
 );
-export { API, authToken, getAllNews };
+export { API, authToken };

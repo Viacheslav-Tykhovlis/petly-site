@@ -1,56 +1,32 @@
-import axios from 'axios';
+import { API, authToken } from '../../API';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-axios.defaults.baseURL = `https://petly-site-back.up.railway.app`;
-
-const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
-
-const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = ``;
-};
+import Notiflix from 'notiflix';
+import { notifySettings } from '../../utils/notifySettings';
 
 export const logIn = createAsyncThunk(
-  '/login',
-  async (credentials, thunkAPI) => {
+  'auth/login',
+  async (userData, thunkAPI) => {
     try {
-      const response = await axios.post('/auth/login', credentials);
-      // console.log(response.data.data.user);
-
-      setAuthHeader(response.data.data.accessToken);
-      return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+      const { data } = await API.post('/auth/login', userData);
+      authToken.set(data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
+      Notiflix.Notify.success(
+        `Радо вітаємо, ${data.user.email}!`,
+        notifySettings,
+      );
+      return data;
+    } catch (error) {
+      Notiflix.Notify.failure('Щось пішло не так...', notifySettings);
+      return thunkAPI.rejectWithValue(error.request.status);
     }
   },
 );
 
 export const logOut = createAsyncThunk('logout', async (_, thunkAPI) => {
   try {
-    await axios.get('/auth/logout');
-    clearAuthHeader();
+    await API.get('/auth/logout');
+    authToken.unset();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
-
-export const refreshUser = createAsyncThunk(
-  'auth/refresh',
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
-    }
-
-    try {
-      setAuthHeader(persistedToken);
-      const res = await axios.post('/auth/login');
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  },
-);
