@@ -12,6 +12,7 @@ export const ButtonUpdate = ({
     <Button type={type} onClick={onClick} disabled={disabled}>
       {isInputDisabled ? (
         <ButtonPencil
+          disabled={disabled}
           widthM={'20px'}
           heightM={'20px'}
           widthT={'32px'}
