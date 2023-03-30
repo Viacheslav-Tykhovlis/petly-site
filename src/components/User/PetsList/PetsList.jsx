@@ -2,13 +2,14 @@ import PetListItem from './PetListItem/PetListItem';
 import { getIsLoading } from 'redux/pets/selectors';
 import { useSelector } from 'react-redux';
 import CoverPage from 'components/ReusableComponents/CoverPage/CoverPage';
-import { Animation } from 'components/Animation/Animation';
+import Loader from 'components/Loader/Loader';
+// import { Animation } from 'components/Animation/Animation';
 
 const PetsList = ({ pets }) => {
   const isLoading = useSelector(getIsLoading);
   return (
     <>
-      {isLoading && <Animation />}
+      {isLoading && <Loader />}
       {!isLoading && pets.length === 0 && <CoverPage />}
       {!isLoading && pets.length >= 1 && (
         <ul>

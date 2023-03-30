@@ -7,10 +7,18 @@ export const Container = styled.div`
 `;
 
 export const Txt = styled.p`
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 500px;
   color: inherit;
   text-align: center;
+
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+  }
+
+  @media screen and (min-width: 1280) {
+    font-size: 24px;
+  }
 `;
 export const Img = styled.img`
   width: 100px;
@@ -19,6 +27,8 @@ export const Img = styled.img`
     width: 200px;
   }
   @media screen and (min-width: 1280) {
+    font-size: 24px;
+
     width: 300px;
   }
 `;
