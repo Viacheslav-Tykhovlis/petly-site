@@ -170,4 +170,10 @@ export const NewsDate = styled.p`
 export const NewsLink = styled.a`
   color: #f59256;
   text-decoration: underline;
+  transition: all 250ms ease-in-out;
+
+  &:hover {
+    color: #ff7f2f;
+    transform: scale(1.05);
+  }
 `;
