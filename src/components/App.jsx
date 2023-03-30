@@ -8,6 +8,7 @@ import { RestrictedRoute } from './RestrictedRoutes/RestrictedRoutes';
 import { PrivateRoute } from './PravateRoute/PrivateRoute';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Animation } from './Animation/Animation';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
@@ -24,7 +25,7 @@ export const App = () => {
   return (
     <>
       <Container>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Animation />}>
           <Routes>
             <Route path="/" element={<SharedLayout />}>
               <Route index element={<Home />} />

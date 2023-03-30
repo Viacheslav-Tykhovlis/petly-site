@@ -180,23 +180,16 @@ export const Section = styled.section`
   background-size: contain;
 
   background-position: bottom;
-  background-position: left 0px bottom 25px;
-  /* background-size: 100%; */
-  /* height: 100vh; */
-  padding-top: 42px;
-  padding-bottom: 151px;
+  height: 100vh;
+  margin-top: 42px;
 
   @media screen and (min-width: 768px) {
     background-image: url(${bg780});
-    background-position: left -1px bottom 133px;
-    padding-top: 204px;
-    padding-bottom: 260px;
+    margin-top: 204px;
   }
 
   @media screen and (min-width: 1280px) {
     background-image: url(${bg1280});
-    background-position: bottom;
-    padding-top: 80px;
-    padding-bottom: 124px;
+    margin-top: 80px;
   }
 `;

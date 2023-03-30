@@ -15,8 +15,6 @@ import {
   ApproveMessage,
   InputWrapper,
   Section,
-  //   Background,
-  //   FormStyled,
 } from './LoginForm.styled';
 import { GreenIcon, RedIcon } from './Icons';
 
