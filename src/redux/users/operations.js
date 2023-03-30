@@ -20,7 +20,7 @@ export const uploadAvatar = createAsyncThunk(
       const formData = new FormData();
       formData.append('avatarUrl', file);
       const response = await axios.put('/auth/change', formData);
-      return response.data.data.user;
+      return response.data;
     } catch (error) {
       return thunkAPI(error.message);
     }
@@ -32,7 +32,7 @@ export const uploadUser = createAsyncThunk(
   async (formData, { thunkAPI }) => {
     try {
       const response = await axios.put('/auth/change', formData);
-      return response.data.data.user;
+      return response.data;
     } catch (error) {
       return thunkAPI(error.message);
     }
