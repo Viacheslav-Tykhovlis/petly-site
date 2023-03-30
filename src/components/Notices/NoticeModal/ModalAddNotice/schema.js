@@ -31,7 +31,6 @@ export const validationSchemaStep2 = Yup.object().shape({
     )
     .required('Required field'),
   comments: Yup.string()
-    .matches(lettersOnly, 'Only letters are allowed')
     .min(8, 'Minimum 8 characters')
     .max(120, 'Maximum 120 characters')
     .required('Required field'),
