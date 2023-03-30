@@ -10,11 +10,11 @@ const fetchPetsSucceesReducer = (state, action) => {
   state.isLoading = false;
 };
 
-const addPetSucceesReducer = (state, action) => {
-  state.isLoading = false;
-  state.error = null;
-  state.items.push(action.payload);
-};
+// const addPetSucceesReducer = (state, action) => {
+//   state.isLoading = false;
+//   state.error = null;
+//   state.items.push(action.payload);
+// };
 
 const rejectedReducer = (state, action) => {
   state.error = action.payload;
@@ -34,7 +34,7 @@ const petsSlice = createSlice({
       .addCase(fetchPets.fulfilled, fetchPetsSucceesReducer)
       .addCase(fetchPets.rejected, rejectedReducer)
       .addCase(addPet.pending, pendingReducer)
-      .addCase(addPet.fulfilled, addPetSucceesReducer)
+      .addCase(addPet.fulfilled, fetchPetsSucceesReducer)
       .addCase(addPet.rejected, rejectedReducer)
       .addCase(deletePet.pending, pendingReducer)
       .addCase(deletePet.fulfilled, (state, action) => {
