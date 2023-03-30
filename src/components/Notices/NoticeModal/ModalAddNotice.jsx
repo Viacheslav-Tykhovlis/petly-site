@@ -147,7 +147,7 @@ const ModalAddNotice = ({ onClose }) => {
               onDone={e => handleSubmit(e, formik)}
               setFile={setFile}
               setFieldValue={formik.setFieldValue}
-              fileDataURL={fileDataURL}
+              filedataurl={fileDataURL}
             />
           )}
         </>

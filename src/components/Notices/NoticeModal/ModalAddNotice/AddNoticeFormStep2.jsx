@@ -32,7 +32,8 @@ export const FormStep2 = ({
   errors,
   setFile,
   setFieldValue,
-  fileDataURL,
+  // fileDataURL,
+  filedataurl,
 }) => {
   return (
     <Form>
@@ -130,16 +131,16 @@ export const FormStep2 = ({
             name="file"
             id="file"
             style={{ display: 'none' }}
-            fileDataURL={fileDataURL}
+            filedataurl={filedataurl}
             onChange={e => {
               setFieldValue('image', e.currentTarget.files[0]);
               setFile(e.currentTarget.files[0]);
             }}
           />
           <UploadButton htmlFor="file">
-            {fileDataURL ? (
+            {filedataurl ? (
               <img
-                src={fileDataURL}
+                src={filedataurl}
                 alt="Uploaded"
                 style={{ maxWidth: '100%', maxHeight: '100%' }}
               />
