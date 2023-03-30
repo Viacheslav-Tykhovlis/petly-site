@@ -12,12 +12,12 @@ export const ModalWrapper = styled.div`
 export const ModalContent = styled.div`
   position: relative;
   overflow-y: auto;
-  background-color: ${props => props.theme.colors.backgroundFormInput};
+  background-color: ${props => props.theme.colors.white};
   border-radius: 40px;
   padding: 60px 80px 40px 80px;
   width: 618px;
 
-  box-shadow: ${props => props.theme.shadows.regular};
+  box-shadow: ${props => props.theme.shadows.form};
   ${props => props.theme.mq.tablet} {
     margin-top: 0;
   }
@@ -36,12 +36,14 @@ export const FormTitle = styled.h1`
   font-weight: ${props => props.theme.fontWeight.medium};
   font-size: 36px;
   line-height: 49px;
+  letter-spacing: 0.04em;
   text-align: center;
   align-items: center;
   color: ${props => props.theme.colors.black};
   ${props => props.theme.mq.mobileOnly} {
+    font-weight: ${props => props.theme.fontWeight.bold};
     font-size: ${props => props.theme.fontSizes.l};
-    line-height: 32px;
+    line-height: 33px;
   }
 `;
 export const FormWrapper = styled(Form)`
@@ -61,7 +63,9 @@ export const ButtonWrapper = styled.div`
 
 export const Paragraph = styled.p`
   font-size: ${props => props.theme.fontSizes.xxxs};
+  font-weight: ${props => props.theme.fontWeight.body};
   line-height: 16px;
+  letter-spacing: 0.04em;
   align-items: center;
   text-align: center;
   color: ${props => props.theme.colors.secondaryText};

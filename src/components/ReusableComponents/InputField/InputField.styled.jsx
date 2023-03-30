@@ -21,6 +21,7 @@ export const FieldStyle = styled(Field)`
   font-family: 'Manrope';
   font-size: ${props => props.theme.fontSizes.s};
   font-weight: ${props => props.theme.fontWeight.body};
+  outline-color: ${props => props.theme.colors.borderColor};
 
   @media screen and (min-width: 768px) {
     padding: 12px 14px;
