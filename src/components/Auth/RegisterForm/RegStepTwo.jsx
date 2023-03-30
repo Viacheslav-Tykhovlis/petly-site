@@ -62,7 +62,11 @@ const RegStepTwo = ({ value, setFieldValue }) => {
         </List>
       )}
 
-      <InputField name="phone" type="phone" placeholder={'Mobile phone'} />
+      <InputField
+        name="phone"
+        type="phone"
+        placeholder={'Mobile phone +380123456789'}
+      />
     </>
   );
 };
