@@ -17,6 +17,7 @@ const noticesInitialState = {
   isLoading: false,
   searchBtnIsActive: true,
   error: null,
+  searchError: null,
 };
 
 const noticesSlice = createSlice({
@@ -46,18 +47,21 @@ const noticesSlice = createSlice({
       .addCase(fetchNoticesByTitle.pending, state => {
         state.isLoading = true;
         state.error = null;
-        state.searchBtnIsActive = false;
+        state.searchError = null;
+        state.searchBtnIsActive = true;
       })
       .addCase(fetchNoticesByTitle.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
+        state.searchError = null;
         state.noticesList = action.payload;
         state.searchBtnIsActive = false;
       })
       .addCase(fetchNoticesByTitle.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-        state.searchBtnIsActive = true;
+        state.searchError = action.payload;
+        state.searchBtnIsActive = false;
       })
 
       // notices by owner
