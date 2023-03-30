@@ -13,13 +13,13 @@ export const initialValues = {
 // Yup Validation
 export const validationSchemaStepOne = Yup.object().shape({
   email: Yup.string()
-    .email('Please enter a valid email address, example: "mail@mail.com"')
+    .email('Enter a valid email address, e.g: "mail@mail.com"')
     .matches(
       /^(?=.{1,63}$)(?=.{2,}@)[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-      'Please enter a valid email address, example: "mail@mail.com"',
+      'Enter a valid email address, e.g: "mail@mail.com"',
     )
     .required('Email is required')
-    .min(12, 'Email should be at least 12 characters long')
+    .min(5, 'Email should be at least 5 characters long')
     .max(63, 'Email should be up to 63 characters long'),
   password: Yup.string()
     .matches(
@@ -46,13 +46,13 @@ export const validationSchemaStepTwo = Yup.object().shape({
   city: Yup.string()
     .matches(
       /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?:[-\s]?[a-zA-Zа-яА-ЯіІїЇґҐ]+)*,\s*[a-zA-Zа-яА-ЯіІїЇґҐ'’\s-]+$/,
-      'Should be "City, Region" separated by comma, only letters can be accepted',
+      'Enter "City, Region" separated by commas',
     )
     .min(3, 'City should have at least 3 characters'),
   phone: Yup.string()
     .matches(
       /^\+380\d{9}$/,
-      'Number should begin with +380 and contain 13 digits',
+      'Example: "+380xxxxxxxxx"',
     )
     .min(13, 'Phone number should be 13 digits')
     .max(13, 'Phone number should be 13 digits'),
