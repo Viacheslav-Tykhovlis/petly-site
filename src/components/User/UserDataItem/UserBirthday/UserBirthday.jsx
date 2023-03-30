@@ -20,7 +20,6 @@ export const UserBirthday = ({ isUpdating, setIsUpdating }) => {
     day: 'numeric',
   };
   const formatBirthday = format.toLocaleString('ua', options);
-  console.log(formatBirthday);
 
   const handleClick = (values, actions) => {
     if (isDisabled) {
