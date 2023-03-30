@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-const lettersOnly = /^([a-zA-Zа-яА-ЯёЁіІїЇґҐ\s]+)$/;
+const lettersOnly = /^([a-zA-Zа-яА-ЯёЁіІїЇґҐ\s,.\-'"’]+)$/;
 
 export const validationSchemaStep1 = Yup.object().shape({
   title: Yup.string()
