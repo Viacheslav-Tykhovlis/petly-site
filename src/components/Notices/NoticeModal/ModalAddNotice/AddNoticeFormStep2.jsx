@@ -97,7 +97,7 @@ export const FormStep2 = ({
               value={location}
               onChange={handleChange}
               onBlur={handleBlur}
-              isvalidfield={touched.location && !errors.location}
+              __isvalidfield={`${touched.location && !errors.location}`}
             />
             <FormikErrorMessage name="location" />
           </InputWrapper>
@@ -114,7 +114,7 @@ export const FormStep2 = ({
                 value={price}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                isvalidfield={touched.price && !errors.price}
+                __isvalidfield={`${touched.price && !errors.price}`}
               />
               <FormikErrorMessage name="price" />
             </InputWrapper>
@@ -164,7 +164,7 @@ export const FormStep2 = ({
             placeholder="Type comment"
             minRows={1}
             maxRows={6}
-            isvalidfield={touched.comments && !errors.comments}
+            __isvalidfield={`${touched.comments && !errors.comments}`}
           />
           <FormikErrorMessage name="comments" />
         </InputWrapper>
