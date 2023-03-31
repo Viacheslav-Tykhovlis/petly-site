@@ -1,6 +1,7 @@
 {
   "name": "petly-site",
   "version": "0.1.0",
+  "homepage": "",
   "private": true,
   "dependencies": {
     "@emotion/css": "^11.10.6",
