@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { showToastInfo } from 'utils/showTost';
 
 axios.defaults.baseURL = `https://petly-site-back.up.railway.app`;
 
@@ -22,6 +23,9 @@ export const fetchNoticesByTitle = createAsyncThunk(
     const url = `/notices/title/${title}`;
     try {
       const result = await axios.get(url);
+      if (!result.data.data.length) {
+        showToastInfo('Sorry, no pets by this title');
+      }
       return result.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

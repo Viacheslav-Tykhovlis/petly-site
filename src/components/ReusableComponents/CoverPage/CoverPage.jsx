@@ -4,7 +4,7 @@ import { Image, Text, Box } from './CoverPage.styled';
 const CoverPage = () => {
   return (
     <Box>
-      <Text>Not added pets</Text>
+      <Text>Not pets here</Text>
       <Image src={coverImage} alt={'not added pet'}></Image>
     </Box>
   );
