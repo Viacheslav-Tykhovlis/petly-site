@@ -1,6 +1,6 @@
 import { Field, Form } from 'formik';
-import femaleIcon from 'img/icons/female.png';
-import maleIcon from 'img/icons/male.png';
+import femaleIcon from 'img/icons/female.svg';
+import maleIcon from 'img/icons/male.svg';
 import {
   BtnsModalWrapper,
   CloseModalButton,
