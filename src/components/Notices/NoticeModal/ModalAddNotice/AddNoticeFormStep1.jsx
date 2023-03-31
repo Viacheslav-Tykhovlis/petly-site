@@ -16,6 +16,7 @@ import {
 import { FormikErrorMessage } from './FormikErrorMessage';
 import { RadioOption } from './RadioOption';
 import { StyledDatePicker } from './DatePicker';
+import useFormStyle from 'hooks/useFormStyle';
 
 export const FormStep1 = ({
   onNext,
@@ -28,9 +29,11 @@ export const FormStep1 = ({
   setFieldValue,
   onFocus,
 }) => {
+  const formStyle = useFormStyle();
+
   return (
     <Form>
-      <StyledModal>
+      <StyledModal style={formStyle} step={1}>
         <CloseModalButton onClick={onClose} step={1} />
         <StyledTitle step={1}>Add pet</StyledTitle>
         <StyledSubtitle>

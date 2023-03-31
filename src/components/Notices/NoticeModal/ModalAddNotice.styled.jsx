@@ -104,8 +104,13 @@ export const StyledModal = styled.div`
     top: 50%;
   }
 
-  @media screen and (min-width: 1280) {
-    top: 329px;
+  @media screen and (min-width: 1280px) {
+    top: ${({ style, step }) =>
+      style.top !== undefined && step === 1
+        ? style.top
+        : style.top !== undefined && step === 2
+        ? style.top
+        : style.top};
   }
 `;
 
