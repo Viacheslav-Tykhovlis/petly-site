@@ -166,7 +166,7 @@ const noticesSlice = createSlice({
         state.error = null;
         const { favoriteList } = state;
         const index = favoriteList.findIndex(
-          notice => notice.id === action.payload.id,
+          notice => notice._id === action.payload._id,
         );
         favoriteList.splice(index, 1);
       })

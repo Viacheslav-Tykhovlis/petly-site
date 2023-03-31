@@ -7,23 +7,12 @@ import {
   fetchNoticesByTitle,
 } from 'redux/notices/noticesOperations';
 
-import {
-  getSearchBtnIsActive,
-  getSearchTitleError,
-} from 'redux/notices/noticesSelectors';
+import { getSearchBtnIsActive } from 'redux/notices/noticesSelectors';
 import { showToastInfo } from 'utils/showTost';
-import { useEffect } from 'react';
 
 const NoticesSearch = ({ category }) => {
   const dispatch = useDispatch();
   const isButtonClicked = useSelector(getSearchBtnIsActive);
-  const isSearchError = useSelector(getSearchTitleError);
-
-  useEffect(() => {
-    if (isSearchError) {
-      showToastInfo('Sorry, no pets by this title');
-    }
-  }, [isSearchError]);
 
   const searchNoticeByTitle = title => {
     if (!isButtonClicked) {
