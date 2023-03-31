@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
 import WaveMob from '../../img/HomePageBG/Wave@1x.png';
 import WaveTab from '../../img/HomePageBG/Wave@2x.png';
-import WaveDes from '../../img/HomePageBG/Wave@3x.png';
+import WaveDes from '../../img/HomePageBG/Frame@2x.png';
 import DogMob from '../../img/HomePageDog/Dog@1x.png';
 import DogTab from '../../img/HomePageDog/Dog@2x.png';
-import DogDes from '../../img/HomePageDog/Dog@3x.png';
 import Union from '../../img/HomePageBG/Union.png';
 
 export const HomePageBG = styled.div`
@@ -33,7 +32,7 @@ export const HomePageBG = styled.div`
     min-height: 800px;
     background-position: calc(50% + 400px) bottom, center bottom,
       50% calc(50% - 300px);
-    background-image: url(${DogDes}), url(${WaveDes}), url(${Union});
+    background-image: url(${DogTab}), url(${WaveDes}), url(${Union});
   }
 `;
 
