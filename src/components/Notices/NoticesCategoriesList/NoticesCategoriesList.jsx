@@ -8,6 +8,7 @@ import {
   getNotices,
   getOwnNotices,
 } from 'redux/notices/noticesSelectors';
+import CoverPage from 'components/ReusableComponents/CoverPage/CoverPage';
 
 const NoticesCategoriesList = ({ category, onClose }) => {
   const notices = useSelector(getNotices);
@@ -63,6 +64,11 @@ const NoticesCategoriesList = ({ category, onClose }) => {
           ))}
         </StyledList>
       )}
+      {category === 'own' && !ownNotices.length && (
+        <StyledList>
+          <CoverPage />
+        </StyledList>
+      )}
 
       {category === 'favorite' && (
         <StyledList>
@@ -73,6 +79,11 @@ const NoticesCategoriesList = ({ category, onClose }) => {
               onClose={onClose}
             ></NoticeCategoryItem>
           ))}
+        </StyledList>
+      )}
+      {category === 'favorite' && !favorites.length && (
+        <StyledList>
+          <CoverPage />
         </StyledList>
       )}
     </>

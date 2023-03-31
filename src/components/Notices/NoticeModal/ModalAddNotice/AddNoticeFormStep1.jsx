@@ -16,6 +16,7 @@ import {
 import { FormikErrorMessage } from './FormikErrorMessage';
 import { RadioOption } from './RadioOption';
 import { StyledDatePicker } from './DatePicker';
+import useFormStyle from 'hooks/useFormStyle';
 
 export const FormStep1 = ({
   onNext,
@@ -28,9 +29,11 @@ export const FormStep1 = ({
   setFieldValue,
   onFocus,
 }) => {
+  const formStyle = useFormStyle();
+
   return (
     <Form>
-      <StyledModal>
+      <StyledModal style={formStyle} step={1}>
         <CloseModalButton onClick={onClose} step={1} />
         <StyledTitle step={1}>Add pet</StyledTitle>
         <StyledSubtitle>
@@ -77,7 +80,7 @@ export const FormStep1 = ({
               value={title}
               onChange={handleChange}
               onBlur={handleBlur}
-              isvalidfield={touched.title && !errors.title}
+              __isvalidfield={`${touched.title && !errors.title}`}
             />
             <FormikErrorMessage name="title" />
           </InputWrapper>
@@ -91,7 +94,7 @@ export const FormStep1 = ({
               value={name}
               onChange={handleChange}
               onBlur={handleBlur}
-              isvalidfield={touched.name && !errors.name}
+              __isvalidfield={`${touched.name && !errors.name}`}
             />
             <FormikErrorMessage name="name" />
           </InputWrapper>
@@ -110,7 +113,7 @@ export const FormStep1 = ({
               id="birthdate"
               placeholderText="Type date of birth"
               autoComplete="off"
-              isvalidfield={birthdate && !errors.birthdate}
+              __isvalidfield={`${birthdate && !errors.birthdate}`}
             />
             <FormikErrorMessage name="birthdate" />
           </InputWrapper>
@@ -123,7 +126,7 @@ export const FormStep1 = ({
               value={breed}
               onChange={handleChange}
               onBlur={handleBlur}
-              isvalidfield={touched.breed && !errors.breed}
+              __isvalidfield={`${touched.breed && !errors.breed}`}
             />
             <FormikErrorMessage name="breed" />
           </InputWrapper>

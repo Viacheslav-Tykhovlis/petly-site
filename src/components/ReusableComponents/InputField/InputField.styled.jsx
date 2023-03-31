@@ -7,7 +7,9 @@ export const FieldWrapper = styled.div`
 
 export const FieldStyle = styled(Field)`
   @media screen and (max-width: 767px) {
+    padding-left: 14px;
     margin-bottom: 16px;
+    font-size: ${props => props.theme.fontSizes.xxs};
   }
 
   margin-bottom: 28px;
@@ -21,6 +23,7 @@ export const FieldStyle = styled(Field)`
   font-family: 'Manrope';
   font-size: ${props => props.theme.fontSizes.s};
   font-weight: ${props => props.theme.fontWeight.body};
+  outline-color: ${props => props.theme.colors.borderColor};
 
   @media screen and (min-width: 768px) {
     padding: 12px 14px;

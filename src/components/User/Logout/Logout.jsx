@@ -10,8 +10,8 @@ const Logout = () => {
     dispatch(logOut());
   };
   return (
-    <BoxLogOut type="button" ariaLabel="logout button">
-      <ButtonLogout onClick={handleLogout} strokeHover={'#f59256'} />
+    <BoxLogOut type="button" ariaLabel="logout button" onClick={handleLogout}>
+      <ButtonLogout strokeHover={'#f59256'} />
       <LogoutSpan>Log Out</LogoutSpan>
     </BoxLogOut>
   );

@@ -71,7 +71,7 @@ export const Input = styled.input`
 
     letter-spacing: 0.04em;
 
-    color: #111111;
+    color: rgba(17, 17, 17, 0.6);
   }
 
   &:focus {

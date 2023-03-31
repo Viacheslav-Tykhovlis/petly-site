@@ -7,24 +7,25 @@ import {
   fetchNoticesByTitle,
 } from 'redux/notices/noticesOperations';
 
-import { getError, getSearchBtnIsActive } from 'redux/notices/noticesSelectors';
+import { getSearchBtnIsActive } from 'redux/notices/noticesSelectors';
 import { showToastInfo } from 'utils/showTost';
 
 const NoticesSearch = ({ category }) => {
   const dispatch = useDispatch();
   const isButtonClicked = useSelector(getSearchBtnIsActive);
-  const isError = useSelector(getError);
 
   const searchNoticeByTitle = title => {
     if (!isButtonClicked) {
       try {
         dispatch(fetchNoticesByCategory(category));
-        if (isError) {
-          showToastInfo('Sorry, no pets by this title');
-        }
       } catch (error) {
         console.log(error);
       }
+      return;
+    }
+
+    if (category === 'own' || category === 'favorite') {
+      showToastInfo('Sorry, you can’t search in this categories');
       return;
     }
 

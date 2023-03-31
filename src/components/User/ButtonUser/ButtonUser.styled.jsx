@@ -59,7 +59,7 @@ export const StyleUpdateButton = styled.div`
   border-radius: 50%;
   border: transparent;
 
-  fill: ${props => props.fillM || '#f59256'};
+  fill: ${({ disabled }) => (disabled ? 'rgba(17, 17, 17, 0.6)' : '#f59256')};
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   svg {

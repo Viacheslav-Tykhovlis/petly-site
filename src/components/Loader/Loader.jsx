@@ -1,26 +1,14 @@
-import styled from 'styled-components';
-import { RotatingLines } from 'react-loader-spinner';
-
-export const StyledLoader = styled.section`
-  position: absolute;
-  top: ${props => props.top || '15h'};
-  left: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+import img from './img/dogHhead.png';
+import { Container, DogHead, Txt, Img } from './Loader.styled';
 
 const Loader = () => {
   return (
-    <StyledLoader>
-      <RotatingLines
-        strokeColor="grey"
-        strokeWidth="4"
-        animationDuration="0.75"
-        width="96"
-        visible={true}
-      />
-    </StyledLoader>
+    <Container>
+      <DogHead>
+        <Img alt="doggy" src={img} />
+        <Txt>I AM WAITING FOR YOU</Txt>
+      </DogHead>
+    </Container>
   );
 };
 

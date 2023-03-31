@@ -1,6 +1,6 @@
 import { Field, Form } from 'formik';
-import femaleIcon from 'img/icons/female.png';
-import maleIcon from 'img/icons/male.png';
+import femaleIcon from 'img/icons/female.svg';
+import maleIcon from 'img/icons/male.svg';
 import {
   BtnsModalWrapper,
   CloseModalButton,
@@ -20,6 +20,7 @@ import {
 } from '../ModalAddNotice.styled';
 import { FormikErrorMessage } from './FormikErrorMessage';
 import { SexRadioButton } from './SexRadioButton ';
+import useFormStyle from 'hooks/useFormStyle';
 
 export const FormStep2 = ({
   onBack,
@@ -32,11 +33,12 @@ export const FormStep2 = ({
   errors,
   setFile,
   setFieldValue,
-  fileDataURL,
+  filedataurl,
 }) => {
+  const formStyle = useFormStyle();
   return (
     <Form>
-      <StyledModal>
+      <StyledModal style={formStyle} step={2}>
         <CloseModalButton onClick={onClose} step={2} />
         <StyledTitle step={2}>Add pet</StyledTitle>
         <StyledTextInputLabel>The sex:</StyledTextInputLabel>
@@ -95,7 +97,7 @@ export const FormStep2 = ({
               value={location}
               onChange={handleChange}
               onBlur={handleBlur}
-              isvalidfield={touched.location && !errors.location}
+              __isvalidfield={`${touched.location && !errors.location}`}
             />
             <FormikErrorMessage name="location" />
           </InputWrapper>
@@ -112,7 +114,7 @@ export const FormStep2 = ({
                 value={price}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                isvalidfield={touched.price && !errors.price}
+                __isvalidfield={`${touched.price && !errors.price}`}
               />
               <FormikErrorMessage name="price" />
             </InputWrapper>
@@ -130,16 +132,16 @@ export const FormStep2 = ({
             name="file"
             id="file"
             style={{ display: 'none' }}
-            fileDataURL={fileDataURL}
+            filedataurl={filedataurl}
             onChange={e => {
               setFieldValue('image', e.currentTarget.files[0]);
               setFile(e.currentTarget.files[0]);
             }}
           />
           <UploadButton htmlFor="file">
-            {fileDataURL ? (
+            {filedataurl ? (
               <img
-                src={fileDataURL}
+                src={filedataurl}
                 alt="Uploaded"
                 style={{ maxWidth: '100%', maxHeight: '100%' }}
               />
@@ -162,7 +164,7 @@ export const FormStep2 = ({
             placeholder="Type comment"
             minRows={1}
             maxRows={6}
-            isvalidfield={touched.comments && !errors.comments}
+            __isvalidfield={`${touched.comments && !errors.comments}`}
           />
           <FormikErrorMessage name="comments" />
         </InputWrapper>

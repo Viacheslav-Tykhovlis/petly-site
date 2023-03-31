@@ -27,7 +27,7 @@ export const validationSchemaStepOne = Yup.object().shape({
       'Only letters can be accepted',
     )
     .min(2, 'Breed should be at least 2 characters long')
-    .max(24, 'Breed should be up to 24 characters long'),
+    .max(16, 'Breed should be up to 16 characters long'),
 });
 
 export const validationSchemaStepTwo = Yup.object().shape({
@@ -35,5 +35,5 @@ export const validationSchemaStepTwo = Yup.object().shape({
   comments: Yup.string()
     .required('Comments is required')
     .min(8, 'Title should be at least 8 characters long')
-    .max(200, 'Title should be up to 200 characters long'),
+    .max(120, 'Title should be up to 120 characters long'),
 });

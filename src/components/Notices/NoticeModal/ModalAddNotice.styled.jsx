@@ -104,8 +104,13 @@ export const StyledModal = styled.div`
     top: 50%;
   }
 
-  @media screen and (min-width: 1280) {
-    top: 329px;
+  @media screen and (min-width: 1280px) {
+    top: ${({ style, step }) =>
+      style.top !== undefined && step === 1
+        ? style.top
+        : style.top !== undefined && step === 2
+        ? style.top
+        : style.top};
   }
 `;
 
@@ -116,7 +121,7 @@ export const RadioWrapper = styled.div`
   row-gap: 16px;
   margin-bottom: 32px;
 
-  @media screen and (min-width: 728px) {
+  @media screen and (min-width: 768px) {
     column-gap: 12px;
     margin-bottom: 28px;
   }
@@ -155,7 +160,7 @@ export const BtnsModalWrapper = styled.div`
   row-gap: 12px;
   margin-top: 40px;
 
-  @media screen and (min-width: 728px) {
+  @media screen and (min-width: 768px) {
     flex-direction: row-reverse;
     row-gap: 0px;
     column-gap: 20px;
@@ -252,7 +257,7 @@ export const RadioSexBtnWrapper = styled.div`
 
   column-gap: 40px;
 
-  @media screen and (min-width: 728px) {
+  @media screen and (min-width: 768px) {
     margin-top: 31px;
     margin-bottom: 40px;
   }
@@ -335,7 +340,8 @@ export const StyledInput = styled(Field)`
   padding-left: 14px;
   background-color: #fdf7f2;
   border: 1px solid
-    ${({ isvalidfield }) => (isvalidfield ? 'green' : '#f5925680')};
+    ${({ __isvalidfield }) =>
+      __isvalidfield === 'true' ? 'green' : '#f5925680'};
 
   &:focus {
     outline: none;
@@ -359,7 +365,8 @@ export const StyledTextareaAutosize = styled(TextareaAutosize)`
 
   background-color: #fdf7f2;
   border: 1px solid
-    ${({ isvalidfield }) => (isvalidfield ? 'green' : '#f5925680')};
+    ${({ __isvalidfield }) =>
+      __isvalidfield === 'true' ? 'green' : '#f5925680'};
 
   resize: none;
   overflow: hidden;

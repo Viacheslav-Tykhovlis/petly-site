@@ -27,7 +27,6 @@ export const UserCity = ({ isUpdating, setIsUpdating }) => {
 
   const handleChange = event => {
     const cityUser = event.target.value;
-    console.log(cityUser);
     setNewUserCity(cityUser);
   };
 
