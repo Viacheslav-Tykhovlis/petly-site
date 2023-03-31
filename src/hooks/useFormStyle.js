@@ -6,7 +6,6 @@ const useFormStyle = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      console.log(window.innerHeight);
       if (window.innerHeight <= deskFormHeight) {
         setFormStyle({ top: '37vh' });
       } else {
