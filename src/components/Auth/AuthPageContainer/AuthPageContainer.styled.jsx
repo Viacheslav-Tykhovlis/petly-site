@@ -8,6 +8,8 @@ export const Wrapper = styled.div`
   background-size: 100% 456px;
   width: 100%;
   height: 100%;
+  position: absolute;
+  left: 0px;
 
   ${props => props.theme.mq.tablet} {
     background: bottom 0 left 0 / contain no-repeat url(${waveTablet});

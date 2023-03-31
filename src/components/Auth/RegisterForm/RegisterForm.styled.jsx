@@ -50,6 +50,9 @@ export const FormWrapper = styled(Form)`
   display: flex;
   flex-direction: column;
   margin-top: 40px;
+    ${props => props.theme.mq.mobileOnly} {
+      padding: 0px 20px;
+    }
 `;
 
 export const ButtonWrapper = styled.div`
@@ -59,6 +62,7 @@ export const ButtonWrapper = styled.div`
   margin-bottom: 50px;
   margin-top: 40px;
   width: 100%;
+  font-size: ${props => props.theme.fontSizes.m};
 `;
 
 export const Paragraph = styled.p`
