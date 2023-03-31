@@ -20,6 +20,7 @@ import {
 } from '../ModalAddNotice.styled';
 import { FormikErrorMessage } from './FormikErrorMessage';
 import { SexRadioButton } from './SexRadioButton ';
+import useFormStyle from 'hooks/useFormStyle';
 
 export const FormStep2 = ({
   onBack,
@@ -32,12 +33,12 @@ export const FormStep2 = ({
   errors,
   setFile,
   setFieldValue,
-  // fileDataURL,
   filedataurl,
 }) => {
+  const formStyle = useFormStyle();
   return (
     <Form>
-      <StyledModal>
+      <StyledModal style={formStyle} step={2}>
         <CloseModalButton onClick={onClose} step={2} />
         <StyledTitle step={2}>Add pet</StyledTitle>
         <StyledTextInputLabel>The sex:</StyledTextInputLabel>
